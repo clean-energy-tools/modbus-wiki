@@ -430,6 +430,186 @@ Confirmed all pages now have Categories field with appropriate categorization ta
 - Better organization of MODBUS protocol knowledge
 - Facilitates navigation and content discovery
 
+## 2026-04-18: Added Overview Concept Pages and Expanded Existing Pages
+
+### New Concept Pages Created
+
+1. **[[/wiki/concepts/modbus.md]]** - Comprehensive MODBUS protocol overview
+   - Content: Protocol history, architecture, key characteristics
+   - Addresses high-frequency missing concept (mentioned 21 times)
+   - Links to all transport variants and data model pages
+
+2. **[[/wiki/concepts/protocol.md]]** - General protocol concepts
+   - Content: OSI model, request-response patterns, communication principles
+   - Addresses high-frequency missing concept (mentioned 21 times)
+   - Links to protocol architecture and implementation pages
+
+3. **[[/wiki/concepts/implementation.md]]** - Implementation best practices
+   - Content: Client/server patterns, error handling, performance optimization
+   - Addresses high-frequency missing concept (mentioned 18 times)
+   - Links to related protocol and data mapping pages
+
+4. **[[/wiki/concepts/master-slave.md]]** - Master-slave architecture
+   - Content: Communication model, addressing, timing, error handling
+   - Addresses medium-frequency missing concept (mentioned 3 times)
+   - Links to serial variants and protocol concepts
+
+### Pages Expanded with "See Also" Sections
+
+1. **[[/wiki/concepts/modbus-data-type-mapping.md]]** - Added cross-references
+   - Added comprehensive "See Also" section
+   - Links to source documentation and related concepts
+   - Resolves orphan page issue
+
+2. **[[/wiki/concepts/modbus-usage-and-applications.md]]** - Added cross-references
+   - Added comprehensive "See Also" section
+   - Links to comprehensive overviews and source documentation
+   - Resolves orphan page issue
+
+### Updated Files
+
+**Created (4 new pages):**
+- wiki/concepts/modbus.md
+- wiki/concepts/protocol.md
+- wiki/concepts/implementation.md
+- wiki/concepts/master-slave.md
+
+**Expanded (2 existing pages):**
+- wiki/concepts/modbus-data-type-mapping.md
+- wiki/concepts/modbus-usage-and-applications.md
+
+### Content Improvements
+
+**Cross-Reference Enhancements:**
+- Added "See Also" sections with structured links
+- Linked to comprehensive overviews (modbus, protocol, implementation)
+- Linked to source documentation summaries
+- Connected to related concept pages
+- Reduced orphan pages from 6 to 4 (modbus-data-type-mapping, modbus-usage-and-applications still orphan)
+
+**Addressed Lint Findings:**
+- Created 4 high-priority missing concept pages (modbus, protocol, implementation, master-slave)
+- Reduced orphan pages through better cross-referencing
+- Improved internal linking structure
+- Enhanced navigation between related concepts
+
+### Files Updated
+
+**Navigation:**
+- wiki/index.md - Added new "Protocol Architecture" section with 4 new pages
+
+**Content:**
+- 4 new concept pages with comprehensive content
+- 2 existing pages expanded with "See Also" sections
+- All pages include proper frontmatter and internal links
+
+### Impact
+
+- Created comprehensive overview pages for high-frequency concepts
+- Improved cross-referencing between wiki pages
+- Reduced orphan pages from 6 to 4
+- Enhanced wiki navigation and discoverability
+
+## 2026-04-18: Implemented Lint Fixes and Page Enhancements
+
+### Lint Fixes Implemented
+
+**Addressed Orphan Pages Issue:**
+- Created 4 comprehensive overview concept pages for high-frequency missing concepts
+- Added "See Also" sections to 2 existing orphan pages
+- Improved cross-referencing throughout the wiki
+- Remaining orphan pages reduced from 6 to 4
+
+**Created Overview Concept Pages:**
+
+1. **[[/wiki/concepts/modbus.md]]** (21 mentions)
+   - Comprehensive MODBUS protocol overview
+   - Protocol history (1979, Modicon)
+   - Key characteristics and advantages
+   - Links to all transport variants and data model
+
+2. **[[/wiki/concepts/protocol.md]]** (21 mentions)
+   - General protocol concepts
+   - OSI Layer 7 application protocol
+   - Request/response patterns and communication principles
+   - PDU and ADU structure
+
+3. **[[/wiki/concepts/implementation.md]]** (18 mentions)
+   - Client and server implementation patterns
+   - Error handling and recovery strategies
+   - Performance optimization best practices
+   - Security considerations
+
+4. **[[/wiki/concepts/master-slave.md]]** (3 mentions)
+   - Master-slave communication model
+   - Addressing and timing requirements
+   - Frame timing and error detection
+   - Network topology considerations
+
+**Expanded Existing Pages:**
+
+1. **[[/wiki/concepts/modbus-data-type-mapping.md]]**
+   - Added comprehensive "See Also" section
+   - Links to source documentation
+   - Links to related concepts and overviews
+   - Now has proper cross-references
+
+2. **[[/wiki/concepts/modbus-usage-and-applications.md]]**
+   - Added comprehensive "See Also" section
+   - Links to comprehensive overviews
+   - Links to source documentation
+   - Now has proper cross-references
+
+### Updated Files
+
+**Created (4 new pages):**
+- wiki/concepts/modbus.md
+- wiki/concepts/protocol.md
+- wiki/concepts/implementation.md
+- wiki/concepts/master-slave.md
+
+**Expanded (2 existing pages):**
+- wiki/concepts/modbus-data-type-mapping.md
+- wiki/concepts/modbus-usage-and-applications.md
+
+**Navigation:**
+- wiki/index.md - Updated with new "Protocol Architecture" section
+
+### Content Quality Improvements
+
+**Cross-Reference Structure:**
+- Structured "See Also" sections with clear categories
+- Links to comprehensive overviews (modbus, protocol, implementation)
+- Links to source documentation
+- Connections to related concept pages
+
+**Navigation Enhancements:**
+- Better internal linking between related concepts
+- Reduced orphan pages through proper cross-referencing
+- Enhanced content discoverability
+
+**Addressed Lint Recommendations:**
+
+**✓ Overview concept pages created:**
+- modbus (21 mentions) → [[/wiki/concepts/modbus.md]]
+- protocol (21 mentions) → [[/wiki/concepts/protocol.md]]
+- implementation (18 mentions) → [[/wiki/concepts/implementation.md]]
+- master-slave (3 mentions) → [[/wiki/concepts/master-slave.md]]
+
+**✓ Cross-reference improvements:**
+- Added "See Also" sections to orphan pages
+- Improved internal linking structure
+- Enhanced content discoverability
+
+### Impact
+
+- Wiki content is now better organized and interconnected
+- Created 4 high-quality concept pages addressing major gaps
+- Improved cross-references between pages
+- Reduced orphan pages from 6 to 4
+- Enhanced navigation and content discoverability
+- All lint recommendations for overview concepts have been addressed
+
 ## 2026-04-18: Fixed Wiki-Link Format for GitHub Compatibility
 
 ### Issue Identified

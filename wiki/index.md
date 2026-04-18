@@ -36,6 +36,15 @@ Summaries of source documents in `raw/MODBUS/`:
 | [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) | MODBUS ASCII transmission mode for serial line communication using ASCII hex encoding and LRC error checking |
 | [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) | MODBUS/TCP Security (MBAPS) protocol adding TLS encryption, mutual authentication, and role-based authorization to MODBUS/TCP |
 
+### Protocol Architecture
+
+| Concept | Description |
+|---------|-------------|
+| [MODBUS Protocol](/wiki/concepts/modbus.md) | Comprehensive overview of MODBUS protocol including history, architecture, key characteristics, and role in industrial automation |
+| [Protocol](/wiki/concepts/protocol.md) | General protocol concepts including OSI model, request-response patterns, and communication principles |
+| [Master-Slave Architecture](/wiki/concepts/master-slave.md) | MODBUS master-slave communication model including roles, addressing, timing, and operational characteristics |
+| [Implementation](/wiki/concepts/implementation.md) | Best practices, patterns, and guidelines for implementing MODBUS client and server functionality in software systems |
+
 ### Data Model
 
 | Concept | Description |

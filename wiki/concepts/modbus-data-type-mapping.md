@@ -815,3 +815,17 @@ impl ModbusMapping<DeviceConfig> for DeviceConfig {
 - [[/wiki/concepts/input-registers]]]
 - [[/wiki/concepts/modbus-tcp]]]
 - [[/wiki/concepts/function-codes]]]
+
+## See Also
+
+### Source Documentation
+
+- [[/wiki/summaries/MODBUS/MODBUS.md]] - Protocol specification for AI implementation
+- [[/wiki/summaries/MODBUS/modbusprotocolspecification.md]] - Official MODBUS application protocol specification
+
+### Related Concepts
+
+- [[/wiki/concepts/modbus]] - Comprehensive MODBUS protocol overview
+- [[/wiki/concepts/protocol]] - Protocol concepts and communication principles
+- [[/wiki/concepts/implementation]] - Implementation best practices and patterns
+- [[/wiki/concepts/master-slave]] - Master-slave architecture details

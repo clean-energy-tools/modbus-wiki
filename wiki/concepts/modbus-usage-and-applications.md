@@ -309,5 +309,24 @@ MODBUS is the de facto standard for industrial device communication (source: [MO
 - [[/wiki/concepts/modbus-tcp]]]
 - [[/wiki/concepts/modbus-rtu]]]
 - [[/wiki/concepts/modbus-ascii]]]
-- [[/wiki/concepts/function-codes]]]
 - [[/wiki/concepts/modbus-tcp-security]]]
+
+## See Also
+
+### Comprehensive Overviews
+
+- [[/wiki/concepts/modbus]] - Comprehensive MODBUS protocol overview and history
+- [[/wiki/concepts/protocol]] - Protocol concepts, OSI model, and communication principles
+- [[/wiki/concepts/implementation]] - Implementation best practices and patterns
+- [[/wiki/concepts/master-slave]] - Master-slave architecture and communication model
+
+### Source Documentation
+
+- [[/wiki/summaries/MODBUS/MODBUS.md]] - Protocol specification for AI implementation
+- [[/wiki/summaries/MODBUS/modbusprotocolspecification.md]] - Official MODBUS application protocol specification
+
+### Related Concepts
+
+- [[/wiki/concepts/modbus-data-type-mapping]] - Data type mapping and programming implementations
+- [[/wiki/concepts/coils]] - Digital outputs and control relays
+- [[/wiki/concepts/holding-registers]] - Configuration and setpoints
