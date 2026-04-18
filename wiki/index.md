@@ -31,40 +31,40 @@ Summaries of source documents in `raw/MODBUS/`:
 
 | Concept | Description |
 |---------|-------------|
-| [MODBUS TCP](wiki/concepts/modbus-tcp.md) | MODBUS over TCP/IP protocol using MBAP header for client/server communication over Ethernet networks |
-| [MODBUS RTU](wiki/concepts/modbus-rtu.md) | MODBUS Remote Terminal Unit mode for serial line communication using binary encoding and CRC-16 error checking |
-| [MODBUS ASCII](wiki/concepts/modbus-ascii.md) | MODBUS ASCII transmission mode for serial line communication using ASCII hex encoding and LRC error checking |
-| [MODBUS TCP Security](wiki/concepts/modbus-tcp-security.md) | MODBUS/TCP Security (MBAPS) protocol adding TLS encryption, mutual authentication, and role-based authorization to MODBUS/TCP |
+| [MODBUS TCP](/wiki/concepts/modbus-tcp.md) | MODBUS over TCP/IP protocol using MBAP header for client/server communication over Ethernet networks |
+| [MODBUS RTU](/wiki/concepts/modbus-rtu.md) | MODBUS Remote Terminal Unit mode for serial line communication using binary encoding and CRC-16 error checking |
+| [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) | MODBUS ASCII transmission mode for serial line communication using ASCII hex encoding and LRC error checking |
+| [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) | MODBUS/TCP Security (MBAPS) protocol adding TLS encryption, mutual authentication, and role-based authorization to MODBUS/TCP |
 
 ### Data Model
 
 | Concept | Description |
 |---------|-------------|
-| [Coils](wiki/concepts/coils.md) | Single-bit read-write data objects used for digital outputs and control relays |
-| [Discrete Inputs](wiki/concepts/discrete-inputs.md) | Single-bit read-only data objects used for digital inputs and limit switches |
-| [Input Registers](wiki/concepts/input-registers.md) | 16-bit read-only data objects used for analog measurements and sensor readings |
-| [Holding Registers](wiki/concepts/holding-registers.md) | 16-bit read-write data objects used for configuration, setpoints, and control values |
+| [Coils](/wiki/concepts/coils.md) | Single-bit read-write data objects used for digital outputs and control relays |
+| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | Single-bit read-only data objects used for digital inputs and limit switches |
+| [Input Registers](/wiki/concepts/input-registers.md) | 16-bit read-only data objects used for analog measurements and sensor readings |
+| [Holding Registers](/wiki/concepts/holding-registers.md) | 16-bit read-write data objects used for configuration, setpoints, and control values |
 
 ### Protocol Components
 
 | Concept | Description |
 |---------|-------------|
-| [Function Codes](wiki/concepts/function-codes.md) | MODBUS function codes defining operations for reading and writing data including coils, discrete inputs, and registers |
-| [MBAP Header](wiki/concepts/mbap-header.md) | MODBUS Application Protocol header for TCP/IP encapsulation providing transaction management and routing information |
-| [TCP Connection Management](wiki/concepts/tcp-connection-management.md) | TCP connection lifecycle management for MODBUS/TCP including establishment, maintenance, pooling, and error handling |
-| [CRC-16](wiki/concepts/crc-16.md) | Cyclic Redundancy Check 16-bit error detection algorithm used in MODBUS RTU mode for frame integrity |
+| [Function Codes](/wiki/concepts/function-codes.md) | MODBUS function codes defining operations for reading and writing data including coils, discrete inputs, and registers |
+| [MBAP Header](/wiki/concepts/mbap-header.md) | MODBUS Application Protocol header for TCP/IP encapsulation providing transaction management and routing information |
+| [TCP Connection Management](/wiki/concepts/tcp-connection-management.md) | TCP connection lifecycle management for MODBUS/TCP including establishment, maintenance, pooling, and error handling |
+| [CRC-16](/wiki/concepts/crc-16.md) | Cyclic Redundancy Check 16-bit error detection algorithm used in MODBUS RTU mode for frame integrity |
 
 ### Applications and Usage
 
 | Concept | Description |
 |---------|-------------|
-| [MODBUS Usage and Applications](wiki/concepts/modbus-usage-and-applications.md) | Industries and applications where MODBUS protocol is commonly deployed including manufacturing, building automation, energy, and process control |
+| [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md) | Industries and applications where MODBUS protocol is commonly deployed including manufacturing, building automation, energy, and process control |
 
 ### Implementation and Integration
 
 | Concept | Description |
 |---------|-------------|
-| [MODBUS Data Type Mapping](wiki/concepts/modbus-data-type-mapping.md) | Techniques and patterns for mapping MODBUS register values to/from modern programming language types including Rust and Python implementations |
+| [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md) | Techniques and patterns for mapping MODBUS register values to/from modern programming language types including Rust and Python implementations |
 
 ## Quick Reference
 
@@ -103,7 +103,7 @@ Summaries of source documents in `raw/MODBUS/`:
 
 - Browse by [Document Summaries](#document-summaries)
 - Browse by [Core Concepts](#core-concepts)
-- View [Change Log](wiki/log.md)
+- View [Change Log](/wiki/log.md)
 
 ## Related Information
 

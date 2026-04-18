@@ -33,10 +33,10 @@ MODBUS defines four primary data tables. Devices may implement these as separate
 
 | Table | Object Type | Size | Access | Typical Use |
 |-------|-------------|------|--------|-------------|
-| [[wiki/concepts/coils]] | Bit | 1 bit | Read/Write | Digital outputs, relays |
-| [[wiki/concepts/discrete-inputs]] | Bit | 1 bit | Read-only | Digital inputs, switches |
-| [[wiki/concepts/holding-registers]] | Word | 16 bits | Read/Write | Configuration, setpoints |
-| [[wiki/concepts/input-registers]] | Word | 16 bits | Read-only | Measurements, status |
+| [[/wiki/concepts/coils]]] | Bit | 1 bit | Read/Write | Digital outputs, relays |
+| [[/wiki/concepts/discrete-inputs]]] | Bit | 1 bit | Read-only | Digital inputs, switches |
+| [[/wiki/concepts/holding-registers]]] | Word | 16 bits | Read/Write | Configuration, setpoints |
+| [[/wiki/concepts/input-registers]]] | Word | 16 bits | Read-only | Measurements, status |
 
 ### Addressing
 
@@ -62,10 +62,10 @@ MODBUS operates over multiple transport layers:
 
 | Variant | Medium | Error Check | Framing |
 |---------|--------|-------------|---------|
-| [[wiki/concepts/modbus-tcp]] | Ethernet | TCP/IP | MBAP header (7 bytes) |
-| [[wiki/concepts/modbus-rtu]] | Serial (RS-485/232) | CRC-16 | Silent intervals |
-| [[wiki/concepts/modbus-ascii]] | Serial | LRC | Start ':' / End CR-LF |
-| [[wiki/concepts/modbus-tcp-security]] | Ethernet + TLS | TCP/IP + TLS | MBAP over TLS |
+| [[/wiki/concepts/modbus-tcp]]] | Ethernet | TCP/IP | MBAP header (7 bytes) |
+| [[/wiki/concepts/modbus-rtu]]] | Serial (RS-485/232) | CRC-16 | Silent intervals |
+| [[/wiki/concepts/modbus-ascii]]] | Serial | LRC | Start ':' / End CR-LF |
+| [[/wiki/concepts/modbus-tcp-security]]] | Ethernet + TLS | TCP/IP + TLS | MBAP over TLS |
 
 ## Protocol Data Unit (PDU)
 
@@ -94,7 +94,7 @@ The document details all major function codes including:
 - Function 0x17: Read/Write Multiple Registers
 - Function 0x2B: Encapsulated Interface Transport
 
-See [[wiki/concepts/function-codes]] for detailed specifications.
+See [[/wiki/concepts/function-codes]]] for detailed specifications.
 
 ## Exception Handling
 
@@ -140,12 +140,12 @@ For 32-bit values across two registers, verify device documentation for word ord
 
 ## Related pages
 
-- [[wiki/concepts/modbus-tcp]]
-- [[wiki/concepts/modbus-rtu]]
-- [[wiki/concepts/modbus-ascii]]
-- [[wiki/concepts/modbus-tcp-security]]
-- [[wiki/concepts/function-codes]]
-- [[wiki/concepts/coils]]
-- [[wiki/concepts/discrete-inputs]]
-- [[wiki/concepts/holding-registers]]
-- [[wiki/concepts/input-registers]]
+- [[/wiki/concepts/modbus-tcp]]]
+- [[/wiki/concepts/modbus-rtu]]]
+- [[/wiki/concepts/modbus-ascii]]]
+- [[/wiki/concepts/modbus-tcp-security]]]
+- [[/wiki/concepts/function-codes]]]
+- [[/wiki/concepts/coils]]]
+- [[/wiki/concepts/discrete-inputs]]]
+- [[/wiki/concepts/holding-registers]]]
+- [[/wiki/concepts/input-registers]]]

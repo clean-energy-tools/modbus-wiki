@@ -16,7 +16,7 @@ This document defines the MODBUS/TCP Security protocol specification that adds T
 
 ## Protocol Overview
 
-[[wiki/concepts/modbus-tcp-security]] (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication for MODBUS devices over TCP/IP networks (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
+[[/wiki/concepts/modbus-tcp-security]]] (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication for MODBUS devices over TCP/IP networks (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
 
 ### Key Characteristics
 
@@ -263,8 +263,8 @@ The server returns exception code 0x01 when the client role does not have permis
 
 ## Related pages
 
-- [[wiki/concepts/modbus-tcp-security]]
-- [[wiki/concepts/modbus-tcp]]
-- [[wiki/concepts/tls]]
-- [[wiki/concepts/mutual-authentication]]
-- [[wiki/concepts/role-based-authorization]]
+- [[/wiki/concepts/modbus-tcp-security]]]
+- [[/wiki/concepts/modbus-tcp]]]
+- [[/wiki/concepts/tls]]]
+- [[/wiki/concepts/mutual-authentication]]]
+- [[/wiki/concepts/role-based-authorization]]]

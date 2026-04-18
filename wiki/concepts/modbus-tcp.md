@@ -211,13 +211,13 @@ MODBUS TCP Client ──┘                              ├── RS-485 Bus
 
 ## Security
 
-MODBUS TCP itself has no built-in security. For secure communication, use [[wiki/concepts/modbus-tcp-security]] (port 802) which adds TLS encryption and mutual authentication.
+MODBUS TCP itself has no built-in security. For secure communication, use [[/wiki/concepts/modbus-tcp-security]]] (port 802) which adds TLS encryption and mutual authentication.
 
 ## Related pages
 
-- [[wiki/concepts/modbus-rtu]]
-- [[wiki/concepts/modbus-ascii]]
-- [[wiki/concepts/modbus-tcp-security]]
-- [[wiki/concepts/mbap-header]]
-- [[wiki/concepts/tcp-connection-management]]
-- [[wiki/concepts/function-codes]]
+- [[/wiki/concepts/modbus-rtu]]]
+- [[/wiki/concepts/modbus-ascii]]]
+- [[/wiki/concepts/modbus-tcp-security]]]
+- [[/wiki/concepts/mbap-header]]]
+- [[/wiki/concepts/tcp-connection-management]]]
+- [[/wiki/concepts/function-codes]]]

@@ -36,7 +36,7 @@ MODBUS supports two transmission modes over serial lines:
 
 ### RTU Mode (Remote Terminal Unit)
 
-[[wiki/concepts/modbus-rtu]] transmits data in binary format with CRC-16 error checking.
+[[/wiki/concepts/modbus-rtu]]] transmits data in binary format with CRC-16 error checking.
 
 **Character Format:**
 | Field | Bits | Description |
@@ -98,7 +98,7 @@ t3.5 = 3.5 × character_time
 
 ### ASCII Mode
 
-[[wiki/concepts/modbus-ascii]] transmits each byte as two ASCII hexadecimal characters.
+[[/wiki/concepts/modbus-ascii]]] transmits each byte as two ASCII hexadecimal characters.
 
 **Character Format:**
 | Field | Bits | Description |
@@ -229,9 +229,9 @@ Only implement at **one location** (typically master). Using 650Ω allows more d
 
 ## Related pages
 
-- [[wiki/concepts/modbus-rtu]]
-- [[wiki/concepts/modbus-ascii]]
-- [[wiki/concepts/crc-16]]
-- [[wiki/concepts/lrc]]
-- [[wiki/concepts/function-codes]]
-- [[wiki/concepts/modbus-tcp]]
+- [[/wiki/concepts/modbus-rtu]]]
+- [[/wiki/concepts/modbus-ascii]]]
+- [[/wiki/concepts/crc-16]]]
+- [[/wiki/concepts/lrc]]]
+- [[/wiki/concepts/function-codes]]]
+- [[/wiki/concepts/modbus-tcp]]]

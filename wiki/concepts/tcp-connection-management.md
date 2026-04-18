@@ -471,6 +471,6 @@ int check_connection_health(int sockfd) {
 
 ## Related pages
 
-- [[wiki/concepts/modbus-tcp]]
-- [[wiki/concepts/mbap-header]]
-- [[wiki/concepts/function-codes]]
+- [[/wiki/concepts/modbus-tcp]]]
+- [[/wiki/concepts/mbap-header]]]
+- [[/wiki/concepts/function-codes]]]

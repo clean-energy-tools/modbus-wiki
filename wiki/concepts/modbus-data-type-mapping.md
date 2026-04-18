@@ -811,7 +811,7 @@ impl ModbusMapping<DeviceConfig> for DeviceConfig {
 
 ## Related pages
 
-- [[wiki/concepts/holding-registers]]
-- [[wiki/concepts/input-registers]]
-- [[wiki/concepts/modbus-tcp]]
-- [[wiki/concepts/function-codes]]
+- [[/wiki/concepts/holding-registers]]]
+- [[/wiki/concepts/input-registers]]]
+- [[/wiki/concepts/modbus-tcp]]]
+- [[/wiki/concepts/function-codes]]]

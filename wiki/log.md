@@ -103,7 +103,7 @@ This log tracks all changes made to the MODBUS wiki in chronological order.
 ### Notes
 
 - All pages follow Obsidian-flavored markdown format with YAML frontmatter
-- Internal links use full paths from wiki root: [[wiki/concepts/concept-name]]
+- Internal links use full paths from wiki root: [[/wiki/concepts/concept-name]]
 - Each page includes Sources field linking to raw source documents
 - All source documents remain unmodified in raw/MODBUS/
 - Wiki structure follows the pattern defined in AGENTS.md
@@ -132,7 +132,7 @@ This log tracks all changes made to the MODBUS wiki in chronological order.
 
 1. **wiki/index.md**
    - Added new section: "Implementation and Integration"
-   - Added entry for: [MODBUS Data Type Mapping](wiki/concepts/modbus-data-type-mapping.md)
+   - Added entry for: [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
    - Updated page count and structure
 
 ### Files Modified Summary
@@ -430,6 +430,87 @@ Confirmed all pages now have Categories field with appropriate categorization ta
 - Better organization of MODBUS protocol knowledge
 - Facilitates navigation and content discovery
 
+## 2026-04-18: Fixed Wiki-Link Format for GitHub Compatibility
+
+### Issue Identified
+
+Wiki-links were using format `[[wiki/concepts/...]]` without a leading "/" character. This format works in Obsidian but breaks on GitHub, causing links to show page as nonexistent. Adding a "/" prefix makes links work correctly in both Obsidian and GitHub.
+
+**Incorrect format (before):**
+```md
+- [[wiki/concepts/coils.md]]
+- [Link Text](wiki/concepts/modbus-tcp.md)
+```
+
+**Correct format (after):**
+```md
+- [[/wiki/concepts/coils.md]]
+- [Link Text](/wiki/concepts/modbus-tcp.md)
+```
+
+### Link Format Rules
+
+**Wikilinks:**
+- Must start with "/" for GitHub compatibility: `[[/wiki/concepts/concept-name]]`
+- Full path from repository root required
+- Works in both Obsidian and GitHub
+
+**Standard Markdown links:**
+- Must also use "/" prefix: `[/wiki/concepts/concept-name.md](/wiki/concepts/concept-name.md)`
+- Full path from repository root required
+- Compatible with all markdown renderers
+
+**Examples of correct formats:**
+- `[[/wiki/concepts/coils.md]]` - Wikilink from wiki root
+- `[[/wiki/concepts/modbus-tcp.md]]` - Wikilink with path
+- `[/wiki/summaries/MODBUS/MODBUS.md](/wiki/summaries/MODBUS/MODBUS.md)` - Markdown link
+
+### Files Updated
+
+**Concept pages (16 files):**
+- All files in wiki/concepts/ updated with corrected link formats
+
+**Summary pages (5 files):**
+- All files in wiki/summaries/MODBUS/ updated with corrected link formats
+
+**Navigation files (2 files):**
+- wiki/index.md - Updated all wikilinks and markdown links
+- wiki/log.md - Updated all wikilinks and markdown links
+
+### Changes Made
+
+**Wikilink pattern fixed:**
+- Changed `[[wiki/concepts/...]]` to `[[/wiki/concepts/...]]`
+- Changed `[[wiki/summaries/...]]` to `[[/wiki/summaries/...]]`
+- Same-directory links also got `/wiki/concepts/` prefix
+
+**Markdown link pattern fixed:**
+- Changed `(wiki/concepts/...)` to `(/wiki/concepts/...)`
+- Changed `(wiki/summaries/...)` to `(/wiki/summaries/...)`
+
+**AGENTS.md template updated:**
+- Line 69: Updated example to show `/wiki/concepts/concept-name]]`
+- Line 70: Updated example to show `[/wiki/concepts/concept-name.md](/wiki/concepts/concept-name.md)`
+- Lines 75-76: Updated same-directory link examples
+- Added note about "/" requirement for GitHub compatibility
+
+### Verification
+
+Confirmed all links now have:
+- Leading "/" character for GitHub compatibility
+- Full path from repository root
+- Proper Obsidian wikilink format
+- Proper Markdown link format
+- Works in both Obsidian and GitHub environments
+
+### Impact
+
+- All wiki-links now work correctly on GitHub
+- Users are sent to correct pages when clicking links
+- No more "page not found" errors on GitHub
+- Maintains Obsidian compatibility
+- Follows standard linking conventions for cross-platform compatibility
+
 ## 2026-04-18: Added MODBUS Usage and Applications Page
 
 ### New Content Created
@@ -448,7 +529,7 @@ Confirmed all pages now have Categories field with appropriate categorization ta
 
 1. **wiki/index.md**
    - Added new section: "Applications and Usage"
-   - Added entry for: [MODBUS Usage and Applications](wiki/concepts/modbus-usage-and-applications.md)
+   - Added entry for: [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md)
    - Updated page count and structure
 
 ### Files Modified Summary

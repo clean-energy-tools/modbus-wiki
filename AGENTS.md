@@ -66,16 +66,18 @@ The Categories list is optional, and is suitable for files in the _concepts_ and
 
 Internal links should use one of two formats:
 
-1. **Wikilinks with full path from wiki root:** `[[wiki/concepts/concept-name]]`
-2. **Standard Markdown links:** `[Display Text](wiki/concepts/concept-name.md)`
+1. **Wikilinks with full path from wiki root:** `[[/wiki/concepts/concept-name]]`
+2. **Standard Markdown links:** `[/wiki/concepts/concept-name.md](/wiki/concepts/concept-name.md)`
 
-**Do NOT use the pipe syntax** (`[[path|Display Text]]`) as this conflicts with Markdown table syntax and does not render correctly in Obsidian when used inside tables.
+**Do NOT use to pipe syntax** (`[[path|Display Text]]`) as this conflicts with Markdown table syntax and does not render correctly in Obsidian when used inside tables.
+
+**IMPORTANT:** All links must have a leading `/` character to work correctly on GitHub. This prefix is compatible with both Obsidian and GitHub rendering.
 
 When linking from summary pages to concept pages, use the full path:
-- From `wiki/summaries/`: link as `[[wiki/concepts/concept-name]]`
-- From `wiki/concepts/`: link as `[[wiki/concepts/other-concept]]` or just `[[other-concept]]` for same-directory links
+- From `wiki/summaries/`: link as `[[/wiki/concepts/concept-name]]`
+- From `wiki/concepts/`: link as `[[/wiki/concepts/other-concept]]` or `[[/wiki/concepts/same-dir-link]]` for same-directory links
 
-In tables, always use standard Markdown link format: `[Display Text](wiki/concepts/concept-name.md)`
+In tables, always use standard Markdown link format: `[/wiki/concepts/concept-name.md](/wiki/concepts/concept-name.md)`
 
 ## Citation rules
 

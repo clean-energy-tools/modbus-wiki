@@ -212,7 +212,7 @@ Compare with other MODBUS data objects:
 
 ## Related pages
 
-- [[wiki/concepts/discrete-inputs]]
-- [[wiki/concepts/holding-registers]]
-- [[wiki/concepts/input-registers]]
-- [[wiki/concepts/function-codes]]
+- [[/wiki/concepts/discrete-inputs]]]
+- [[/wiki/concepts/holding-registers]]]
+- [[/wiki/concepts/input-registers]]]
+- [[/wiki/concepts/function-codes]]]

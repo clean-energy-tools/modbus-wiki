@@ -378,6 +378,6 @@ mbap_header decode_mbap_header(uint8_t *header) {
 
 ## Related pages
 
-- [[wiki/concepts/modbus-tcp]]
-- [[wiki/concepts/tcp-connection-management]]
-- [[wiki/concepts/function-codes]]
+- [[/wiki/concepts/modbus-tcp]]]
+- [[/wiki/concepts/tcp-connection-management]]]
+- [[/wiki/concepts/function-codes]]]

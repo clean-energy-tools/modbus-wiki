@@ -34,10 +34,10 @@ MODBUS defines a standardized data model with four primary tables:
 
 | Table | Object Type | Type of Access | Typical Use |
 |-------|-------------|---------------|-------------|
-| [[wiki/concepts/coils]] | Single bit | Read-Write | Digital outputs, control relays |
-| [[wiki/concepts/discrete-inputs]] | Single bit | Read-Only | Digital inputs, limit switches |
-| [[wiki/concepts/input-registers]] | 16-bit word | Read-Only | Analog inputs, sensor readings |
-| [[wiki/concepts/holding-registers]] | 16-bit word | Read-Write | Setpoints, configuration values |
+| [[/wiki/concepts/coils]]] | Single bit | Read-Write | Digital outputs, control relays |
+| [[/wiki/concepts/discrete-inputs]]] | Single bit | Read-Only | Digital inputs, limit switches |
+| [[/wiki/concepts/input-registers]]] | 16-bit word | Read-Only | Analog inputs, sensor readings |
+| [[/wiki/concepts/holding-registers]]] | 16-bit word | Read-Write | Setpoints, configuration values |
 
 ### Memory Organization
 
@@ -77,7 +77,7 @@ These are standardized codes that must be implemented according to specification
 | 24 | Read FIFO Queue | Read FIFO queue |
 | 43 | Encapsulated Interface Transport | MEI type transport |
 
-See [[wiki/concepts/function-codes]] for detailed specifications.
+See [[/wiki/concepts/function-codes]]] for detailed specifications.
 
 ## Protocol Data Unit (PDU)
 
@@ -130,18 +130,18 @@ The function code in the response has the most significant bit set (function cod
 ## Modbus Variants
 
 The protocol specification serves as the foundation for multiple MODBUS variants:
-- [[wiki/concepts/modbus-tcp]] - MODBUS over TCP/IP
-- [[wiki/concepts/modbus-rtu]] - MODBUS over serial line in RTU mode
-- [[wiki/concepts/modbus-ascii]] - MODBUS over serial line in ASCII mode
-- [[wiki/concepts/modbus-tcp-security]] - Secure MODBUS over TLS
+- [[/wiki/concepts/modbus-tcp]]] - MODBUS over TCP/IP
+- [[/wiki/concepts/modbus-rtu]]] - MODBUS over serial line in RTU mode
+- [[/wiki/concepts/modbus-ascii]]] - MODBUS over serial line in ASCII mode
+- [[/wiki/concepts/modbus-tcp-security]]] - Secure MODBUS over TLS
 
 ## Related pages
 
-- [[wiki/concepts/function-codes]]
-- [[wiki/concepts/coils]]
-- [[wiki/concepts/discrete-inputs]]
-- [[wiki/concepts/holding-registers]]
-- [[wiki/concepts/input-registers]]
-- [[wiki/concepts/modbus-tcp]]
-- [[wiki/concepts/modbus-rtu]]
-- [[wiki/concepts/modbus-ascii]]
+- [[/wiki/concepts/function-codes]]]
+- [[/wiki/concepts/coils]]]
+- [[/wiki/concepts/discrete-inputs]]]
+- [[/wiki/concepts/holding-registers]]]
+- [[/wiki/concepts/input-registers]]]
+- [[/wiki/concepts/modbus-tcp]]]
+- [[/wiki/concepts/modbus-rtu]]]
+- [[/wiki/concepts/modbus-ascii]]]

@@ -306,8 +306,8 @@ MODBUS is the de facto standard for industrial device communication (source: [MO
 
 ## Related pages
 
-- [[wiki/concepts/modbus-tcp]]
-- [[wiki/concepts/modbus-rtu]]
-- [[wiki/concepts/modbus-ascii]]
-- [[wiki/concepts/function-codes]]
-- [[wiki/concepts/modbus-tcp-security]]
+- [[/wiki/concepts/modbus-tcp]]]
+- [[/wiki/concepts/modbus-rtu]]]
+- [[/wiki/concepts/modbus-ascii]]]
+- [[/wiki/concepts/function-codes]]]
+- [[/wiki/concepts/modbus-tcp-security]]]
