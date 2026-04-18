@@ -1,0 +1,116 @@
+# MODBUS Wiki
+
+This project is to present the concepts of the MODBUS protocol in a pseudo-Wiki format.
+
+
+This directory is a knowledge-base for presenting the MODBUS protocol specifications, plus related documents.  Each document is analyzed by an AI LLM system for key concepts,  outputting a wiki-like hierarchy of files containing the key concepts.  These are all linked back to the original documents.  The result is intended to allow an LLM to easily navigate project information.
+
+## Folder structure
+
+```
+raw/          -- source documents (immutable -- never modify these)
+wiki/         -- markdown pages maintained by Claude
+wiki/index.md -- table of contents for the entire wiki
+wiki/log.md   -- append-only record of all operations
+wiki/summaries -- Contains files summarizing each source file
+wiki/concepts  -- Contains files with concepts, and a list of source files describing the contept
+```
+
+The source documents originate as DOCX files that are stored on a Google Workspace drive.
+## Ingest workflow
+
+When the user adds a new source to `raw/` and asks you to ingest it:
+
+1. Read the full source document
+2. Discuss key takeaways with the user before writing anything
+3. Create a summary page in `wiki/summaries` named after the source.  The summary page summarizes that source document, and contains a link to the source document.  The directory tree under `wiki/summaries`  should be nested with the same structure as used in the `raw/` directory.
+4. Create or update concept pages in `wiki/concepts` for each major idea or entity.  There should be one concept page for each concept you identify.
+5. Add wiki-links ([[page-name]]) to connect related pages
+6. Update `wiki/index.md` with new pages and one-line descriptions
+7. Append an entry to `wiki/log.md` with the date, source name, and what changed
+
+A single source may touch 10-15 wiki pages. That is normal.
+
+## Page format
+
+Every wiki page should follow this structure:
+
+```md
+---
+title: ENTER HERE THE PAGE TITLE
+Summary: One to two sentences describing this page.
+Sources:
+	# List of raw source files this page draws from. 
+	- raw/source/file1.md
+	- raw/source/file2.md
+Last updated: Date of most recent update.
+---
+
+
+Main content goes here. Use clear headings and short paragraphs.
+
+
+Link to related concepts using [[wiki-links]] throughout the text.
+
+
+## Related pages
+
+
+- [[related-concept-1]]
+- [[related-concept-2]]
+```
+
+The page frontmatter is to be in YAML format, with the target being the Obsidian program.  For example the entry for _Sources_ is described as a list, which means it should be formatted as a YAML array.  The sources are to be relative file URLs from the root of the repository.
+
+## Link format
+
+Internal links should use one of two formats:
+
+1. **Wikilinks with full path from wiki root:** `[[wiki/concepts/concept-name]]`
+2. **Standard Markdown links:** `[Display Text](wiki/concepts/concept-name.md)`
+
+**Do NOT use the pipe syntax** (`[[path|Display Text]]`) as this conflicts with Markdown table syntax and does not render correctly in Obsidian when used inside tables.
+
+When linking from summary pages to concept pages, use the full path:
+- From `wiki/summaries/`: link as `[[wiki/concepts/concept-name]]`
+- From `wiki/concepts/`: link as `[[wiki/concepts/other-concept]]` or just `[[other-concept]]` for same-directory links
+
+In tables, always use standard Markdown link format: `[Display Text](wiki/concepts/concept-name.md)`
+
+## Citation rules
+
+- Every factual claim should reference its source file
+- Use the format `(source: [filename.md](wiki/source/path/filename.md))` after the claim
+- If two sources disagree, note the contradiction explicitly
+- If a claim has no source, mark it as needing verification
+
+## Question answering
+
+When the user asks a question:
+
+1. Read `wiki/index.md` first to find relevant pages
+2. Read those pages and synthesize an answer
+3. Cite specific wiki pages in your response
+4. If the answer is not in the wiki, say so clearly
+5. If the answer is valuable, offer to save it as a new wiki page
+
+Good answers should be filed back into the wiki so they compound over time.
+
+## Lint
+
+When the user asks you to lint or audit the wiki:
+
+- Check for contradictions between pages
+- Find orphan pages (no inbound links from other pages)
+- Identify concepts mentioned in pages that lack their own page
+- Flag claims that may be outdated based on newer sources
+- Check that all pages follow the page format above
+- Report findings as a numbered list with suggested fixes
+
+## Rules
+
+- Never modify anything in the `raw/` folder
+- Always update `wiki/index.md` and `wiki/log.md` after changes
+- Keep page names lowercase with hyphens (e.g. `machine-learning.md`)
+- Write in clear, plain language
+- When uncertain about how to categorize something, ask the user
