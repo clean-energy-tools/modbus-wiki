@@ -2,10 +2,15 @@
 title: Coils
 Summary: Single-bit read-write data objects in MODBUS used for digital outputs and control relays.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusprotocolspecification.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusprotocolspecification.md
+Categories:
+  - data-model
+  - digital-outputs
+  - bit-access
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:37+03:00
+---
 
 Coils are single-bit read-write data objects in the MODBUS data model, typically used for digital outputs, control relays, and other binary control signals (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
 

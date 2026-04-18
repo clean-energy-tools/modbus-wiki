@@ -2,9 +2,14 @@
 title: MODBUS Protocol Specification for AI Implementation
 Summary: Comprehensive technical reference for MODBUS protocol optimized for AI implementations, covering protocol structure, function codes, and transport variants.
 Sources:
-	- raw/MODBUS/MODBUS.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+Categories:
+  - specifications
+  - reference
+  - ai-implementation
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:52+03:00
+---
 
 This document provides a comprehensive technical reference for the MODBUS protocol, specifically optimized for AI agents generating MODBUS client/server implementations. It emphasizes precision, byte-level specifications, and concrete examples.
 

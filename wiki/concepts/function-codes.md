@@ -2,10 +2,15 @@
 title: Function Codes
 Summary: MODBUS function codes defining operations for reading and writing data including coils, discrete inputs, and registers.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusprotocolspecification.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusprotocolspecification.md
+Categories:
+  - protocol-components
+  - operations
+  - read-write
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 MODBUS function codes specify the operations to be performed by the server. They are organized into bit access (coils/discrete inputs) and word access (registers) operations (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
 

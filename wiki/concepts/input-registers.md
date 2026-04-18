@@ -2,10 +2,15 @@
 title: Input Registers
 Summary: 16-bit read-only data objects in MODBUS used for analog measurements and sensor readings.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusprotocolspecification.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusprotocolspecification.md
+Categories:
+  - data-model
+  - word-access
+  - measurements
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 Input Registers are 16-bit read-only data objects in the MODBUS data model, typically used for analog measurements, sensor readings, and other analog input data (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
 

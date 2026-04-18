@@ -2,13 +2,14 @@
 title: MODBUS Wiki Index
 Summary: Table of contents for the MODBUS protocol wiki, containing links to all summaries and concept pages.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusprotocolspecification.md
-	- raw/MODBUS/modbusoverserial.md
-	- raw/MODBUS/messagingimplementationguide.md
-	- raw/MODBUS/modbussecurityprotocol.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusprotocolspecification.md
+  - raw/MODBUS/modbusoverserial.md
+  - raw/MODBUS/messagingimplementationguide.md
+  - raw/MODBUS/modbussecurityprotocol.md
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 Welcome to the MODBUS Protocol Wiki. This wiki contains organized information about the MODBUS protocol specifications, extracted from official MODBUS documentation.
 
@@ -52,6 +53,18 @@ Summaries of source documents in `raw/MODBUS/`:
 | [MBAP Header](wiki/concepts/mbap-header.md) | MODBUS Application Protocol header for TCP/IP encapsulation providing transaction management and routing information |
 | [TCP Connection Management](wiki/concepts/tcp-connection-management.md) | TCP connection lifecycle management for MODBUS/TCP including establishment, maintenance, pooling, and error handling |
 | [CRC-16](wiki/concepts/crc-16.md) | Cyclic Redundancy Check 16-bit error detection algorithm used in MODBUS RTU mode for frame integrity |
+
+### Applications and Usage
+
+| Concept | Description |
+|---------|-------------|
+| [MODBUS Usage and Applications](wiki/concepts/modbus-usage-and-applications.md) | Industries and applications where MODBUS protocol is commonly deployed including manufacturing, building automation, energy, and process control |
+
+### Implementation and Integration
+
+| Concept | Description |
+|---------|-------------|
+| [MODBUS Data Type Mapping](wiki/concepts/modbus-data-type-mapping.md) | Techniques and patterns for mapping MODBUS register values to/from modern programming language types including Rust and Python implementations |
 
 ## Quick Reference
 

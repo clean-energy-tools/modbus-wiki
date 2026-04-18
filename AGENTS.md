@@ -40,27 +40,27 @@ Every wiki page should follow this structure:
 title: ENTER HERE THE PAGE TITLE
 Summary: One to two sentences describing this page.
 Sources:
-	# List of raw source files this page draws from. 
-	- raw/source/file1.md
-	- raw/source/file2.md
-Last updated: Date of most recent update.
+  # List of raw source files this page draws from.
+  - raw/source/file1.md
+  - raw/source/file2.md
+Categories:
+  # List of categorization tags
+  - category1
+  - category2
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T12:00:00+03:00
 ---
 
-
 Main content goes here. Use clear headings and short paragraphs.
-
-
-Link to related concepts using [[wiki-links]] throughout the text.
-
-
-## Related pages
-
-
-- [[related-concept-1]]
-- [[related-concept-2]]
 ```
 
 The page frontmatter is to be in YAML format, with the target being the Obsidian program.  For example the entry for _Sources_ is described as a list, which means it should be formatted as a YAML array.  The sources are to be relative file URLs from the root of the repository.
+
+The Sources list should refer to any files in the _raw_ directory that was used as a source in this document.
+
+The entry for Categories is also described as a list, which means it should be formatted as a YAML array.  The content of the Categories list is a short  keyword phrase to be used for categorizing information. 
+
+The Categories list is optional, and is suitable for files in the _concepts_ and _summaries_ directories.
 
 ## Link format
 

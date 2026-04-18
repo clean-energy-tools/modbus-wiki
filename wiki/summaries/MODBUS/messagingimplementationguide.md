@@ -2,9 +2,15 @@
 title: MODBUS Messaging on TCP/IP Implementation Guide
 Summary: Implementation guide for MODBUS messaging over TCP/IP, including TCP connection management, BSD socket interface usage, and client/server architecture.
 Sources:
-	- raw/MODBUS/messagingimplementationguide.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/messagingimplementationguide.md
+Categories:
+  - specifications
+  - reference
+  - implementation
+  - tcp-ip
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:52+03:00
+---
 
 This document provides detailed implementation guidance for MODBUS messaging over TCP/IP networks, covering TCP connection management, BSD socket interface usage, client/server architecture, and component design patterns (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
 

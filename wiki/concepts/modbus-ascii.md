@@ -2,10 +2,15 @@
 title: MODBUS ASCII
 Summary: MODBUS ASCII transmission mode for serial line communication using ASCII hex encoding and LRC error checking.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusoverserial.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusoverserial.md
+Categories:
+  - protocol-variants
+  - serial
+  - ascii
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 MODBUS ASCII is a transmission mode for MODBUS over serial lines that transmits each byte as two ASCII hexadecimal characters, providing human-readable communication at the cost of efficiency (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
 

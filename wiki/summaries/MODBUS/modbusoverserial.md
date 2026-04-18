@@ -2,9 +2,14 @@
 title: MODBUS Over Serial Line Specification
 Summary: MODBUS serial line specification covering master-slave protocol, RTU and ASCII modes, RS485 physical layer, and framing requirements for serial communication.
 Sources:
-	- raw/MODBUS/modbusoverserial.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/modbusoverserial.md
+Categories:
+  - specifications
+  - reference
+  - serial
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:52+03:00
+---
 
 This document describes the MODBUS application protocol for serial line transmission, covering both RTU and ASCII transmission modes, the master-slave protocol model, and the RS-485 physical layer requirements (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
 

@@ -2,10 +2,15 @@
 title: Holding Registers
 Summary: 16-bit read-write data objects in MODBUS used for configuration, setpoints, and control values.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusprotocolspecification.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusprotocolspecification.md
+Categories:
+  - data-model
+  - word-access
+  - configuration
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 Holding Registers are 16-bit read-write data objects in the MODBUS data model, typically used for configuration parameters, setpoints, and control values (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
 

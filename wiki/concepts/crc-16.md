@@ -2,10 +2,15 @@
 title: CRC-16
 Summary: Cyclic Redundancy Check 16-bit error detection algorithm used in MODBUS RTU mode for frame integrity.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusoverserial.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusoverserial.md
+Categories:
+  - protocol-components
+  - error-detection
+  - rtu
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 CRC-16 (Cyclic Redundancy Check) is a 16-bit error detection algorithm used in MODBUS RTU mode to ensure frame integrity over serial communication (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
 

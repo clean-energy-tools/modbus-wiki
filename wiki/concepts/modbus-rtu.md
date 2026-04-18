@@ -2,10 +2,15 @@
 title: MODBUS RTU
 Summary: MODBUS Remote Terminal Unit mode for serial line communication using binary encoding and CRC-16 error checking.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusoverserial.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusoverserial.md
+Categories:
+  - protocol-variants
+  - serial
+  - rs-485
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 MODBUS RTU (Remote Terminal Unit) is a binary transmission mode for MODBUS over serial lines, providing efficient communication with CRC-16 error checking (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
 

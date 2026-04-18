@@ -2,9 +2,15 @@
 title: MODBUS TCP Security Protocol Specification
 Summary: MODBUS/TCP Security specification defining secure communication over TLS, mutual authentication, role-based authorization, and certificate management.
 Sources:
-	- raw/MODBUS/modbussecurityprotocol.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/modbussecurityprotocol.md
+Categories:
+  - specifications
+  - reference
+  - security
+  - tls
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:52+03:00
+---
 
 This document defines the MODBUS/TCP Security protocol specification that adds TLS encryption and authentication to MODBUS/TCP communications (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
 

@@ -2,9 +2,15 @@
 title: MODBUS TCP Security
 Summary: MODBUS/TCP Security (MBAPS) protocol adding TLS encryption, mutual authentication, and role-based authorization to MODBUS/TCP.
 Sources:
-	- raw/MODBUS/modbussecurityprotocol.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/modbussecurityprotocol.md
+Categories:
+  - protocol-variants
+  - security
+  - tls
+  - authentication
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 MODBUS/TCP Security (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication with role-based authorization for MODBUS devices (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
 

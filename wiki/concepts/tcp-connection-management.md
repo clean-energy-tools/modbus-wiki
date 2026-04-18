@@ -2,9 +2,14 @@
 title: TCP Connection Management
 Summary: TCP connection lifecycle management for MODBUS/TCP including establishment, maintenance, pooling, and error handling.
 Sources:
-	- raw/MODBUS/messagingimplementationguide.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/messagingimplementationguide.md
+Categories:
+  - protocol-components
+  - tcp-ip
+  - networking
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 TCP connection management for MODBUS/TCP handles the establishment, maintenance, and cleanup of TCP connections used for MODBUS communication (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
 

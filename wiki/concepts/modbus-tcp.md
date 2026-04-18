@@ -2,11 +2,16 @@
 title: MODBUS TCP
 Summary: MODBUS over TCP/IP protocol using MBAP header for client/server communication over Ethernet networks.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusprotocolspecification.md
-	- raw/MODBUS/messagingimplementationguide.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusprotocolspecification.md
+  - raw/MODBUS/messagingimplementationguide.md
+Categories:
+  - protocol-variants
+  - tcp-ip
+  - client-server
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 MODBUS TCP is MODBUS protocol implementation over TCP/IP networks, using a 7-byte MBAP (MODBUS Application Protocol) header to encapsulate MODBUS requests and responses (source: [MODBUS.md](raw/MODBUS/MODBUS.md)).
 

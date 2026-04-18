@@ -2,10 +2,15 @@
 title: Discrete Inputs
 Summary: Single-bit read-only data objects in MODBUS used for digital inputs and limit switches.
 Sources:
-	- raw/MODBUS/MODBUS.md
-	- raw/MODBUS/modbusprotocolspecification.md
-Last updated: 2026-04-18
-
+  - raw/MODBUS/MODBUS.md
+  - raw/MODBUS/modbusprotocolspecification.md
+Categories:
+  - data-model
+  - digital-inputs
+  - bit-access
+date-created: 2026-04-18T12:00:00+03:00
+last-updated: 2026-04-18T14:43:24+03:00
+---
 
 Discrete Inputs are single-bit read-only data objects in the MODBUS data model, typically used for digital inputs, limit switches, and other binary status signals (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
 
