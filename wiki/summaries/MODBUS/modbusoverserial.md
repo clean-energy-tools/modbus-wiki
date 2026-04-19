@@ -5,8 +5,9 @@ Sources:
   - raw/MODBUS/modbusoverserial.md
 Categories:
   - specifications
-  - reference
-  - serial
+  - serial-communication
+  - physical-layer
+type: summary
 date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---

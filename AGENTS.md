@@ -52,6 +52,7 @@ Categories:
   # List of categorization tags
   - category1
   - category2
+type: summary | concept | answer
 date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T12:00:00+03:00
 ---
@@ -73,6 +74,8 @@ The page frontmatter is to be in YAML format, with the target being the Obsidian
 The Sources list should refer to any files in the _raw_ directory that was used as a source in this document.
 
 The entry for Categories is also described as a list, which means it should be formatted as a YAML array.  The content of the Categories list is a short  keyword phrase to be used for categorizing information. 
+
+The _type_ field records what type of page this is.
 
 The Categories list is optional, and is suitable for files in the _concepts_ and _summaries_ directories.
 

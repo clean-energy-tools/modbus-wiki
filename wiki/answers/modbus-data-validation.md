@@ -10,6 +10,7 @@ Categories:
   - data-mapping
   - implementation
   - error-handling
+type: answer
 date-created: 2026-04-19T12:00:00+03:00
 last-updated: 2026-04-19T12:00:00+03:00
 ---

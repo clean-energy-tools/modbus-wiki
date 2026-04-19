@@ -8,6 +8,7 @@ Categories:
   - overview
   - protocol-architecture
   - history
+type: concept
 date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---

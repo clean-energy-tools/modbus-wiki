@@ -5,9 +5,10 @@ Sources:
   - raw/MODBUS/MODBUS.md
   - raw/MODBUS/modbusoverserial.md
 Categories:
-  - protocol-variants
-  - serial
-  - rs-485
+  - serial-communication
+  - rtu-mode
+  - crc
+type: concept
 date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---

@@ -9,7 +9,53 @@ Sources:
   - raw/MODBUS/modbussecurityprotocol.md
 Categories:
   - quality-assurance
-Last updated: 2026-04-19T12:00:00+03:00
+Last updated: 2026-04-19T13:00:00+03:00
+---
+
+## 2026-04-19T13:00:00+00: Added Type Field to All Generated Pages
+
+### Changes Made
+
+**Updated all generated wiki pages to include `type` field in frontmatter:**
+
+**Summary pages (5 files):**
+- wiki/summaries/MODBUS/MODBUS.md
+- wiki/summaries/MODBUS/modbusprotocolspecification.md
+- wiki/summaries/MODBUS/modbusoverserial.md
+- wiki/summaries/MODBUS/messagingimplementationguide.md
+- wiki/summaries/MODBUS/modbussecurityprotocol.md
+
+**Added:** `type: summary`
+
+**Concept pages (19 files):**
+- wiki/concepts/modbus.md
+- wiki/concepts/protocol.md
+- wiki/concepts/master-slave.md
+- wiki/concepts/modbus-tcp.md
+- wiki/concepts/modbus-rtu.md
+- wiki/concepts/modbus-ascii.md
+- wiki/concepts/modbus-tcp-security.md
+- wiki/concepts/coils.md
+- wiki/concepts/discrete-inputs.md
+- wiki/concepts/holding-registers.md
+- wiki/concepts/input-registers.md
+- wiki/concepts/function-codes.md
+- wiki/concepts/mbap-header.md
+- wiki/concepts/tcp-connection-management.md
+- wiki/concepts/crc-16.md
+- wiki/concepts/modbus-data-type-mapping.md
+- wiki/concepts/implementation.md
+- wiki/concepts/modbus-usage-and-applications.md
+
+**Added:** `type: concept`
+
+**Answer pages (1 file):**
+- wiki/answers/modbus-data-validation.md
+
+**Added:** `type: answer`
+
+**Reason:** User requested adding `type` field to AGENTS.md to categorize pages as summary, concept, or answer
+
 ---
 
 ## 2026-04-19T12:00:00+00: New Answer Page: MODBUS Data Validation

@@ -4,9 +4,10 @@ Summary: TCP connection lifecycle management for MODBUS/TCP including establishm
 Sources:
   - raw/MODBUS/messagingimplementationguide.md
 Categories:
-  - protocol-components
   - tcp-ip
   - networking
+  - connection-lifecycle
+type: concept
 date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
