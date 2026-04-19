@@ -19,15 +19,15 @@ wiki/concepts  -- Contains files with concepts, and a list of source files descr
 The source documents originate as DOCX files that are stored on a Google Workspace drive.
 ## Ingest workflow
 
-When the user adds a new source to `raw/` and asks you to ingest it:
+When the user adds a new source to `raw/` and asks you to ingest it:
 
 1. Read the full source document
 2. Discuss key takeaways with the user before writing anything
-3. Create a summary page in `wiki/summaries` named after the source.  The summary page summarizes that source document, and contains a link to the source document.  The directory tree under `wiki/summaries`  should be nested with the same structure as used in the `raw/` directory.
+3. Create a summary page in `wiki/summaries` named after the source.  The summary page summarizes that source document, and contains a link to the source document.  The directory tree under `wiki/summaries`  should be nested with the same structure as used in the `raw/` directory.
 4. Create or update concept pages in `wiki/concepts` for each major idea or entity.  There should be one concept page for each concept you identify.
 5. Add wiki-links ([[page-name]]) to connect related pages
-6. Update `wiki/index.md` with new pages and one-line descriptions
-7. Append an entry to `wiki/log.md` with the date, source name, and what changed
+6. Update `wiki/index.md` with new pages and one-line descriptions
+7. Append an entry to `wiki/log.md` with the date, source name, and what changed
 
 A single source may touch 10-15 wiki pages. That is normal.
 
@@ -64,25 +64,24 @@ The Categories list is optional, and is suitable for files in the _concepts_ and
 
 ## Link format
 
-Internal links should use one of two formats:
+Internal links must work both in Obsidian and on GitHub.  This means not using the Wikilinks link format preferred by Obsidian (`[[concept-name]]`).   Instead, the generated wiki pages must all use this:
 
-1. **Wikilinks with full path from wiki root:** `[[/wiki/concepts/concept-name]]`
-2. **Standard Markdown links:** `[/wiki/concepts/concept-name.md](/wiki/concepts/concept-name.md)`
+1. **Standard Markdown links:** `[Display Text](/wiki/concepts/concept-name.md)`
 
-**Do NOT use to pipe syntax** (`[[path|Display Text]]`) as this conflicts with Markdown table syntax and does not render correctly in Obsidian when used inside tables.
-
-**IMPORTANT:** All links must have a leading `/` character to work correctly on GitHub. This prefix is compatible with both Obsidian and GitHub rendering.
+**IMPORTANT:** All internal links MUST include leading `/` character to work correctly on GitHub. This is required for both Obsidian and GitHub compatibility.
 
 When linking from summary pages to concept pages, use the full path:
-- From `wiki/summaries/`: link as `[[/wiki/concepts/concept-name]]`
-- From `wiki/concepts/`: link as `[[/wiki/concepts/other-concept]]` or `[[/wiki/concepts/same-dir-link]]` for same-directory links
+- From `wiki/summaries/`: link as `[Display Text](/wiki/concepts/concept-name.md)`
+- From `wiki/concepts/`: link as `[Display Text](/wiki/concepts/other-concept.md)`
 
-In tables, always use standard Markdown link format: `[/wiki/concepts/concept-name.md](/wiki/concepts/concept-name.md)`
+In tables, always use standard Markdown link format: `[Display Text](/wiki/concepts/concept-name.md)`
+
+In all cases, the _Display Text_ should be replaced by either the title of the linked-to page, or the final component of the file name, such as `concept-name.md`.
 
 ## Citation rules
 
 - Every factual claim should reference its source file
-- Use the format `(source: [filename.md](wiki/source/path/filename.md))` after the claim
+- Use the format `(source: [filename.md](/wiki/source/path/filename.md))`, or `(source: [filename.md](/raw/source/path/filename.md))`, after the claim
 - If two sources disagree, note the contradiction explicitly
 - If a claim has no source, mark it as needing verification
 
@@ -90,7 +89,7 @@ In tables, always use standard Markdown link format: `[/wiki/concepts/concept-na
 
 When the user asks a question:
 
-1. Read `wiki/index.md` first to find relevant pages
+1. Read `wiki/index.md` first to find relevant pages
 2. Read those pages and synthesize an answer
 3. Cite specific wiki pages in your response
 4. If the answer is not in the wiki, say so clearly
@@ -107,12 +106,13 @@ When the user asks you to lint or audit the wiki:
 - Identify concepts mentioned in pages that lack their own page
 - Flag claims that may be outdated based on newer sources
 - Check that all pages follow the page format above
+- Check that all links start from the root of the workspace, and are prefixed with "/"
 - Report findings as a numbered list with suggested fixes
 
 ## Rules
 
-- Never modify anything in the `raw/` folder
-- Always update `wiki/index.md` and `wiki/log.md` after changes
-- Keep page names lowercase with hyphens (e.g. `machine-learning.md`)
+- Never modify anything in the `raw/` folder
+- Always update `wiki/index.md` and `wiki/log.md` after changes
+- Keep page names lowercase with hyphens (e.g. `machine-learning.md`)
 - Write in clear, plain language
 - When uncertain about how to categorize something, ask the user

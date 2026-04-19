@@ -306,27 +306,26 @@ MODBUS is the de facto standard for industrial device communication (source: [MO
 
 ## Related pages
 
-- [[/wiki/concepts/modbus-tcp]]]
-- [[/wiki/concepts/modbus-rtu]]]
-- [[/wiki/concepts/modbus-ascii]]]
-- [[/wiki/concepts/modbus-tcp-security]]]
-
-## See Also
-
-### Comprehensive Overviews
-
-- [[/wiki/concepts/modbus]] - Comprehensive MODBUS protocol overview and history
-- [[/wiki/concepts/protocol]] - Protocol concepts, OSI model, and communication principles
-- [[/wiki/concepts/implementation]] - Implementation best practices and patterns
-- [[/wiki/concepts/master-slave]] - Master-slave architecture and communication model
-
-### Source Documentation
-
-- [[/wiki/summaries/MODBUS/MODBUS.md]] - Protocol specification for AI implementation
-- [[/wiki/summaries/MODBUS/modbusprotocolspecification.md]] - Official MODBUS application protocol specification
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
+- [modbus-rtu](/wiki/concepts/modbus-rtu.md)
+- [modbus-ascii](/wiki/concepts/modbus-ascii.md)
+- [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md)
+- [master-slave](/wiki/concepts/master-slave.md) - Master-slave architecture and communication model
 
 ### Related Concepts
 
-- [[/wiki/concepts/modbus-data-type-mapping]] - Data type mapping and programming implementations
-- [[/wiki/concepts/coils]] - Digital outputs and control relays
-- [[/wiki/concepts/holding-registers]] - Configuration and setpoints
+- [modbus](/wiki/concepts/modbus.md) - Comprehensive MODBUS protocol overview and history
+- [protocol](/wiki/concepts/protocol.md) - Protocol concepts, OSI model, and communication principles
+- [implementation](/wiki/concepts/implementation.md) - Implementation best practices and patterns
+- [master-slave](/wiki/concepts/master-slave.md) - Master-slave architecture and communication model
+
+### Source Documentation
+
+- [MODBUS](/wiki/summaries/MODBUS/MODBUS.md) - Protocol specification for AI implementation
+- [modbusprotocolspecification](/wiki/summaries/MODBUS/modbusprotocolspecification.md) - Official MODBUS application protocol specification
+
+### Related Concepts
+
+- [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md) - Data type mapping and programming implementations
+- [coils](/wiki/concepts/coils.md) - Digital outputs and control relays
+- [holding-registers](/wiki/concepts/holding-registers.md) - Configuration and setpoints

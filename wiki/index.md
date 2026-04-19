@@ -44,6 +44,9 @@ Summaries of source documents in `raw/MODBUS/`:
 | [Protocol](/wiki/concepts/protocol.md) | General protocol concepts including OSI model, request-response patterns, and communication principles |
 | [Master-Slave Architecture](/wiki/concepts/master-slave.md) | MODBUS master-slave communication model including roles, addressing, timing, and operational characteristics |
 | [Implementation](/wiki/concepts/implementation.md) | Best practices, patterns, and guidelines for implementing MODBUS client and server functionality in software systems |
+| [Modular Agent Architecture](/wiki/concepts/modular-architecture.md) | Modular agent system enabling specialized, focused agents with minimal context loading and single responsibility principle |
+
+### Protocol Variants
 
 ### Data Model
 

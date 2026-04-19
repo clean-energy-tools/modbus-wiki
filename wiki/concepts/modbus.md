@@ -54,10 +54,10 @@ This model ensures deterministic communication where the client controls the tim
 MODBUS is transport-independent at the application layer, meaning it can operate over various physical and data link layers (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
 
 **Common Transport Variants:**
-- [[/wiki/concepts/modbus-tcp]] - MODBUS over TCP/IP networks
-- [[/wiki/concepts/modbus-rtu]] - MODBUS Remote Terminal Unit (binary serial)
-- [[/wiki/concepts/modbus-ascii]] - MODBUS ASCII (text serial)
-- [[/wiki/concepts/modbus-tcp-security]] - MODBUS/TCP with TLS security
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md) - MODBUS over TCP/IP networks
+- [modbus-rtu](/wiki/concepts/modbus-rtu.md) - MODBUS Remote Terminal Unit (binary serial)
+- [modbus-ascii](/wiki/concepts/modbus-ascii.md) - MODBUS ASCII (text serial)
+- [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md) - MODBUS/TCP with TLS security
 
 This transport independence allows MODBUS to be deployed across diverse network topologies and physical media while maintaining the same application protocol.
 
@@ -67,10 +67,10 @@ MODBUS defines four primary data tables representing different types of data obj
 
 | Table | Object Type | Access | Description |
 |-------|-------------|--------|-------------|
-| [[/wiki/concepts/coils]] | Bit | Read/Write | Single-bit outputs for digital control |
-| [[/wiki/concepts/discrete-inputs]] | Bit | Read-only | Single-bit inputs for digital sensing |
-| [[/wiki/concepts/input-registers]] | Word | Read-only | 16-bit sensor measurements and status |
-| [[/wiki/concepts/holding-registers]] | Word | Read/Write | 16-bit configuration and setpoints |
+| [coils](/wiki/concepts/coils.md) | Bit | Read/Write | Single-bit outputs for digital control |
+| [discrete-inputs](/wiki/concepts/discrete-inputs.md) | Bit | Read-only | Single-bit inputs for digital sensing |
+| [input-registers](/wiki/concepts/input-registers.md) | Word | Read-only | 16-bit sensor measurements and status |
+| [holding-registers](/wiki/concepts/holding-registers.md) | Word | Read/Write | 16-bit configuration and setpoints |
 
 This simple data model provides flexibility while maintaining protocol simplicity.
 
@@ -101,7 +101,7 @@ The ADU adds transport-specific framing to the PDU:
 - PDU: Variable length
 - Silent intervals: Frame timing (3.5 character times)
 
-See [[/wiki/concepts/mbap-header]] for MBAP header details.
+See [mbap-header](/wiki/concepts/mbap-header.md) for MBAP header details.
 
 ## Operation Model
 
@@ -153,7 +153,7 @@ MODBUS uses different addressing models depending on the transport variant:
 ### Limitations
 
 - **Performance:** Not suitable for high-speed, real-time control loops
-- **Security:** Basic implementations lack encryption and authentication (use [[/wiki/concepts/modbus-tcp-security]])
+- **Security:** Basic implementations lack encryption and authentication (use [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md))
 - **Data Size:** Limited to 253-byte PDU size
 - **Determinism:** TCP is not deterministic (serial variants are)
 - **Broadcasting:** Limited broadcast support, no responses
@@ -161,7 +161,7 @@ MODBUS uses different addressing models depending on the transport variant:
 ## Applications
 
 MODBUS is used across many industries including:
-- [[/wiki/concepts/modbus-usage-and-applications]] - Manufacturing and factory automation
+- [modbus-usage-and-applications](/wiki/concepts/modbus-usage-and-applications.md) - Manufacturing and factory automation
 - Building automation and HVAC control
 - Energy management and power generation
 - Water treatment and environmental monitoring
@@ -170,10 +170,10 @@ MODBUS is used across many industries including:
 
 ## Related Information
 
-- [[/wiki/concepts/function-codes]] - Detailed function code specifications
-- [[/wiki/concepts/modbus-tcp]] - MODBUS/TCP implementation details
-- [[/wiki/concepts/modbus-rtu]] - Serial RTU mode specifications
-- [[/wiki/concepts/modbus-ascii]] - Serial ASCII mode specifications
-- [[/wiki/summaries/MODBUS/MODBUS.md]] - AI implementation reference
+- [function-codes](/wiki/concepts/function-codes.md) - Detailed function code specifications
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md) - MODBUS/TCP implementation details
+- [modbus-rtu](/wiki/concepts/modbus-rtu.md) - Serial RTU mode specifications
+- [modbus-ascii](/wiki/concepts/modbus-ascii.md) - Serial ASCII mode specifications
+- [MODBUS](/wiki/summaries/MODBUS/MODBUS.md) - AI implementation reference
 
-See also: [[/wiki/concepts/protocol-architecture]] for detailed protocol design concepts.
+See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for detailed protocol design concepts.

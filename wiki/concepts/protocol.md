@@ -88,7 +88,7 @@ The PDU is the core MODBUS message unit, transport-independent (source: [modbusp
 - **Diagnostics (0x07-0x11):** Read device identification
 - **Other (0x2B):** Vendor-specific and extended functions
 
-See [[/wiki/concepts/function-codes]] for complete function code specifications.
+See [function-codes](/wiki/concepts/function-codes.md) for complete function code specifications.
 
 ### Application Data Unit (ADU)
 
@@ -111,7 +111,7 @@ Silent interval: 3.5 character times
 [Start: 1 byte][Address: 1 byte][PDU: 1-253 bytes][LRC: 1 byte][End: CR+LF]
 ```
 
-See [[/wiki/concepts/mbap-header]] for MBAP header details and [[/wiki/concepts/crc-16]] for error detection.
+See [mbap-header](/wiki/concepts/mbap-header.md) for MBAP header details and [crc-16](/wiki/concepts/crc-16.md) for error detection.
 
 ## Communication Principles
 
@@ -184,7 +184,7 @@ Different MODBUS variants use different error detection mechanisms (source: [mod
 | MODBUS RTU | CRC-16 | High | Polynomial: x^16 + x^15 + x^2 + 1 |
 | MODBUS ASCII | LRC | Medium | Sum of bytes, two's complement |
 
-See [[/wiki/concepts/crc-16]] for detailed CRC-16 implementation.
+See [crc-16](/wiki/concepts/crc-16.md) for detailed CRC-16 implementation.
 
 ## Performance Considerations
 
@@ -225,7 +225,7 @@ MODBUS implementations have varying security capabilities:
 
 | Variant | Native Security | Recommendations |
 |---------|----------------|-------------------|
-| MODBUS TCP | None (clear text) | Use [[/wiki/concepts/modbus-tcp-security]] for encryption |
+| MODBUS TCP | None (clear text) | Use [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md) for encryption |
 | MODBUS RTU/ASCII | None | Physical security (isolated networks) |
 | MODBUS/TCP Security | TLS + Authentication | Recommended for new deployments |
 
@@ -237,11 +237,11 @@ MODBUS implementations have varying security capabilities:
 
 ## Related Information
 
-- [[/wiki/concepts/modbus]] - Comprehensive MODBUS protocol overview
-- [[/wiki/concepts/function-codes]] - Complete function code reference
-- [[/wiki/concepts/modbus-tcp]] - TCP/IP implementation details
-- [[/wiki/concepts/modbus-rtu]] - Serial RTU specifications
-- [[/wiki/concepts/modbus-ascii]] - Serial ASCII specifications
-- [[/wiki/concepts/mbap-header]] - TCP/IP framing details
+- [modbus](/wiki/concepts/modbus.md) - Comprehensive MODBUS protocol overview
+- [function-codes](/wiki/concepts/function-codes.md) - Complete function code reference
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md) - TCP/IP implementation details
+- [modbus-rtu](/wiki/concepts/modbus-rtu.md) - Serial RTU specifications
+- [modbus-ascii](/wiki/concepts/modbus-ascii.md) - Serial ASCII specifications
+- [mbap-header](/wiki/concepts/mbap-header.md) - TCP/IP framing details
 
-See also: [[/wiki/concepts/protocol-architecture]] for advanced protocol design concepts.
+See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for advanced protocol design concepts.

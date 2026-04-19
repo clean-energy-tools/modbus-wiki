@@ -811,21 +811,21 @@ impl ModbusMapping<DeviceConfig> for DeviceConfig {
 
 ## Related pages
 
-- [[/wiki/concepts/holding-registers]]]
-- [[/wiki/concepts/input-registers]]]
-- [[/wiki/concepts/modbus-tcp]]]
-- [[/wiki/concepts/function-codes]]]
+- [holding-registers](/wiki/concepts/holding-registers.md)
+- [input-registers](/wiki/concepts/input-registers.md)
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
+- [function-codes](/wiki/concepts/function-codes.md)
 
 ## See Also
 
 ### Source Documentation
 
-- [[/wiki/summaries/MODBUS/MODBUS.md]] - Protocol specification for AI implementation
-- [[/wiki/summaries/MODBUS/modbusprotocolspecification.md]] - Official MODBUS application protocol specification
+- [MODBUS](/wiki/summaries/MODBUS/MODBUS.md) - Protocol specification for AI implementation
+- [modbusprotocolspecification](/wiki/summaries/MODBUS/modbusprotocolspecification.md) - Official MODBUS application protocol specification
 
 ### Related Concepts
 
-- [[/wiki/concepts/modbus]] - Comprehensive MODBUS protocol overview
-- [[/wiki/concepts/protocol]] - Protocol concepts and communication principles
-- [[/wiki/concepts/implementation]] - Implementation best practices and patterns
-- [[/wiki/concepts/master-slave]] - Master-slave architecture details
+- [modbus](/wiki/concepts/modbus.md) - Comprehensive MODBUS protocol overview
+- [protocol](/wiki/concepts/protocol.md) - Protocol concepts and communication principles
+- [implementation](/wiki/concepts/implementation.md) - Implementation best practices and patterns
+- [master-slave](/wiki/concepts/master-slave.md) - Master-slave architecture details

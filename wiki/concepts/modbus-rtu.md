@@ -270,12 +270,12 @@ Transmitted: [01] [03] [00] [00] [00] [0A] [CD] [C5]
 
 ## Physical Layer
 
-RTU mode typically operates over RS-485 (2-wire or 4-wire) or RS232 physical layers. See [[/wiki/concepts/rs485]]] for physical layer specifications.
+RTU mode typically operates over RS-485 (2-wire or 4-wire) or RS232 physical layers. See [rs485](/wiki/concepts/rs485.md) for physical layer specifications.
 
 ## Related pages
 
-- [[/wiki/concepts/modbus-ascii]]]
-- [[/wiki/concepts/modbus-tcp]]]
-- [[/wiki/concepts/crc-16]]]
-- [[/wiki/concepts/rs485]]]
-- [[/wiki/concepts/function-codes]]]
+- [modbus-ascii](/wiki/concepts/modbus-ascii.md)
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
+- [crc-16](/wiki/concepts/crc-16.md)
+- [rs485](/wiki/concepts/rs485.md)
+- [function-codes](/wiki/concepts/function-codes.md)

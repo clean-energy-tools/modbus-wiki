@@ -18,19 +18,19 @@ Coils are single-bit read-write data objects in the MODBUS data model, typically
 
 Coils represent binary output data that can be both read and written by MODBUS clients. They are one of four primary data tables defined by the MODBUS protocol (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
 
-| Table | Object Type | Size | Access | Typical Use |
-|-------|-------------|------|--------|-------------|
-| Coils | Bit | 1 bit | Read/Write | Digital outputs, relays |
+| Table | Object Type | Size  | Access     | Typical Use             |
+| ----- | ----------- | ----- | ---------- | ----------------------- |
+| Coils | Bit         | 1 bit | Read/Write | Digital outputs, relays |
 
 ## Coil Properties
 
-| Property | Value |
-|----------|-------|
-| Data size | 1 bit |
-| Access type | Read/Write |
-| Typical usage | Digital outputs, control relays, indicator lights |
-| Address range | 0-65535 (PDU address) |
-| Legacy notation | 0xxxx (e.g., coil 1 = 00001) |
+| Property        | Value                                             |
+| --------------- | ------------------------------------------------- |
+| Data size       | 1 bit                                             |
+| Access type     | Read/Write                                        |
+| Typical usage   | Digital outputs, control relays, indicator lights |
+| Address range   | 0-65535 (PDU address)                             |
+| Legacy notation | 0xxxx (e.g., coil 1 = 00001)                      |
 
 ## Addressing
 
@@ -212,7 +212,7 @@ Compare with other MODBUS data objects:
 
 ## Related pages
 
-- [[/wiki/concepts/discrete-inputs]]]
-- [[/wiki/concepts/holding-registers]]]
-- [[/wiki/concepts/input-registers]]]
-- [[/wiki/concepts/function-codes]]]
+- [discrete-inputs](/wiki/concepts/discrete-inputs.md)
+- [holding-registers](/wiki/concepts/holding-registers.md)
+- [input-registers](/wiki/concepts/input-registers.md)
+- [function-codes](/wiki/concepts/function-codes.md)

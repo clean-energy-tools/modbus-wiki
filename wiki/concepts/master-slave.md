@@ -301,9 +301,9 @@ Throughput = (Request Size + Response Size) / Poll Cycle Time
 
 ## Related Information
 
-- [[/wiki/concepts/modbus-rtu]] - Serial RTU mode specifications
-- [[/wiki/concepts/modbus-ascii]] - Serial ASCII mode specifications
-- [[/wiki/concepts/protocol]] - General protocol concepts
-- [[/wiki/concepts/implementation]] - Implementation best practices
+- [modbus-rtu](/wiki/concepts/modbus-rtu.md) - Serial RTU mode specifications
+- [modbus-ascii](/wiki/concepts/modbus-ascii.md) - Serial ASCII mode specifications
+- [protocol](/wiki/concepts/protocol.md) - General protocol concepts
+- [implementation](/wiki/concepts/implementation.md) - Implementation best practices
 
-See also: [[/wiki/concepts/protocol-architecture]] for advanced architectural patterns.
+See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for advanced architectural patterns.

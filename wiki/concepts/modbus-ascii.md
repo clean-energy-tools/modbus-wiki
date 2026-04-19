@@ -300,8 +300,8 @@ void byte_to_ascii(uint8_t byte, char *output) {
 
 ## Related pages
 
-- [[/wiki/concepts/modbus-rtu]]]
-- [[/wiki/concepts/modbus-tcp]]]
-- [[/wiki/concepts/lrc]]]
-- [[/wiki/concepts/crc-16]]]
-- [[/wiki/concepts/function-codes]]]
+- [modbus-rtu](/wiki/concepts/modbus-rtu.md)
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
+- [lrc](/wiki/concepts/lrc.md)
+- [crc-16](/wiki/concepts/crc-16.md)
+- [function-codes](/wiki/concepts/function-codes.md)

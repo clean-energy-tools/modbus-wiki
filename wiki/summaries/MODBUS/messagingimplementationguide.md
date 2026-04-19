@@ -282,8 +282,8 @@ select()             // Test events on multiple sockets
 
 ## Related pages
 
-- [[/wiki/concepts/modbus-tcp]]]
-- [[/wiki/concepts/mbap-header]]]
-- [[/wiki/concepts/tcp-connection-management]]]
-- [[/wiki/concepts/function-codes]]]
-- [[/wiki/summaries/MODBUS/modbusprotocolspecification]]]
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
+- [mbap-header](/wiki/concepts/mbap-header.md)
+- [tcp-connection-management](/wiki/concepts/tcp-connection-management.md)
+- [function-codes](/wiki/concepts/function-codes.md)
+- [modbusprotocolspecification](/wiki/summaries/MODBUS/modbusprotocolspecification.md)

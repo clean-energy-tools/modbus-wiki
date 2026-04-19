@@ -340,8 +340,8 @@ Common TLS libraries for MODBUS/TCP Security:
 
 ## Related pages
 
-- [[/wiki/concepts/modbus-tcp]]]
-- [[/wiki/concepts/tls]]]
-- [[/wiki/concepts/mutual-authentication]]]
-- [[/wiki/concepts/role-based-authorization]]]
-- [[/wiki/concepts/x509-certificates]]]
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
+- [tls](/wiki/concepts/tls.md)
+- [mutual-authentication](/wiki/concepts/mutual-authentication.md)
+- [role-based-authorization](/wiki/concepts/role-based-authorization.md)
+- [x509-certificates](/wiki/concepts/x509-certificates.md)

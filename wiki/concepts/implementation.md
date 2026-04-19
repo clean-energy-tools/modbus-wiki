@@ -169,7 +169,7 @@ Implement proper exception handling for common error conditions (source: [modbus
 
 ### Type Mapping Implementation
 
-See [[/wiki/concepts/modbus-data-type-mapping]] for detailed guidance on mapping MODBUS register values to programming language types.
+See [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md) for detailed guidance on mapping MODBUS register values to programming language types.
 
 **Key Principles:**
 - **Word Order Handling:** Support big-endian and little-endian word order
@@ -271,7 +271,7 @@ See [[/wiki/concepts/modbus-data-type-mapping]] for detailed guidance on mapping
 ### Enhanced Security
 
 **For Sensitive Environments:**
-- **Use [[/wiki/concepts/modbus-tcp-security]]**: Implement TLS encryption
+- **Use [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md)**: Implement TLS encryption
 - **Authentication:** Implement device authentication
 - **Authorization:** Role-based access control
 - **Message Signing:** Consider message authentication for critical commands
@@ -342,11 +342,11 @@ See [[/wiki/concepts/modbus-data-type-mapping]] for detailed guidance on mapping
 
 ## Related Information
 
-- [[/wiki/concepts/modbus]] - Comprehensive protocol overview
-- [[/wiki/concepts/modbus-tcp]] - TCP/IP implementation details
-- [[/wiki/concepts/modbus-rtu]] - Serial RTU specifications
-- [[/wiki/concepts/modbus-ascii]] - Serial ASCII specifications
-- [[/wiki/concepts/modbus-data-type-mapping]] - Data type mapping guidance
-- [[/wiki/concepts/function-codes]] - Complete function code reference
+- [modbus](/wiki/concepts/modbus.md) - Comprehensive protocol overview
+- [modbus-tcp](/wiki/concepts/modbus-tcp.md) - TCP/IP implementation details
+- [modbus-rtu](/wiki/concepts/modbus-rtu.md) - Serial RTU specifications
+- [modbus-ascii](/wiki/concepts/modbus-ascii.md) - Serial ASCII specifications
+- [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md) - Data type mapping guidance
+- [function-codes](/wiki/concepts/function-codes.md) - Complete function code reference
 
-See also: [[/wiki/concepts/protocol-architecture]] for advanced protocol design patterns.
+See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for advanced protocol design patterns.

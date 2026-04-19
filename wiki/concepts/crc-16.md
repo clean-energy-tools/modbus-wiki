@@ -335,6 +335,6 @@ if (!validate_crc(frame, len)) {
 
 ## Related pages
 
-- [[/wiki/concepts/modbus-rtu]]]
-- [[/wiki/concepts/modbus-ascii]]]
-- [[/wiki/concepts/lrc]]]
+- [modbus-rtu](/wiki/concepts/modbus-rtu.md)
+- [modbus-ascii](/wiki/concepts/modbus-ascii.md)
+- [lrc](/wiki/concepts/lrc.md)
