@@ -11,7 +11,7 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document is the official MODBUS Application Protocol specification that describes the general communication model, data model, function codes, and exception handling mechanisms used in MODBUS protocol implementations (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
+This document is the official MODBUS Application Protocol specification that describes the general communication model, data model, function codes, and exception handling mechanisms used in MODBUS protocol implementations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 ## Protocol Overview
 
