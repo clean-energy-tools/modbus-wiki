@@ -34,7 +34,7 @@ MODBUS defines a standardized data model with four primary tables:
 
 | Table | Object Type | Type of Access | Typical Use |
 |-------|-------------|---------------|-------------|
-| [[/wiki/concepts/coils]]] | Single bit | Read-Write | Digital outputs, control relays |
+| [[/wiki/concepts/coils]] | Single bit | Read-Write | Digital outputs, control relays |
 | [[/wiki/concepts/discrete-inputs]]] | Single bit | Read-Only | Digital inputs, limit switches |
 | [[/wiki/concepts/input-registers]]] | 16-bit word | Read-Only | Analog inputs, sensor readings |
 | [[/wiki/concepts/holding-registers]]] | 16-bit word | Read-Write | Setpoints, configuration values |
