@@ -78,6 +78,14 @@ Summaries of source documents in `raw/MODBUS/`:
 |---------|-------------|
 | [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md) | Techniques and patterns for mapping MODBUS register values to/from modern programming language types including Rust and Python implementations |
 
+## Answers
+
+Answers to specific questions about MODBUS implementation and usage:
+
+| Answer | Description |
+|--------|-------------|
+| [MODBUS Data Validation](/wiki/answers/modbus-data-validation.md) | Comprehensive guide to validating MODBUS register values when reading from and writing to devices, including protocol-level validation, data type checking, and best practices |
+
 ## Quick Reference
 
 ### MODBUS Transport Variants

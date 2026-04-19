@@ -9,7 +9,36 @@ Sources:
   - raw/MODBUS/modbussecurityprotocol.md
 Categories:
   - quality-assurance
-Last updated: 2026-04-18T16:00:00+03:00
+Last updated: 2026-04-19T12:00:00+03:00
+---
+
+## 2026-04-19T12:00:00+00: New Answer Page: MODBUS Data Validation
+
+### Changes Made
+
+**Created new answer page:** `wiki/answers/modbus-data-validation.md`
+
+**Content:**
+- Comprehensive guide to validating MODBUS register values when reading from and writing to devices
+- Protocol-level validation (exception codes, quantity limits, address ranges)
+- Data type validation when mapping registers to program variables
+- Data type validation when converting program variables to registers
+- Common validation patterns with Rust code examples
+- Error handling best practices
+- Testing strategies for validation logic
+- Summary checklist for validation
+
+**Sources:**
+- [function-codes](/wiki/concepts/function-codes.md) - Exception codes and quantity limits
+- [coils](/wiki/concepts/coils.md) - Coil value validation rules
+- [holding-registers](/wiki/concepts/holding-registers.md) - Register value ranges
+- [implementation](/wiki/concepts/implementation.md) - Validation best practices
+
+**Updated:**
+- `wiki/index.md` - Added new answer page to "Answers" section
+
+**Reason:** User requested comprehensive information about validating MODBUS register values for data mapping functions
+
 ---
 
 ## 2026-04-18T16:00:00+00: Critical: Fixed Citation Format System-Wide
