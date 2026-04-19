@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-The MBAP (MODBUS Application Protocol) header is a 7-byte header that identifies and manages MODBUS messages on TCP/IP networks, replacing the address field from MODBUS serial (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
+The MBAP (MODBUS Application Protocol) header is a 7-byte header that identifies and manages MODBUS messages on TCP/IP networks, replacing the address field from MODBUS serial (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
 ## Overview
 
-The MBAP header provides message boundaries, transaction pairing, and routing capabilities for MODBUS over TCP/IP, enabling reliable communication over connection-oriented networks (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
+The MBAP header provides message boundaries, transaction pairing, and routing capabilities for MODBUS over TCP/IP, enabling reliable communication over connection-oriented networks (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
 ### Key Characteristics
 
@@ -29,7 +29,7 @@ The MBAP header provides message boundaries, transaction pairing, and routing ca
 
 ## Header Structure
 
-The MBAP header consists of four fields (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)):
+The MBAP header consists of four fields (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):
 
 | Offset | Field | Size | Description | Direction |
 |--------|-------|------|-------------|-----------|

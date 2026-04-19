@@ -15,7 +15,7 @@ This document is the official MODBUS Application Protocol specification that des
 
 ## Protocol Overview
 
-MODBUS is an application layer messaging protocol that provides client/server communication between devices connected on different types of buses or networks. The protocol defines a simple Protocol Data Unit (PDU) that is independent of the underlying communication layers (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
+MODBUS is an application layer messaging protocol that provides client/server communication between devices connected on different types of buses or networks. The protocol defines a simple Protocol Data Unit (PDU) that is independent of the underlying communication layers (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 ### Communication Architecture
 

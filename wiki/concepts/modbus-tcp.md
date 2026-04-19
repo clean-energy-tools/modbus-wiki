@@ -13,11 +13,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS TCP is MODBUS protocol implementation over TCP/IP networks, using a 7-byte MBAP (MODBUS Application Protocol) header to encapsulate MODBUS requests and responses (source: [MODBUS.md](raw/MODBUS/MODBUS.md)).
+MODBUS TCP is MODBUS protocol implementation over TCP/IP networks, using a 7-byte MBAP (MODBUS Application Protocol) header to encapsulate MODBUS requests and responses (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
 ## Protocol Overview
 
-MODBUS TCP provides a client/server communication model over Ethernet TCP/IP networks, removing the physical constraints of serial communication while maintaining the same MODBUS application protocol (source: [MODBUS.md](raw/MODBUS/MODBUS.md)).
+MODBUS TCP provides a client/server communication model over Ethernet TCP/IP networks, removing the physical constraints of serial communication while maintaining the same MODBUS application protocol (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
 ### Key Characteristics
 
@@ -32,7 +32,7 @@ MODBUS TCP provides a client/server communication model over Ethernet TCP/IP net
 
 ## MBAP Header
 
-The MBAP header identifies and manages MODBUS messages on TCP/IP networks (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)):
+The MBAP header identifies and manages MODBUS messages on TCP/IP networks (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):
 
 | Offset | Field | Size | Description |
 |--------|-------|------|-------------|
@@ -92,7 +92,7 @@ The MBAP header identifies and manages MODBUS messages on TCP/IP networks (sourc
 
 ### Connection Lifecycle
 
-**Best Practices (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)):**
+**Best Practices (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):**
 - Keep connections open - do not open/close per transaction
 - Use one connection per application to same server
 - Multiple transactions can be active on same connection
@@ -164,7 +164,7 @@ The MBAP header identifies and manages MODBUS messages on TCP/IP networks (sourc
 
 ## TCP/IP Stack Integration
 
-### Socket Options (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md))
+### Socket Options (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
 
 **TCP_NODELAY:**
 - Disables Nagle algorithm
@@ -190,7 +190,7 @@ The MBAP header identifies and manages MODBUS messages on TCP/IP networks (sourc
 
 ## Gateway Support
 
-The Unit Identifier field enables routing through gateways that convert between MODBUS TCP/IP and MODBUS Serial Line (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)):
+The Unit Identifier field enables routing through gateways that convert between MODBUS TCP/IP and MODBUS Serial Line (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):
 
 **Gateway Scenario:**
 ```

@@ -11,11 +11,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-TCP connection management for MODBUS/TCP handles the establishment, maintenance, and cleanup of TCP connections used for MODBUS communication (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
+TCP connection management for MODBUS/TCP handles the establishment, maintenance, and cleanup of TCP connections used for MODBUS communication (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
 ## Overview
 
-MODBUS/TCP requires careful TCP connection management to support reliable, efficient communication between clients and servers over Ethernet networks (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
+MODBUS/TCP requires careful TCP connection management to support reliable, efficient communication between clients and servers over Ethernet networks (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
 ### Key Characteristics
 
@@ -365,7 +365,7 @@ Pool: Priority
 
 ## Implementation Rules
 
-### Recommended Practices (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md))
+### Recommended Practices (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
 
 1. **Automatic connection management** - Use automatic management without explicit user requirement
 

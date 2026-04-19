@@ -11,7 +11,7 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document describes the MODBUS application protocol for serial line transmission, covering both RTU and ASCII transmission modes, the master-slave protocol model, and the RS-485 physical layer requirements (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
+This document describes the MODBUS application protocol for serial line transmission, covering both RTU and ASCII transmission modes, the master-slave protocol model, and the RS-485 physical layer requirements (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
 ## Protocol Overview
 
@@ -19,7 +19,7 @@ MODBUS Serial Line is a master-slave protocol where:
 - One master device initiates all transactions
 - Up to 247 slave devices can be addressed (addresses 1-247)
 - Address 0 is reserved for broadcast (no response expected)
-- Slaves only respond when addressed by the master (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md))
+- Slaves only respond when addressed by the master (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md))
 
 ### Communication Models
 

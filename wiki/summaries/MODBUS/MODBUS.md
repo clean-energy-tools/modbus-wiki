@@ -15,7 +15,7 @@ This document provides a comprehensive technical reference for the MODBUS protoc
 
 ## Protocol Overview
 
-MODBUS is an application-layer messaging protocol (OSI Layer 7) providing client/server communication between devices. Originally developed by Modicon in 1979 for programmable logic controllers, it remains the de facto standard for industrial device communication (source: [MODBUS.md](raw/MODBUS/MODBUS.md)).
+MODBUS is an application-layer messaging protocol (OSI Layer 7) providing client/server communication between devices. Originally developed by Modicon in 1979 for programmable logic controllers, it remains the de facto standard for industrial device communication (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
 ### Key Characteristics
 

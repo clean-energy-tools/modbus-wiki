@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS/TCP Security (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication with role-based authorization for MODBUS devices (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
+MODBUS/TCP Security (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication with role-based authorization for MODBUS devices (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
 ## Protocol Overview
 
-MODBUS/TCP Security adds a security layer to MODBUS/TCP by encapsulating the standard protocol within TLS v1.2+, providing confidentiality, integrity, and mutual authentication (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
+MODBUS/TCP Security adds a security layer to MODBUS/TCP by encapsulating the standard protocol within TLS v1.2+, providing confidentiality, integrity, and mutual authentication (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
 ### Key Characteristics
 
@@ -86,7 +86,7 @@ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 
 ### Mutual Authentication
 
-Both client and server must authenticate using X.509v3 certificates (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
+Both client and server must authenticate using X.509v3 certificates (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
 **Client Authentication:**
 1. Client presents certificate to server during TLS handshake
@@ -107,7 +107,7 @@ Both client and server must authenticate using X.509v3 certificates (source: [mo
 
 ### Role-Based Authorization
 
-Roles are encoded in x.509v3 certificate extensions to implement access control (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
+Roles are encoded in x.509v3 certificate extensions to implement access control (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
 **Role Extension Format:**
 ```
@@ -144,7 +144,7 @@ Value: [role-name]
 
 ### Exception Handling for Unauthorized Access
 
-Unauthorized requests receive standard MODBUS exception response (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)):
+Unauthorized requests receive standard MODBUS exception response (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)):
 
 | Exception Code | Hex | Name |
 |---------------|-----|------|

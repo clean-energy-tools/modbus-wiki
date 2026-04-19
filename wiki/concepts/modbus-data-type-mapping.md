@@ -13,7 +13,7 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS uses a flat array of 16-bit registers, while modern programming languages like Rust have rich type systems with complex data structures. This page describes techniques and patterns for mapping between these two models (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
+MODBUS uses a flat array of 16-bit registers, while modern programming languages like Rust have rich type systems with complex data structures. This page describes techniques and patterns for mapping between these two models (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 ## The Fundamental Mismatch
 

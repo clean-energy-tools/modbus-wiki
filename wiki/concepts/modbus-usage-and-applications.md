@@ -11,7 +11,7 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS is the de facto standard for industrial device communication (source: [MODBUS.md](raw/MODBUS/MODBUS.md)). Originally developed for programmable logic controllers (PLCs) in 1979, it has become ubiquitous across many industries due to its simplicity, openness, and widespread support.
+MODBUS is the de facto standard for industrial device communication (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)). Originally developed for programmable logic controllers (PLCs) in 1979, it has become ubiquitous across many industries due to its simplicity, openness, and widespread support.
 
 ## Key Characteristics Driving Adoption
 

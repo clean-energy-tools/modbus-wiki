@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS ASCII is a transmission mode for MODBUS over serial lines that transmits each byte as two ASCII hexadecimal characters, providing human-readable communication at the cost of efficiency (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
+MODBUS ASCII is a transmission mode for MODBUS over serial lines that transmits each byte as two ASCII hexadecimal characters, providing human-readable communication at the cost of efficiency (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
 ## Protocol Overview
 
-ASCII mode transmits MODBUS frames in human-readable ASCII format, making debugging easier but requiring twice the transmission time compared to RTU mode (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
+ASCII mode transmits MODBUS frames in human-readable ASCII format, making debugging easier but requiring twice the transmission time compared to RTU mode (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
 ### Key Characteristics
 
@@ -31,7 +31,7 @@ ASCII mode transmits MODBUS frames in human-readable ASCII format, making debugg
 
 ## Character Format
 
-ASCII mode uses a specific character format optimized for ASCII transmission (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)):
+ASCII mode uses a specific character format optimized for ASCII transmission (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 
 | Field | Bits | Description |
 |-------|------|-------------|

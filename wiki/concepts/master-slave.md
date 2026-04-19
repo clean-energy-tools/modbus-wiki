@@ -12,13 +12,13 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---
 
-The master-slave architecture defines the fundamental communication model used in MODBUS serial networks, where a single master device controls communication with one or more slave devices (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)). This architecture ensures deterministic communication and prevents bus contention.
+The master-slave architecture defines the fundamental communication model used in MODBUS serial networks, where a single master device controls communication with one or more slave devices (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). This architecture ensures deterministic communication and prevents bus contention.
 
 ## Architecture Overview
 
 ### Master (Client) Role
 
-The master device initiates all communication on the MODBUS network and controls the timing and sequence of operations (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+The master device initiates all communication on the MODBUS network and controls the timing and sequence of operations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 **Master Responsibilities:**
 - **Initiate Requests:** Start all communication transactions
@@ -38,7 +38,7 @@ The master device initiates all communication on the MODBUS network and controls
 
 ### Slave (Server) Role
 
-Slave devices respond to requests from the master and perform the requested operations (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+Slave devices respond to requests from the master and perform the requested operations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 **Slave Responsibilities:**
 - **Listen for Requests:** Wait for master's queries
@@ -105,7 +105,7 @@ Master devices typically poll slaves in one of these patterns:
 
 ### Slave Address Range
 
-MODBUS defines specific address ranges for slave devices (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS defines specific address ranges for slave devices (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 | Address Type | Range | Description |
 |--------------|--------|-------------|
@@ -136,7 +136,7 @@ MODBUS defines specific address ranges for slave devices (source: [modbusprotoco
 
 ### RTU Mode Timing
 
-MODBUS RTU (Remote Terminal Unit) mode requires precise timing for frame detection (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)):
+MODBUS RTU (Remote Terminal Unit) mode requires precise timing for frame detection (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 
 **Silent Interval (T3.5):**
 - **Purpose:** Allow receivers to detect end of frame

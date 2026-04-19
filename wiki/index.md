@@ -121,4 +121,4 @@ Summaries of source documents in `raw/MODBUS/`:
 
 - [MODBUS Organization](https://www.modbus.org/) - Official MODBUS website
 - [MODBUS Specifications](https://www.modbus.org/modbus-specifications) - Official specifications
-- [Source Documents](raw/MODBUS/) - Raw source documents (immutable)
+- [Source Documents](/raw/MODBUS/) - Raw source documents (immutable)

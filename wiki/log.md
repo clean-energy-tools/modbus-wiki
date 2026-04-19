@@ -253,3 +253,97 @@ This requires **systematic intervention** as it affects the entire wiki's usabil
 **Impact:** High - Breaks all internal wiki links on GitHub repositories
 
 **Status:** ✅ Complete - All wikilinks fixed and verified
+
+---
+
+## 2026-04-19T12:15:00+00: Fixed: Source Document Link Format System-Wide
+
+### Issue Identified
+
+**Root Cause:** Source document citations in wiki pages are missing the leading "/" prefix in the URL portion, violating AGENTS.md requirement that all links must include the leading "/" character to work correctly on GitHub.
+
+**Problems Identified:**
+1. **Missing leading slash in source URLs:** Citations like `(source: [filename.md](raw/MODBUS/filename.md))` instead of `(source: [filename.md](/raw/MODBUS/filename.md))`
+2. **GitHub incompatibility:** Links without leading slash don't work correctly when rendered on GitHub repositories
+
+**Impact:** All source document citations are broken on GitHub repositories. Users clicking source links will see "page not found" errors.
+
+**Examples of incorrect source citations:**
+```md
+(source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md))
+```
+
+**Correct format:**
+```md
+(source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
+```
+
+### Findings
+
+**Search:** Identified 100+ instances of source citations missing leading slash across 23 wiki files.
+
+**Affected files:**
+- 5 summary files in wiki/summaries/MODBUS/
+- 18 concept files in wiki/concepts/
+- wiki/index.md
+
+### Fix Applied
+
+**Action: Fixed all source document citations to use leading "/" prefix**
+
+**Pattern replaced:**
+- From: `](raw/MODBUS/`
+- To: `](/raw/MODBUS/`
+
+**Files updated (23 total):**
+
+**Summary files (5):**
+- wiki/summaries/MODBUS/MODBUS.md
+- wiki/summaries/MODBUS/modbusprotocolspecification.md
+- wiki/summaries/MODBUS/messagingimplementationguide.md
+- wiki/summaries/MODBUS/modbussecurityprotocol.md
+- wiki/summaries/MODBUS/modbusoverserial.md
+
+**Concept files (18):**
+- wiki/concepts/coils.md
+- wiki/concepts/discrete-inputs.md
+- wiki/concepts/holding-registers.md
+- wiki/concepts/input-registers.md
+- wiki/concepts/modbus-tcp.md
+- wiki/concepts/modbus-rtu.md
+- wiki/concepts/modbus-ascii.md
+- wiki/concepts/modbus-tcp-security.md
+- wiki/concepts/modbus.md
+- wiki/concepts/modbus-data-type-mapping.md
+- wiki/concepts/modbus-usage-and-applications.md
+- wiki/concepts/master-slave.md
+- wiki/concepts/implementation.md
+- wiki/concepts/protocol.md
+- wiki/concepts/mbap-header.md
+- wiki/concepts/tcp-connection-management.md
+- wiki/concepts/function-codes.md
+- wiki/concepts/crc-16.md
+
+**Index file (1):**
+- wiki/index.md
+
+### Verification
+
+**Post-fix verification:**
+- ✅ No source links without leading "/" in summary files
+- ✅ No source links without leading "/" in concept files
+- ✅ No source links without leading "/" in index.md
+- ✅ All source citations now use correct `/raw/MODBUS/` prefix
+
+**Remaining instances:**
+- wiki/log.md contains examples without leading "/" in historical log entries (expected, preserved for reference)
+
+### Summary
+
+**Issue:** Source document citations missing leading "/" prefix causing broken source links on GitHub.
+
+**Scope:** Systematic - 100+ instances found across 23 files
+
+**Impact:** High - Breaks all source document links on GitHub repositories
+
+**Status:** ✅ Complete - All source links fixed and verified

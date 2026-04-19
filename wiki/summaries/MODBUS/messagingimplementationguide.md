@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document provides detailed implementation guidance for MODBUS messaging over TCP/IP networks, covering TCP connection management, BSD socket interface usage, client/server architecture, and component design patterns (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
+This document provides detailed implementation guidance for MODBUS messaging over TCP/IP networks, covering TCP connection management, BSD socket interface usage, client/server architecture, and component design patterns (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
 ## Protocol Overview
 
-MODBUS over TCP/IP encapsulates the MODBUS Application Protocol within TCP/IP using a 7-byte MBAP (MODBUS Application Protocol) header. The protocol maintains the client/server model from the original MODBUS specification (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
+MODBUS over TCP/IP encapsulates the MODBUS Application Protocol within TCP/IP using a 7-byte MBAP (MODBUS Application Protocol) header. The protocol maintains the client/server model from the original MODBUS specification (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
 ### Communication Architecture
 
@@ -27,7 +27,7 @@ MODBUS TCP/IP supports several device configurations:
 
 ## MBAP Header
 
-The MBAP header identifies and manages MODBUS messages on TCP/IP networks (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)):
+The MBAP header identifies and manages MODBUS messages on TCP/IP networks (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):
 
 | Field | Size | Description | Direction |
 |-------|------|-------------|-----------|

@@ -12,7 +12,7 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS function codes specify the operations to be performed by the server. They are organized into bit access (coils/discrete inputs) and word access (registers) operations (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
+MODBUS function codes specify the operations to be performed by the server. They are organized into bit access (coils/discrete inputs) and word access (registers) operations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 ## Function Code Overview
 

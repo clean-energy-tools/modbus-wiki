@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---
 
-MODBUS is an application-layer messaging protocol (OSI Layer 7) providing client/server communication between devices connected on different types of buses or networks (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)). Originally developed by Modicon in 1979 for programmable logic controllers (PLCs), it remains the de facto standard for industrial device communication (source: [MODBUS.md](raw/MODBUS/MODBUS.md)).
+MODBUS is an application-layer messaging protocol (OSI Layer 7) providing client/server communication between devices connected on different types of buses or networks (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). Originally developed by Modicon in 1979 for programmable logic controllers (PLCs), it remains the de facto standard for industrial device communication (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
 ## Protocol Overview
 
-MODBUS is a simple, robust, and openly published protocol that has become ubiquitous in industrial automation due to its simplicity, openness, and widespread vendor support (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)). The protocol defines a client/server (also known as master/slave) communication model where clients initiate requests and servers respond with data or exception codes.
+MODBUS is a simple, robust, and openly published protocol that has become ubiquitous in industrial automation due to its simplicity, openness, and widespread vendor support (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). The protocol defines a client/server (also known as master/slave) communication model where clients initiate requests and servers respond with data or exception codes.
 
 ## Key Characteristics
 
@@ -32,7 +32,7 @@ MODBUS is a simple, robust, and openly published protocol that has become ubiqui
 
 ## Historical Background
 
-MODBUS was developed in 1979 by Modicon (now Schneider Electric) for use with their Modicon programmable logic controllers (source: [MODBUS.md](raw/MODBUS/MODBUS.md)). The protocol was designed to enable communication between Modicon PLCs and other devices such as sensors, actuators, and monitoring systems.
+MODBUS was developed in 1979 by Modicon (now Schneider Electric) for use with their Modicon programmable logic controllers (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)). The protocol was designed to enable communication between Modicon PLCs and other devices such as sensors, actuators, and monitoring systems.
 
 The protocol's openness and simplicity led to widespread adoption across manufacturers, making it one of the most common industrial protocols in use today.
 
@@ -47,11 +47,11 @@ MODBUS uses a client/server communication model (also referred to as master/slav
 - **Point-to-Point:** Single client communicates with single server
 - **Broadcasting:** Client can send to all servers (address 0), but servers don't respond
 
-This model ensures deterministic communication where the client controls the timing and sequence of operations (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
+This model ensures deterministic communication where the client controls the timing and sequence of operations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 ### Transport Independence
 
-MODBUS is transport-independent at the application layer, meaning it can operate over various physical and data link layers (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS is transport-independent at the application layer, meaning it can operate over various physical and data link layers (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 **Common Transport Variants:**
 - [modbus-tcp](/wiki/concepts/modbus-tcp.md) - MODBUS over TCP/IP networks
@@ -63,7 +63,7 @@ This transport independence allows MODBUS to be deployed across diverse network 
 
 ## Protocol Data Model
 
-MODBUS defines four primary data tables representing different types of data objects (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS defines four primary data tables representing different types of data objects (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 | Table | Object Type | Access | Description |
 |-------|-------------|--------|-------------|
@@ -76,7 +76,7 @@ This simple data model provides flexibility while maintaining protocol simplicit
 
 ## Protocol Data Units
 
-MODBUS exchanges data using two types of protocol data units (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS exchanges data using two types of protocol data units (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 ### Protocol Data Unit (PDU)
 
@@ -116,7 +116,7 @@ This simple request/response model provides reliability and allows for error han
 
 ### Exception Handling
 
-When a server cannot process a request, it returns an exception response with the function code's most significant bit set (function code + 0x80) and an exception code (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)).
+When a server cannot process a request, it returns an exception response with the function code's most significant bit set (function code + 0x80) and an exception code (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 Common exception codes include:
 - 0x01: ILLEGAL FUNCTION - Function code not supported

@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS RTU (Remote Terminal Unit) is a binary transmission mode for MODBUS over serial lines, providing efficient communication with CRC-16 error checking (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
+MODBUS RTU (Remote Terminal Unit) is a binary transmission mode for MODBUS over serial lines, providing efficient communication with CRC-16 error checking (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
 ## Protocol Overview
 
-RTU mode is the most commonly used MODBUS serial mode, transmitting data in binary format with efficient error checking through CRC-16 (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
+RTU mode is the most commonly used MODBUS serial mode, transmitting data in binary format with efficient error checking through CRC-16 (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
 ### Key Characteristics
 
@@ -31,7 +31,7 @@ RTU mode is the most commonly used MODBUS serial mode, transmitting data in bina
 
 ## Character Format
 
-RTU mode uses a specific character format for serial transmission (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)):
+RTU mode uses a specific character format for serial transmission (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 
 | Field | Bits | Description |
 |-------|------|-------------|
@@ -80,7 +80,7 @@ RTU mode uses a specific character format for serial transmission (source: [modb
 
 ### Silent Intervals
 
-RTU uses silent intervals (no character transmission) to delimit frames (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)):
+RTU uses silent intervals (no character transmission) to delimit frames (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 
 | Timer | Duration | Purpose |
 |-------|----------|---------|
@@ -133,7 +133,7 @@ This simplifies implementation at high baud rates where precise timing becomes i
 | Final XOR | 0x0000 |
 | Byte order | LSB first (little-endian) |
 
-**Critical:** CRC bytes are transmitted LSB first, unlike all other MODBUS fields which are big-endian (source: [MODBUS.md](raw/MODBUS/MODBUS.md)).
+**Critical:** CRC bytes are transmitted LSB first, unlike all other MODBUS fields which are big-endian (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
 ### CRC-16 Algorithm
 

@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document defines the MODBUS/TCP Security protocol specification that adds TLS encryption and authentication to MODBUS/TCP communications (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
+This document defines the MODBUS/TCP Security protocol specification that adds TLS encryption and authentication to MODBUS/TCP communications (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
 ## Protocol Overview
 
-[modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md) (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication for MODBUS devices over TCP/IP networks (source: [modbussecurityprotocol.md](raw/MODBUS/modbussecurityprotocol.md)).
+[modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md) (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication for MODBUS devices over TCP/IP networks (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
 ### Key Characteristics
 

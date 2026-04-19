@@ -13,7 +13,7 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---
 
-Implementation guidelines cover the practical aspects of building MODBUS-enabled systems, including software architecture, communication patterns, error handling, and integration considerations (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)).
+Implementation guidelines cover the practical aspects of building MODBUS-enabled systems, including software architecture, communication patterns, error handling, and integration considerations (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
 ## Client Implementation
 
@@ -28,7 +28,7 @@ Implementation guidelines cover the practical aspects of building MODBUS-enabled
 
 ### Connection Management
 
-**TCP Connection Best Practices (source: [messagingimplementationguide.md](raw/MODBUS/messagingimplementationguide.md)):**
+**TCP Connection Best Practices (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):**
 
 | Practice | Description | Implementation |
 |----------|-------------|------------------|
@@ -134,7 +134,7 @@ Implementation guidelines cover the practical aspects of building MODBUS-enabled
 
 ### Exception Code Mapping
 
-Implement proper exception handling for common error conditions (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+Implement proper exception handling for common error conditions (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 | Exception | Description | Client Action |
 |-----------|-------------|----------------|

@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-CRC-16 (Cyclic Redundancy Check) is a 16-bit error detection algorithm used in MODBUS RTU mode to ensure frame integrity over serial communication (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
+CRC-16 (Cyclic Redundancy Check) is a 16-bit error detection algorithm used in MODBUS RTU mode to ensure frame integrity over serial communication (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
 ## Overview
 
-CRC-16 provides robust error detection for MODBUS RTU frames by calculating a checksum based on the entire frame contents (excluding the CRC bytes themselves) (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
+CRC-16 provides robust error detection for MODBUS RTU frames by calculating a checksum based on the entire frame contents (excluding the CRC bytes themselves) (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
 ### Key Characteristics
 
@@ -30,7 +30,7 @@ CRC-16 provides robust error detection for MODBUS RTU frames by calculating a ch
 | Final XOR | 0x0000 |
 | Byte order | LSB first (little-endian) |
 
-**Critical:** CRC bytes are transmitted LSB first, unlike all other MODBUS fields which are big-endian (source: [MODBUS.md](raw/MODBUS/MODBUS.md)).
+**Critical:** CRC bytes are transmitted LSB first, unlike all other MODBUS fields which are big-endian (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
 ## CRC-16 Parameters
 
@@ -47,7 +47,7 @@ CRC-16 provides robust error detection for MODBUS RTU frames by calculating a ch
 
 ### Bit-by-Bit Algorithm
 
-The fundamental CRC-16 algorithm processes each bit sequentially (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)):
+The fundamental CRC-16 algorithm processes each bit sequentially (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 
 ```
 function crc16_modbus(data: bytes) -> uint16:
@@ -91,7 +91,7 @@ uint16_t crc16_modbus_bitwise(const uint8_t *data, int length) {
 
 ## Lookup Table Implementation
 
-Lookup table implementation provides significantly better performance by processing one byte at a time instead of one bit (source: [modbusoverserial.md](raw/MODBUS/modbusoverserial.md)).
+Lookup table implementation provides significantly better performance by processing one byte at a time instead of one bit (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
 ### CRC-16 Lookup Tables
 

@@ -12,11 +12,11 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---
 
-Protocol concepts describe the fundamental communication principles, architecture patterns, and design principles that govern how MODBUS devices interact (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)). Understanding these concepts is essential for implementing and debugging MODBUS systems.
+Protocol concepts describe the fundamental communication principles, architecture patterns, and design principles that govern how MODBUS devices interact (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). Understanding these concepts is essential for implementing and debugging MODBUS systems.
 
 ## OSI Layer 7 Application Protocol
 
-MODBUS operates at OSI Layer 7 (Application Layer), making it independent of the underlying transport layers (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)). This design principle allows MODBUS to work over different physical media while maintaining the same application-level protocol.
+MODBUS operates at OSI Layer 7 (Application Layer), making it independent of the underlying transport layers (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). This design principle allows MODBUS to work over different physical media while maintaining the same application-level protocol.
 
 ### Layer Independence Benefits
 
@@ -42,7 +42,7 @@ The application layer (MODBUS) handles:
 
 ### Client/Server Architecture
 
-MODBUS uses a client/server (master/slave) communication model (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS uses a client/server (master/slave) communication model (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 | Aspect | Client (Master) | Server (Slave) |
 |--------|------------------|------------------|
@@ -58,7 +58,7 @@ This model ensures:
 
 ### Request/Response Pattern
 
-MODBUS communication follows a strict request-response pattern (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS communication follows a strict request-response pattern (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 1. **Request:** Client sends PDU (Protocol Data Unit) with function code and parameters
 2. **Processing:** Server processes request and prepares response
@@ -75,7 +75,7 @@ MODBUS communication follows a strict request-response pattern (source: [modbusp
 
 ### Protocol Data Unit (PDU)
 
-The PDU is the core MODBUS message unit, transport-independent (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+The PDU is the core MODBUS message unit, transport-independent (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 **PDU Components:**
 ```
@@ -117,7 +117,7 @@ See [mbap-header](/wiki/concepts/mbap-header.md) for MBAP header details and [cr
 
 ### Deterministic Timing
 
-MODBUS serial variants require precise timing for frame detection (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS serial variants require precise timing for frame detection (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 **Silent Interval (RTU):**
 - Minimum: 3.5 character times at specified baud rate
@@ -148,7 +148,7 @@ MODBUS supports different addressing schemes depending on transport:
 
 ### Broadcast Communication
 
-MODBUS supports broadcast addressing (address 0) on serial networks (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS supports broadcast addressing (address 0) on serial networks (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 **Characteristics:**
 - **One-to-Many:** Single request reaches all devices
@@ -160,7 +160,7 @@ MODBUS supports broadcast addressing (address 0) on serial networks (source: [mo
 
 ### Exception Mechanism
 
-MODBUS uses exception responses to report errors instead of silent failures (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS uses exception responses to report errors instead of silent failures (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 **Exception Response Format:**
 ```
@@ -176,7 +176,7 @@ MODBUS uses exception responses to report errors instead of silent failures (sou
 
 ### Error Detection
 
-Different MODBUS variants use different error detection mechanisms (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+Different MODBUS variants use different error detection mechanisms (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 | Variant | Error Detection | Effectiveness | Implementation |
 |---------|-----------------|--------------|----------------|
@@ -190,7 +190,7 @@ See [crc-16](/wiki/concepts/crc-16.md) for detailed CRC-16 implementation.
 
 ### Bandwidth Efficiency
 
-MODBUS is designed for efficient use of limited bandwidth in industrial environments (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS is designed for efficient use of limited bandwidth in industrial environments (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 **Efficiency Features:**
 - **Binary Encoding (RTU):** Compact representation, minimal overhead
@@ -200,7 +200,7 @@ MODBUS is designed for efficient use of limited bandwidth in industrial environm
 
 ### Scalability Limits
 
-MODBUS defines practical limits for scalability (source: [modbusprotocolspecification.md](raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS defines practical limits for scalability (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 | Limit | Value | Impact |
 |-------|--------|--------|
