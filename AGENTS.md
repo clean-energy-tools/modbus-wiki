@@ -30,7 +30,7 @@ When the user adds a new source to `raw/` and asks you to ingest it:
 2. Discuss key takeaways with the user before writing anything
 3. Create a summary page in `wiki/summaries` named after the source.  The summary page summarizes that source document, and contains a link to the source document.  The directory tree under `wiki/summaries`  should be nested with the same structure as used in the `raw/` directory.
 4. Create or update concept pages in `wiki/concepts` for each major idea or entity.  There should be one concept page for each concept you identify.
-5. Add wiki-links (`[[page-name]]`) to connect related pages
+5. Add wiki-links (`[page-name](/wiki/path/to/file.md)`) to connect related pages
 6. Update `wiki/index.md` with new pages and one-line descriptions
 7. Append an entry to `wiki/log.md` with the date, source name, and what changed
 
