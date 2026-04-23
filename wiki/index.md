@@ -8,7 +8,7 @@ Sources:
   - raw/MODBUS/messagingimplementationguide.md
   - raw/MODBUS/modbussecurityprotocol.md
 date-created: 2026-04-18T12:00:00+03:00
-last-updated: 2026-04-18T14:43:24+03:00
+last-updated: 2026-04-23T12:30:00+03:00
 ---
 
 Welcome to the MODBUS Protocol Wiki. This wiki contains organized information about the MODBUS protocol specifications, extracted from official MODBUS documentation.
@@ -84,6 +84,8 @@ Answers to specific questions about MODBUS implementation and usage:
 
 | Answer | Description |
 |--------|-------------|
+| [Connecting with MODBUS/TCP Security](/wiki/answers/connecting-with-modbus-tcp-security.md) | Essential considerations and requirements for establishing secure MODBUS/TCP connections including certificates, TLS configuration, role-based authorization, and connection establishment |
+| [What is MBAP?](/wiki/answers/what-is-mbap.md) | Explanation of MBAP (MODBUS Application Protocol) header, its structure, purpose, and how it enables MODBUS communication over TCP/IP networks |
 | [MODBUS Data Validation](/wiki/answers/modbus-data-validation.md) | Comprehensive guide to validating MODBUS register values when reading from and writing to devices, including protocol-level validation, data type checking, and best practices |
 
 ## Quick Reference

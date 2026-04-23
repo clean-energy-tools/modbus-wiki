@@ -422,3 +422,78 @@ This requires **systematic intervention** as it affects the entire wiki's usabil
 **Impact:** High - Breaks all source document links on GitHub repositories
 
 **Status:** ✅ Complete - All source links fixed and verified
+
+---
+
+## 2026-04-23T12:00:00+03:00: Added "What is MBAP?" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/what-is-mbap.md
+
+**Content:**
+- Comprehensive explanation of MBAP (MODBUS Application Protocol) header
+- Why MBAP exists and what problems it solves
+- Detailed structure of all 4 header fields (Transaction ID, Protocol ID, Length, Unit ID)
+- How MBAP enables TCP features (concurrent transactions, message framing, gateway routing)
+- Differences from MODBUS serial
+- Implementation guidelines and common mistakes
+- Security considerations
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What is MBAP?"
+
+**Sources referenced:**
+- /raw/MODBUS/MODBUS.md
+- /raw/MODBUS/messagingimplementationguide.md
+
+### Summary
+
+Created comprehensive answer document explaining the MBAP header, its purpose, structure, and implementation details for MODBUS TCP communication.
+
+---
+
+## 2026-04-23T12:30:00+03:00: Added "Connecting with MODBUS/TCP Security" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/connecting-with-modbus-tcp-security.md
+
+**Content:**
+- Critical requirements: port 802, client certificates, server validation
+- Detailed certificate requirements including role extension (OID 1.3.6.1.4.1.50316.802.1)
+- Role-based authorization explained with permission matrices
+- TLS configuration (version requirements, cipher suite)
+- TLS library selection guide
+- Step-by-step connection establishment process
+- Connection management best practices
+- Security considerations (what's protected, what can go wrong)
+- Implementation checklist with testing procedures
+- Common mistakes and solutions
+- Migration path from standard MODBUS TCP
+- Performance considerations
+- OpenSSL-based example code
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section (top position)
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What considerations does one need to know to connect with MODBUS Security to a MODBUS device?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbussecurityprotocol.md
+
+### Summary
+
+Created comprehensive answer document covering all essential considerations for connecting to MODBUS devices using MODBUS/TCP Security protocol, including certificates, TLS, roles, and authorization.
