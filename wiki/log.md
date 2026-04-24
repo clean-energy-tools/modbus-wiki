@@ -9,7 +9,563 @@ Sources:
   - raw/MODBUS/modbussecurityprotocol.md
 Categories:
   - quality-assurance
-Last updated: 2026-04-19T13:00:00+03:00
+Last updated: 2026-04-24T17:00:00+03:00
+---
+
+## 2026-04-24T17:00:00+03:00: Added "MODBUS Function Codes Complete Guide" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-function-codes-guide.md
+
+**Content:**
+- Complete function code list with descriptions and specifications
+- Function code grouping:
+  - By data type (discrete vs register operations)
+  - By operation type (read, write, special)
+  - By read-only vs read-write data
+- Detailed explanation of what each function code does:
+  - 0x01: Read Coils
+  - 0x02: Read Discrete Inputs
+  - 0x03: Read Holding Registers (most common)
+  - 0x04: Read Input Registers
+  - 0x05: Write Single Coil
+  - 0x06: Write Single Register
+  - 0x0F: Write Multiple Coils
+  - 0x10: Write Multiple Registers
+  - 0x16: Mask Write Register
+  - 0x17: Read/Write Multiple Registers
+  - 0x2B: Encapsulated Interface Transport (MEI)
+- When to use one function code over another:
+  - Single vs multiple operations decision criteria
+  - Read holding vs input registers
+  - Read coils vs discrete inputs
+  - Write single vs mask write
+  - Write multiple vs read/write multiple
+- Efficiency: Single vs multiple operations:
+  - Network efficiency comparison (detailed calculation)
+  - Time comparison with RTT analysis
+  - Serial (RTU) efficiency analysis
+  - Bytes transferred comparison
+  - When single operations are acceptable
+  - When multiple operations are essential
+- Maximum quantities per function code with protocol limits
+- Practical decision guide (flowcharts):
+  - Choosing read function
+  - Choosing write function
+  - Performance optimization decision
+- Device support considerations:
+  - Function code support varies by device type
+  - Checking device support methods
+  - Fallback strategy when functions not supported
+- Efficiency comparison table showing:
+  - 5× faster with multiple write (1 vs 5 transactions)
+  - 80% byte reduction using multiple operations
+  - Dramatic efficiency gains for 2+ values
+- Best practices:
+  - Prefer multiple operations for 2+ values
+  - Batch related operations
+  - Use appropriate function for data type
+  - Respect device limits
+  - Handle multi-register data types properly
+  - Use atomic operations when needed
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section (top position)
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What are the MODBUS function codes? What do the function codes do? What is the grouping for the MODBUS function codes? When does one use a particular code over another? Is the 'multiple register' function codes more efficient than the single register codes?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusprotocolspecification.md
+- /raw/MODBUS/MODBUS.md
+
+### Summary
+
+Created comprehensive answer document explaining all MODBUS function codes, their grouping and organization, when to use each one, and detailed efficiency analysis proving multiple-register operations are 3-5× faster than single-register operations with concrete calculations and examples.
+
+---
+
+## 2026-04-24T16:30:00+03:00: Added "Reading MODBUS Register Maps" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/reading-modbus-register-maps.md
+
+**Content:**
+- Comprehensive guide to reading and interpreting MODBUS register maps
+- The MODBUS addressing mess:
+  - Protocol addresses vs Convention addresses (Modicon notation)
+  - How to identify which convention is used
+  - Converting convention addresses (40001, 30001) to protocol addresses
+  - 0-based vs 1-based addressing
+  - Detailed examples and conversion formulas
+- Identifying register types and function codes:
+  - 4 register types (Coils, Discrete Inputs, Holding Registers, Input Registers)
+  - How to identify type from documentation
+  - Function code selection for read/write operations
+  - Inferring type from access permissions and usage
+- Decoding data types:
+  - Common MODBUS data types (UINT16, INT16, UINT32, FLOAT32, STRING, etc.)
+  - How data types appear in documentation
+  - Inferring data types from size, range, units, and description
+  - Handling bit fields within registers
+- Scaling factors and units:
+  - Why scaling exists (representing decimals in integers)
+  - Reading scaling information from documentation
+  - Applying scaling factors (formulas and examples)
+  - Common unit variations and conversions
+- Word order (endianness) for multi-register values:
+  - 4 possible byte orders for 32-bit values
+  - Identifying word order from documentation
+  - Testing methods when not documented
+- Practical example: Complete decoding of real register map
+  - Step-by-step conversion process
+  - Data type inference
+  - Testing approach for ambiguous information
+  - Creating working register map in code
+- Common register map documentation problems:
+  - Ambiguous "size" column
+  - Missing word order
+  - Unclear register type
+  - Undocumented registers
+  - BCD encoded values
+  - Gaps in addressing
+- Best practices:
+  - Create your own documentation
+  - Version control for different firmware
+  - Validate everything empirically
+  - Use Wireshark to reverse-engineer
+  - Contact vendor support
+  - Build abstraction layer in code
+- Summary checklist for reading register maps
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section (top position)
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "How do I read a MODBUS register map? Is it more complicated than a list of addresses, register names, data types, and description of purpose and format? How do I learn what addressing convention is used (0-based, 1-based)? How to identify the register types and function codes that are supported? How to decode what data types are used?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusprotocolspecification.md
+- /raw/MODBUS/MODBUS.md
+
+### Summary
+
+Created comprehensive answer document explaining how to read and interpret MODBUS register maps, covering the confusion between protocol and convention addresses, identifying register types and data types, handling scaling factors, determining word order, and dealing with common documentation problems with practical examples.
+
+---
+
+## 2026-04-24T16:00:00+03:00: Added "MODBUS Commissioning Checklist" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-commissioning-checklist.md
+
+**Content:**
+- Comprehensive commissioning checklist for MODBUS communications on site
+- Physical tools required:
+  - Cable and installation hardware (shielded twisted pair, terminators, bias resistors, connectors)
+  - Measurement and testing tools (multimeter, oscilloscope)
+- Software tools required:
+  - Wireshark for protocol analysis
+  - ModScan/PyModbus for testing
+  - Terminal programs for serial communication
+- Pre-installation planning:
+  - Documentation review checklist
+  - Network design (topology, cable lengths, device count, addressing)
+  - Configuration planning (baud rate, serial format, polarization)
+- Physical installation procedures:
+  - Cable installation guidelines
+  - Device wiring (D1/D0/COM connections)
+  - Termination installation (120Ω at both ends)
+  - Shield grounding (one end only)
+  - Polarization installation (if needed)
+- Pre-power-on checks:
+  - Wiring verification
+  - Resistance measurements (60Ω expected between D1-D0)
+- Device configuration:
+  - Serial port settings (baud rate, parity, stop bits)
+  - Device addresses (unique 1-247)
+  - Gateway configuration (if applicable)
+- Initial power-on and testing:
+  - Incremental power-up procedure
+  - Basic communication tests
+  - Function code testing
+  - Address range verification
+- Troubleshooting common issues:
+  - No communication at all
+  - Intermittent communication
+  - Works short distance, fails long
+  - Random errors and noise
+- Exception response testing
+- Performance testing (response times, load testing, stress testing)
+- Documentation requirements:
+  - As-built documentation
+  - Register map documentation
+  - Operational notes
+  - Configuration backup
+- Final validation checklist
+- Handover package contents
+- Quick reference tables (cable distance vs baud rate, termination specs, serial formats, device limits, exception codes)
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section (top position)
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What's the recommended checklist when commissioning MODBUS communications on a site? What physical tools are needed, such as to wire up and troubleshoot the MODBUS connections? What software is needed?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusoverserial.md
+- /raw/MODBUS/MODBUS.md
+- /raw/MODBUS/modbusprotocolspecification.md
+
+### Summary
+
+Created comprehensive commissioning checklist covering all aspects of deploying MODBUS communications including required tools (physical and software), installation procedures, configuration steps, testing procedures, troubleshooting guidelines, and documentation requirements for successful site commissioning.
+
+---
+
+## 2026-04-24T14:30:00+03:00: Added "MODBUS over RS-232" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-over-rs232.md
+
+**Content:**
+- Comprehensive guide to MODBUS over RS-232
+- RS-232 capability for MODBUS (yes, but limited)
+- RS-232 vs RS-485 fundamental differences:
+  - Signaling comparison (single-ended vs differential)
+  - Physical layer comparison table
+  - Detailed diagrams
+- Multi-device support analysis:
+  - RS-232 does NOT support multi-drop (point-to-point only)
+  - Maximum 2 devices (1 master, 1 slave)
+  - Workarounds for multiple devices
+- Setup instructions:
+  - Hardware requirements (3-wire vs 9-wire)
+  - Wiring configuration (null modem)
+  - DB9 pinout tables
+  - Software configuration
+  - Code examples (Python/PyModbus, Rust/tokio-modbus)
+- RS-232 limitations:
+  - Distance: 25m maximum (vs 1200m for RS-485)
+  - Single device only (vs 32+ for RS-485)
+  - Noise susceptibility (vs immune RS-485)
+  - Cable requirements
+- Capability comparison (RS-232 vs RS-485)
+- Industry support analysis:
+  - RS-232 support declining (<5% of installations)
+  - Market share estimates by application
+  - Historical context and trends
+- When to use RS-232 vs RS-485:
+  - Decision criteria
+  - Use case examples
+  - Decision tree
+  - Recommendations
+- RS-232 to RS-485 converters and adapters
+- Migration paths
+- Practical recommendations
+- Summary with comprehensive comparison table
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "Can MODBUS be run over RS-232 connections? How is this set up? Does RS-232 support multiple MODBUS devices? Is it as capable as MODBUS RTU? Is MODBUS RS-232 as widely supported as MODBUS RTU?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusoverserial.md
+- /raw/MODBUS/MODBUS.md
+
+### Summary
+
+Created comprehensive answer document explaining MODBUS over RS-232 including capabilities, severe limitations (point-to-point only, 25m max), setup procedures, comparison with RS-485, declining industry support, and clear recommendations to use RS-485 instead for production systems.
+
+---
+
+## 2026-04-24T14:00:00+03:00: Added "RS-485 Wiring for MODBUS RTU" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/rs485-wiring-for-modbus-rtu.md
+
+**Content:**
+- Comprehensive RS-485 physical layer guide for MODBUS RTU
+- RS-485 basics and differential signaling explanation
+- Voltage levels and signal specifications
+- 2-wire vs 4-wire RS-485 detailed comparison:
+  - 2-wire (half-duplex): Standard for MODBUS, 3 wires total
+  - 4-wire (full-duplex): Rarely used, 5 wires total, when to use
+- Multi-drop topology with wiring diagrams:
+  - Daisy-chain (recommended)
+  - Star topology (not recommended for 2-wire)
+  - Best practices for trunk and drop cables
+- Shielded cable requirements and specifications
+- Termination resistors:
+  - Purpose (eliminating reflections)
+  - Requirements (120Ω at both ends only)
+  - Placement guidelines
+  - RC termination with bias
+- Line polarization (biasing):
+  - Purpose and when needed
+  - Circuit design (pull-up/pull-down resistors)
+  - Implementation guidelines (one location only)
+- Maximum device limits (32 standard, options to exceed)
+- Terminal blocks and connectors (screw terminals, RJ45, D-Sub)
+- Complete wiring example with bill of materials
+- Installation step-by-step procedures
+- Troubleshooting guide for common wiring issues
+- Measurement techniques
+- Best practices (DO and DON'T lists)
+- Quick reference tables
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What is the physical wiring for a RS-485 bus used for MODBUS RTU? How are multiple devices connected to a RS-485 bus? What is the voltage range over MODBUS RTU? What is the difference between 2-wire and 4-wire (duplex) RS-485 busses? When is 4-wire used? Should shielded wire be used? What does the termination resistor do? How many devices can be used on RS-485? Polarization? Are there terminal blocks which make it easier to build an RS-485 network?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusoverserial.md
+- /raw/MODBUS/MODBUS.md
+
+### Summary
+
+Created comprehensive answer document covering all aspects of RS-485 physical wiring for MODBUS RTU including topology, cable specifications, termination, polarization, device limits, connectors, installation procedures, and troubleshooting with detailed diagrams and practical examples.
+
+---
+
+## 2026-04-24T13:30:00+03:00: Added "MODBUS RTU vs ASCII Comparison" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-rtu-vs-ascii.md
+
+**Content:**
+- High-level comparison table of RTU vs ASCII
+- Detailed frame structure differences with examples
+- Protocol compatibility analysis (same MODBUS protocol, different encoding)
+- Encoding differences:
+  - RTU binary encoding (direct byte transmission)
+  - ASCII hex encoding (2 characters per byte)
+  - Character format comparison
+- Framing differences:
+  - RTU: Silent interval timing (t1.5, t3.5)
+  - ASCII: Character delimiters (':' + CR-LF)
+- Error checking comparison:
+  - CRC-16 algorithm, parameters, and implementation
+  - LRC algorithm and calculation
+  - Detection capability comparison (CRC 256x stronger)
+- Complete CRC-16 calculation details:
+  - Bit-by-bit algorithm with example walkthrough
+  - Lookup table optimized implementation
+  - Critical CRC byte order (LSB first)
+  - Validation procedures
+- When to use RTU vs ASCII (detailed decision criteria)
+- Detailed example: same command in both modes
+- Implementation considerations and challenges
+- Interoperability analysis (can't coexist on same bus)
+- Testing and debugging approaches
+- Performance analysis with throughput calculations
+- Recommendations and summary
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What is the difference between MODBUS RTU and ASCII? Do they use the same protocol frames? When is RTU or ASCII used? How are CRC values calculated?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusoverserial.md
+- /raw/MODBUS/MODBUS.md
+
+### Summary
+
+Created comprehensive answer document comparing MODBUS RTU and ASCII modes, covering frame structure, encoding, error checking (including complete CRC-16 calculation details), usage scenarios, implementation challenges, and performance analysis with concrete examples.
+
+---
+
+## 2026-04-24T13:00:00+03:00: Added "MODBUS Broadcast" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-broadcast.md
+
+**Content:**
+- Comprehensive explanation of MODBUS broadcast functionality
+- Definition and key characteristics of broadcast vs unicast
+- The two broadcast addresses:
+  - Address 0 (0x00): Serial line broadcast for RTU/ASCII
+  - Address 0xFF (255): TCP direct connection indicator (not true broadcast)
+- Effects of broadcast messages:
+  - All slaves execute command
+  - No slaves respond
+  - Master waits turnaround delay (100-200ms)
+- Valid broadcast operations (write functions only)
+- Communication flow diagrams
+- Protocol-specific support:
+  - MODBUS RTU/ASCII: Full broadcast support
+  - MODBUS TCP: No native broadcast (must use multiple unicast)
+  - TCP-to-RTU gateways: Can broadcast to serial slaves
+- Timing differences between unicast and broadcast
+- Comprehensive troubleshooting guide:
+  - Problem: No slaves execute broadcast
+  - Problem: Some slaves execute, others don't  
+  - Problem: Bus collision after broadcast
+  - Problem: Values don't update despite no errors
+- Diagnostic techniques with code examples
+- Using protocol analyzers
+- Best practices for broadcast usage
+- Broadcast reliability testing
+- Safe broadcast write with verification
+- Turnaround delay guidelines
+- Decision table for when to use broadcast
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What is MODBUS Broadcast? What are the two MODBUS broadcast addresses? What is the effect of a broadcast message? Does MODBUS Broadcast only work on MODBUS RTU, or does it also work on MODBUS TCP? How does one diagnose broadcast issues?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusoverserial.md
+- /raw/MODBUS/messagingimplementationguide.md
+- /raw/MODBUS/MODBUS.md
+
+### Summary
+
+Created comprehensive answer document covering all aspects of MODBUS broadcast including addresses, effects, protocol-specific behavior, limitations, and detailed troubleshooting procedures with code examples for diagnosing common broadcast issues.
+
+---
+
+## 2026-04-24T12:30:00+03:00: Added "Converting MODBUS Registers to Program Variables" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/converting-modbus-registers-to-program-variables.md
+
+**Content:**
+- Comprehensive guide to converting MODBUS register data to/from modern programming language variables
+- Analysis of type system mismatch between MODBUS and modern languages
+- Design principles: type-safe abstractions, explicit word order, error handling
+- Complete Rust implementation with trait-based approach:
+  - Core types: WordOrder enum, ConversionError enum
+  - ModbusConversion trait for type-safe conversions
+  - Implementations for all basic types (u16, i16, u32, i32, u64, i64, f32, f64)
+  - ScaledValue type for scaled integer values
+  - String conversion functions (ASCII encoding)
+  - Boolean bit field handling
+  - Complex device structure example (DeviceConfig)
+- Detailed endianness handling:
+  - Byte order vs word order explanation
+  - Testing examples for both byte orders
+- IEEE 754 float conversion details
+- Best practices:
+  - Register count validation
+  - Device-specific configuration
+  - Type-safe register addresses
+  - Error handling patterns
+  - Real device data testing
+- Common pitfalls and solutions
+- Performance considerations (batch reads, zero-copy)
+- Complete test suite examples
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "How should a program written in a modern programming language convert data in MODBUS registers to/from regular variables? The two type systems do not match very well. Floating point number representation is different. Endianness must be handled. Can you provide example functions in Rust for this purpose?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusprotocolspecification.md
+- /raw/MODBUS/MODBUS.md
+
+### Summary
+
+Created comprehensive answer document with complete Rust implementation showing how to convert between MODBUS registers and modern programming language types, handling type mismatches, endianness, floats, strings, and complex device structures with proper error handling and testing.
+
+---
+
+## 2026-04-24T12:00:00+03:00: Added "MODBUS Register Data Representation" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-register-data-representation.md
+
+**Content:**
+- Comprehensive guide to MODBUS register size (16-bit)
+- How to store different data types in registers:
+  - Booleans (bit fields vs coils/discrete inputs)
+  - Integers (u16, i16, u32, i32, u64, i64)
+  - Floating-point numbers (f32, f64 using IEEE 754)
+  - Scaled integer values (alternative to floats)
+  - Strings (ASCII encoding in registers)
+- Detailed explanation of MODBUS endianness (two levels):
+  - Byte order within registers (always big-endian)
+  - Word order for multi-register values (device-specific)
+- Multi-register value storage patterns (32-bit and 64-bit)
+- NaN (Not-a-Number) representation in MODBUS
+- Methods for determining device byte order:
+  - Check documentation (primary method)
+  - Test with known values
+  - Common device patterns
+  - Configuration switches
+- Common pitfalls and best practices
+- Implementation examples in Rust
+- Summary table of data type storage requirements
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "How big are MODBUS registers? How does a program store booleans, integers (signed or unsigned), floats, or strings in MODBUS registers? What is the byte order (endianness) preference in MODBUS registers? How are 32-bit or 64-bit values stored in MODBUS registers? Do MODBUS registers have a concept of Not-a-Number? How can you determine the byte order preference of a given device?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbusprotocolspecification.md
+- /raw/MODBUS/MODBUS.md
+
+### Summary
+
+Created comprehensive answer document covering all aspects of MODBUS register data representation including register size, data type storage, endianness handling, multi-register values, NaN concepts, and methods for determining device-specific byte order preferences.
+
 ---
 
 ## 2026-04-19T13:00:00+00: Added Type Field to All Generated Pages
@@ -497,3 +1053,197 @@ Created comprehensive answer document explaining the MBAP header, its purpose, s
 ### Summary
 
 Created comprehensive answer document covering all essential considerations for connecting to MODBUS devices using MODBUS/TCP Security protocol, including certificates, TLS, roles, and authorization.
+
+---
+
+## 2026-04-23T13:00:00+03:00: Added "MODBUS TCP Message Format" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-tcp-message-format.md
+
+**Content:**
+- Complete MODBUS TCP message structure overview
+- Detailed MBAP header structure with all 4 fields
+- Complete frame layout with visual diagrams
+- Detailed field descriptions (Transaction ID, Protocol ID, Length, Unit ID)
+- Complete request/response examples with hex dumps and breakdowns
+- Comprehensive comparison: MODBUS TCP vs MODBUS RTU
+- Explanation of why there's no CRC in MODBUS TCP
+- TCP/IP error detection layers (Ethernet CRC-32, IP checksum, TCP checksum)
+- Connection management in MODBUS TCP
+- Socket options (TCP_NODELAY, SO_KEEPALIVE, SO_REUSEADDR)
+- Connection lifecycle best practices
+- Timeout management
+- Connection pooling strategies
+- Error handling
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section (top position)
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "Describe the MODBUS TCP message format, with the MBAP header structure, the complete MODBUS TCP frame, the details for each field, the differences between MODBUS TCP and MODBUS RTU, why is there no CRC in MODBUS TCP, connection management in MODBUS TCP"
+
+**Sources referenced:**
+- /raw/MODBUS/MODBUS.md
+- /raw/MODBUS/modbusprotocolspecification.md
+- /raw/MODBUS/messagingimplementationguide.md
+- /raw/MODBUS/modbusoverserial.md
+
+### Summary
+
+Created comprehensive answer document describing the complete MODBUS TCP message format, covering MBAP header structure, frame layout, protocol differences from RTU, error detection rationale, and connection management best practices.
+
+---
+
+## 2026-04-23T13:30:00+03:00: Added "Using Wireshark for MODBUS TCP Analysis" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/wireshark-modbus-analysis.md
+
+**Content:**
+- Overview of Wireshark capabilities for MODBUS TCP and MODBUS/TCP Security
+- Setting up Wireshark for MODBUS capture (interface selection, capture filters)
+- Recognizing MODBUS TCP packets (by port, protocol, MBAP header pattern)
+- Recognizing packet boundaries in TCP stream
+  - One message per packet
+  - Multiple messages per packet
+  - Messages split across packets
+- Using Wireshark's built-in MODBUS dissector
+- Protocol tree view and decoded information
+- Display filters for MODBUS analysis (function codes, Transaction IDs, addresses, devices)
+- Byte-level analysis techniques
+- Manual packet decoding examples (requests, responses, exceptions)
+- Following MODBUS conversations and request/response pairing
+- Performance analysis (response time measurement)
+- Analyzing MODBUS/TCP Security traffic
+  - TLS handshake visibility
+  - Encrypted application data
+  - Certificate examination
+  - Decryption with session keys (advanced)
+- Common analysis tasks (verify communication, identify registers, extract values, measure timing, debug errors)
+- Troubleshooting guide
+- Export and command-line analysis (tshark)
+- Capability comparison table (standard vs secure MODBUS)
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section (top position)
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "How does someone use Wireshark to perform MODBUS TCP communication analysis at the byte level? How to recognize the beginning/end of a MODBUS TCP packet? Does Wireshark have the ability to decode MODBUS packets? How does Wireshark analyze MODBUS Security traffic?"
+
+**Sources referenced:**
+- /raw/MODBUS/MODBUS.md
+- /raw/MODBUS/messagingimplementationguide.md
+- /raw/MODBUS/modbussecurityprotocol.md
+
+### Summary
+
+Created comprehensive answer document covering complete Wireshark usage for MODBUS TCP analysis, including packet capture, protocol decoding, byte-level inspection, filtering techniques, and analysis of both standard and encrypted MODBUS traffic.
+
+---
+
+## 2026-04-23T14:00:00+03:00: Added "How MODBUS TCP-to-RTU Gateways Work" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-tcp-to-rtu-gateway.md
+
+**Content:**
+- Gateway architecture and physical topology
+- Component breakdown (TCP interface, serial interface, protocol converter, configuration)
+- Unit ID mapping mechanism (0xFF for direct, 0x01-0xF7 for gateway routing)
+- Complete protocol conversion process (TCP → RTU and RTU → TCP)
+- Step-by-step frame translation with examples
+- Critical differences between MODBUS TCP and RTU protocols
+- Timing management (t1.5, t3.5 intervals, serial bus arbitration)
+- Transaction management (request queuing, response routing)
+- Concurrent TCP connections with sequential serial transactions
+- Error handling (TCP-side, serial-side, bus errors, exception translation)
+- Configuration considerations (serial port settings, timeouts, address mapping, security)
+- Performance considerations (throughput limitations, queue depth, optimization strategies)
+- Practical example: complete transaction flow from TCP client through gateway to RTU slave
+- Common gateway issues and troubleshooting guide
+- Advanced features (multi-master, protocol translation, data mapping, logging)
+- Summary comparison table
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section (top position)
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "How does a MODBUS TCP-to-RTU gateway work? I suppose such a device connects to an RS-485 bus, is configured for the devices attached to the bus, translating information out to clients connected to the TCP side. But, there must be much more to it than that."
+
+**Sources referenced:**
+- /raw/MODBUS/MODBUS.md
+- /raw/MODBUS/messagingimplementationguide.md
+- /raw/MODBUS/modbusoverserial.md
+
+### Summary
+
+Created comprehensive answer document explaining complete operation of MODBUS TCP-to-RTU gateways, including detailed protocol conversion, Unit ID mapping, timing management, transaction queuing, error handling, and practical troubleshooting guidance.
+
+---
+
+## 2026-04-23T14:30:00+03:00: Added "MODBUS Errors and Exception Responses" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/modbus-errors-and-exceptions.md
+
+**Content:**
+- Error categories (communication, protocol, MODBUS exceptions, device errors)
+- What exception responses are and when devices send them
+- Exception response format (PDU structure, complete frames for TCP and RTU)
+- Exception function code calculation (original + 0x80)
+- Complete exception code list with detailed explanations:
+  - 0x01 ILLEGAL FUNCTION
+  - 0x02 ILLEGAL DATA ADDRESS
+  - 0x03 ILLEGAL DATA VALUE
+  - 0x04 SERVER DEVICE FAILURE
+  - 0x05 ACKNOWLEDGE
+  - 0x06 SERVER DEVICE BUSY
+  - 0x08 MEMORY PARITY ERROR
+  - 0x0A GATEWAY PATH UNAVAILABLE
+  - 0x0B GATEWAY TARGET NO RESPONSE
+- Exception response examples with hex dumps and interpretations
+- Communication errors (timeout, CRC error, malformed frame)
+- Diagnostic procedures:
+  - Diagnosing addressing errors
+  - Diagnosing unsupported function codes
+  - Diagnosing device-specific limitations
+- Error handling best practices (structured exception handling, retry logic, request validation, logging)
+- Troubleshooting decision tree
+- Common error scenarios with solutions
+- Quick exception reference table
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section (top position)
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What kind of errors happen in MODBUS? What happens if a MODBUS device cannot process a request? What is a MODBUS exception response? How does someone diagnose addressing errors, unsupported function codes, device-specific limitations? What is the format of a MODBUS exception? What are the MODBUS exception codes?"
+
+**Sources referenced:**
+- /raw/MODBUS/MODBUS.md
+- /raw/MODBUS/modbusprotocolspecification.md
+- /raw/MODBUS/messagingimplementationguide.md
+
+### Summary
+
+Created comprehensive answer document covering all types of MODBUS errors, exception responses, exception code meanings, diagnostic procedures, and troubleshooting techniques for common MODBUS communication problems.

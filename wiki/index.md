@@ -8,7 +8,7 @@ Sources:
   - raw/MODBUS/messagingimplementationguide.md
   - raw/MODBUS/modbussecurityprotocol.md
 date-created: 2026-04-18T12:00:00+03:00
-last-updated: 2026-04-23T12:30:00+03:00
+last-updated: 2026-04-24T17:00:00+03:00
 ---
 
 Welcome to the MODBUS Protocol Wiki. This wiki contains organized information about the MODBUS protocol specifications, extracted from official MODBUS documentation.
@@ -84,9 +84,22 @@ Answers to specific questions about MODBUS implementation and usage:
 
 | Answer | Description |
 |--------|-------------|
+| [MODBUS Function Codes Complete Guide](/wiki/answers/modbus-function-codes-guide.md) | Comprehensive guide to MODBUS function codes including what they do, how they are grouped, when to use each one, efficiency comparisons between single and multiple operations, and practical decision criteria |
+| [Reading MODBUS Register Maps](/wiki/answers/reading-modbus-register-maps.md) | Comprehensive guide to reading and interpreting MODBUS register maps including addressing conventions, register types, function codes, data types, scaling factors, and handling vendor-specific documentation inconsistencies |
+| [MODBUS Commissioning Checklist](/wiki/answers/modbus-commissioning-checklist.md) | Comprehensive checklist for commissioning MODBUS communications on site including pre-commissioning preparation, required physical tools, software tools, installation procedures, testing steps, and troubleshooting guidelines |
+| [MODBUS Errors and Exception Responses](/wiki/answers/modbus-errors-and-exceptions.md) | Comprehensive guide to MODBUS error types, exception responses, exception codes, diagnostic procedures, and troubleshooting addressing errors, unsupported functions, and device limitations |
+| [How MODBUS TCP-to-RTU Gateways Work](/wiki/answers/modbus-tcp-to-rtu-gateway.md) | Comprehensive explanation of MODBUS TCP-to-RTU gateway operation including protocol conversion, Unit ID mapping, frame translation, timing management, error handling, and practical implementation considerations |
+| [Using Wireshark for MODBUS TCP Analysis](/wiki/answers/wireshark-modbus-analysis.md) | Comprehensive guide to using Wireshark for MODBUS TCP communication analysis including byte-level inspection, packet recognition, protocol decoding, filtering, and analysis of both standard and secure MODBUS traffic |
+| [MODBUS TCP Message Format](/wiki/answers/modbus-tcp-message-format.md) | Complete description of MODBUS TCP message format including MBAP header structure, frame layout, field details, differences from MODBUS RTU, TCP error checking rationale, and connection management |
 | [Connecting with MODBUS/TCP Security](/wiki/answers/connecting-with-modbus-tcp-security.md) | Essential considerations and requirements for establishing secure MODBUS/TCP connections including certificates, TLS configuration, role-based authorization, and connection establishment |
 | [What is MBAP?](/wiki/answers/what-is-mbap.md) | Explanation of MBAP (MODBUS Application Protocol) header, its structure, purpose, and how it enables MODBUS communication over TCP/IP networks |
 | [MODBUS Data Validation](/wiki/answers/modbus-data-validation.md) | Comprehensive guide to validating MODBUS register values when reading from and writing to devices, including protocol-level validation, data type checking, and best practices |
+| [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md) | Comprehensive guide to how MODBUS registers store different data types including booleans, integers, floats, and strings, covering register size, byte order, word order, and determining device endianness |
+| [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md) | Comprehensive guide to converting between MODBUS register data and modern programming language variables, handling type system mismatches, endianness, and floating-point representation, with complete Rust implementation examples |
+| [MODBUS Broadcast](/wiki/answers/modbus-broadcast.md) | Comprehensive guide to MODBUS broadcast functionality including broadcast addresses, operation on serial vs TCP networks, effects and limitations, and troubleshooting broadcast issues |
+| [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md) | Comprehensive comparison of MODBUS RTU and ASCII transmission modes including protocol frames, encoding differences, error checking methods, CRC calculation, and when to use each mode |
+| [RS-485 Wiring for MODBUS RTU](/wiki/answers/rs485-wiring-for-modbus-rtu.md) | Comprehensive guide to RS-485 physical wiring for MODBUS RTU including topology, voltage levels, 2-wire vs 4-wire configurations, shielding, termination resistors, polarization, device limits, and practical installation guidelines |
+| [MODBUS over RS-232](/wiki/answers/modbus-over-rs232.md) | Comprehensive guide to running MODBUS over RS-232 including setup, limitations, comparison with RS-485, point-to-point operation, wiring, and when to use RS-232 vs RS-485 for MODBUS RTU |
 
 ## Quick Reference
 

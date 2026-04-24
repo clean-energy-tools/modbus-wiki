@@ -1,6 +1,6 @@
 # MODBUS Protocol Wiki
 
-A comprehensive knowledge base for the MODBUS protocol, optimized for developers building system control software. This wiki provides clear, actionable information extracted from official MODBUS specifications, organized for quick reference and practical implementation.
+A comprehensive knowledge base for the MODBUS protocol, for developers building MODBUS services or applications.  All information on this site is drawn directly from the MODBUS specifications.  The wiki content covers summaries of each MODBUS specification document, MODBUS concepts, and answers to many questions about MODBUS.
 
 ## Overview
 
@@ -31,6 +31,7 @@ modbus-ai-wiki/
     ├── log.md                        # Change log
     ├── summaries/                    # Document summaries
     │   └── MODBUS/
+    ├── answers/                      # Answers to questions about MODBUS
     └── concepts/                     # Concept pages
 ```
 
@@ -83,34 +84,6 @@ MODBUS defines four primary data tables:
 - **Max PDU Size:** 253 bytes
 - **Default Ports:** 502 (standard), 802 (secure/TLS)
 - **Addressing:** 0-based in PDU (despite 1-based documentation)
-
-## Wiki Format
-
-All wiki pages follow a consistent Obsidian-flavored markdown format:
-
-- **YAML Frontmatter:** Contains title, summary, sources, and last updated date
-- **Internal Links:** Full path wikilinks: `[[wiki/concepts/modbus-tcp]]`
-- **Source Citations:** References to raw source documents: `(source: [filename.md](raw/path/file.md))`
-- **Cross-References:** Links to related concepts at bottom of each page
-
-Example page structure:
-```markdown
----
-title: Concept Name
-Summary: One to two sentences describing this page.
-Sources:
-  - raw/source/file.md
-Last updated: 2026-04-18
----
-
-Main content with clear headings and short paragraphs.
-
-Link to related concepts using [[wiki-links]] throughout the text.
-
-## Related pages
-- [[related-concept-1]]
-- [[related-concept-2]]
-```
 
 ## Key Topics Covered
 

@@ -339,3 +339,7 @@ if (!validate_crc(frame, len)) {
 - [modbus-rtu](/wiki/concepts/modbus-rtu.md)
 - [modbus-ascii](/wiki/concepts/modbus-ascii.md)
 - [lrc](/wiki/concepts/lrc.md)
+
+## Backlinks
+
+- [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md) - CRC-16 calculation and comparison with LRC

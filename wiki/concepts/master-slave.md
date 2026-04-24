@@ -308,3 +308,7 @@ Throughput = (Request Size + Response Size) / Poll Cycle Time
 - [implementation](/wiki/concepts/implementation.md) - Implementation best practices
 
 See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for advanced architectural patterns.
+
+## Backlinks
+
+- [MODBUS Broadcast](/wiki/answers/modbus-broadcast.md) - Comprehensive guide to broadcast functionality

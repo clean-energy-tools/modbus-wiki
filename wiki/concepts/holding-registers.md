@@ -377,3 +377,7 @@ Compare with other MODBUS data objects:
 - [coils](/wiki/concepts/coils.md)
 - [discrete-inputs](/wiki/concepts/discrete-inputs.md)
 - [function-codes](/wiki/concepts/function-codes.md)
+
+## Backlinks
+
+- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md) - Comprehensive guide to register data representation

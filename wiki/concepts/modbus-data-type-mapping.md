@@ -817,6 +817,11 @@ impl ModbusMapping<DeviceConfig> for DeviceConfig {
 - [modbus-tcp](/wiki/concepts/modbus-tcp.md)
 - [function-codes](/wiki/concepts/function-codes.md)
 
+## Backlinks
+
+- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md) - Comprehensive guide to register data representation
+- [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md) - Type-safe conversion with Rust examples
+
 ## See Also
 
 ### Source Documentation

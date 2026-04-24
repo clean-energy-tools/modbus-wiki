@@ -306,3 +306,7 @@ void byte_to_ascii(uint8_t byte, char *output) {
 - [lrc](/wiki/concepts/lrc.md)
 - [crc-16](/wiki/concepts/crc-16.md)
 - [function-codes](/wiki/concepts/function-codes.md)
+
+## Backlinks
+
+- [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md) - Detailed comparison with RTU mode
