@@ -278,6 +278,16 @@ LRC is simpler but less robust than [CRC-16](/wiki/concepts/crc-16.md):
 
 ## Backlinks
 
+------------
+
+MODBUS is a trademark of the Modbus Organization, Inc.
+
+All information on this page is derived by summarizing and analyzing solely the MODBUS specifications published by the Modbus Organization, Inc.  The specifications are copyright by the Modbus Organization.
+
+By deriving this information solely from the specifications we hope to stay true to the specification.
+
+No infringement is intended.
+
 - [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
 - [CRC-16](/wiki/concepts/crc-16.md)
 - [Summary of MODBUS over serial line specification and implementation guide](/wiki/summaries/MODBUS/modbusoverserial.md)

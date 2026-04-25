@@ -224,4 +224,14 @@ MODBUS TCP itself has no built-in security. For secure communication, use [MODBU
 
 ## Backlinks
 
+------------
+
+MODBUS is a trademark of the Modbus Organization, Inc.
+
+All information on this page is derived by summarizing and analyzing solely the MODBUS specifications published by the Modbus Organization, Inc.  The specifications are copyright by the Modbus Organization.
+
+By deriving this information solely from the specifications we hope to stay true to the specification.
+
+No infringement is intended.
+
 - [MODBUS Broadcast](/wiki/answers/modbus-broadcast.md) - Broadcast limitations on MODBUS TCP

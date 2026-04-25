@@ -1,7 +1,6 @@
 # MODBUS Protocol Wiki
 
-A comprehensive knowledge base for the MODBUS protocol, for developers building MODBUS services or applications.  All information on this site is drawn directly from the MODBUS specifications.  The wiki content covers summaries of each MODBUS specification document, MODBUS concepts, and answers to many questions about MODBUS.
-
+A comprehensive knowledge base for the MODBUS protocol, for developers building MODBUS services or applications.  All information on this site is generated directly from the MODBUS specifications, using AI software.   See _COPYRIGHT NOTICE_ below for a statement about the copyright status.
 ## Overview
 
 MODBUS is an application-layer messaging protocol (OSI Layer 7) providing client/server communication between devices. Originally developed by Modicon in 1979 for programmable logic controllers, it remains the de facto standard for industrial device communication.
@@ -13,6 +12,58 @@ This repository transforms official MODBUS specification documents into an easil
 - Implement correct data models
 - Follow best practices for industrial communication
 
+## How to use the MODBUS Wiki
+
+The first stage of using this wiki is to simply browse the content on this site.
+
+* [`wiki/index.md`](./wiki/index.md) -- View the main page for the Wiki
+* [`wiki/summaries`](./wiki/summaries/README.md) -- Summaries of the MODBUS specification documents
+* [`wiki/concepts`](./wiki/concepts/README.md) -- Concepts in the MODBUS specifications
+* [`wiki/answers`](./wiki/answers/README.md) -- Answering common questions about using MODBUS
+
+The content in the `wiki` directory is designed to be easy to browse.
+
+The wiki may be downloaded to your computer and used by tools like Claude Code or Open Code for AI chat purposes.
+
+```shell
+$ git clone https://github.com/clean-energy-tools/modbus-wiki.git
+$ cd modbus-wiki
+# This example uses Claude Code, it should work with any
+# similar tool like Open Code.
+$ claude
+           Claude Code v2.1.114
+ ▐▛███▜▌   Sonnet 4.6 · Claude Pro
+▝▜█████▛▘  ~/Projects/clean-energy-tools/modbus-wiki
+  ▘▘ ▝▝    Welcome to Opus 4.7 xhigh! · /effort to tune speed vs. intelligence
+  
+❯ explain how to use MODBUS in a program
+
+● Let me check the project context first.
+  Searched for 1 pattern, read 2 files (ctrl+o to expand)
+● Here's how to use MODBUS in a program, covering the key areas:                                                         
+  1. Choose Your Transport                                                         
+  - MODBUS TCP — connect over TCP/IP to port 502; simplest for modern systems
+  - MODBUS RTU — serial (RS-485/RS-232); common for legacy industrial devices
+  - MODBUS ASCII — serial with ASCII framing; less common
+
+...
+```
+
+The answer to the above question actually goes on to give a long and elaborate answer.
+
+NOTE: The scope of information used in generating answers is almost entirely the content of the specification documents.
+
+The process used by the AI tool to generate answers is described in the _Question answering_ section of AGENTS.md.  You can experiment with changes to this process, if you like.
+
+If the AI agent gives a particularly good answer, you may add that answer to your version of the wiki by writing the following request:
+
+```
+Create an answer document from the information you just gave
+```
+
+The AI system will create a suitable file in `wiki/answers`, and make sure the answer document is cross-linked as appropriate to other files in the wiki.
+
+You may also contribute content to the wiki.  You do this by opening a pull request with the GitHub repository.
 ## Repository Structure
 
 ```
@@ -35,144 +86,7 @@ modbus-ai-wiki/
     └── concepts/                     # Concept pages
 ```
 
-## Quick Start
-
-### For Software Developers
-
-1. **Start with the Index:** Begin at [wiki/index.md](wiki/index.md) for an overview of all content
-2. **Choose Your Transport:**
-   - [MODBUS TCP](wiki/concepts/modbus-tcp.md) for Ethernet networks (most common)
-   - [MODBUS RTU](wiki/concepts/modbus-rtu.md) for RS-485/RS-232 serial
-   - [MODBUS ASCII](wiki/concepts/modbus-ascii.md) for human-readable serial communication
-   - [MODBUS TCP Security](wiki/concepts/modbus-tcp-security.md) for secure TLS connections
-3. **Understand Data Models:** Learn about [Coils](wiki/concepts/coils.md), [Discrete Inputs](wiki/concepts/discrete-inputs.md), [Holding Registers](wiki/concepts/holding-registers.md), and [Input Registers](wiki/concepts/input-registers.md)
-4. **Reference Function Codes:** See [Function Codes](wiki/concepts/function-codes.md) for read/write operations
-5. **Implement:** Use protocol details to build your MODBUS client or server
-
-### For Protocol Researchers
-
-1. **Read Source Summaries:** Review [wiki/summaries/MODBUS/](wiki/summaries/MODBUS/) for comprehensive document summaries
-2. **Explore Concepts:** Browse [wiki/concepts/](wiki/concepts/) for detailed protocol concepts
-3. **Check Sources:** All wiki pages cite their source documents for verification
-
-## MODBUS Protocol Fundamentals
-
-### Transport Variants
-
-| Variant | Medium | Error Check | Typical Use |
-|---------|--------|-------------|-------------|
-| **MODBUS TCP** | Ethernet | TCP/IP | Networked industrial systems |
-| **MODBUS RTU** | Serial (RS-485/232) | CRC-16 | Legacy industrial equipment |
-| **MODBUS ASCII** | Serial | LRC | Debugging, human-readable |
-| **MODBUS TCP Security** | Ethernet + TLS | TLS 1.2+ | Secure control networks |
-
-### Data Model
-
-MODBUS defines four primary data tables:
-
-| Table | Object Type | Size | Access | Typical Use |
-|-------|-------------|------|--------|-------------|
-| **Coils** | Bit | 1 bit | Read/Write | Digital outputs, relays |
-| **Discrete Inputs** | Bit | 1 bit | Read-only | Digital inputs, switches |
-| **Holding Registers** | Word | 16 bits | Read/Write | Configuration, setpoints |
-| **Input Registers** | Word | 16 bits | Read-only | Measurements, status |
-
-### Key Characteristics
-
-- **Architecture:** Client/Server (Master/Slave)
-- **Data Encoding:** Big-endian (network byte order)
-- **Max PDU Size:** 253 bytes
-- **Default Ports:** 502 (standard), 802 (secure/TLS)
-- **Addressing:** 0-based in PDU (despite 1-based documentation)
-
-## Key Topics Covered
-
-### Core Concepts
-
-- **Transport Layers:** TCP/IP, Serial Line (RTU/ASCII), TLS Security
-- **Data Model:** Coils, Discrete Inputs, Holding Registers, Input Registers
-- **Function Codes:** 0x01-0x24 public codes for read/write operations
-- **Error Handling:** Exception codes and response formats
-- **Framing:** MBAP header, CRC-16, LRC, timing requirements
-
-### Implementation Guidance
-
-- **TCP Connection Management:** Establishment, pooling, socket options
-- **Serial Line Configuration:** RS-485 physical layer, termination, biasing
-- **Security:** TLS configuration, mutual authentication, role-based authorization
-- **Error Detection:** CRC-16 algorithms, LRC calculation
-- **Best Practices:** Connection handling, timeout management, error recovery
-
-### Code Examples
-
-Each concept page includes practical implementation examples:
-- C code snippets for CRC-16 calculation
-- Socket configuration for TCP connections
-- Data encoding/decoding examples
-- Error handling patterns
-
-## Usage Scenarios
-
-### Scenario 1: Building a MODBUS TCP Client
-
-1. Read [MODBUS TCP](wiki/concepts/modbus-tcp.md) overview
-2. Study [MBAP Header](wiki/concepts/mbap-header.md) structure
-3. Review [TCP Connection Management](wiki/concepts/tcp-connection-management.md)
-4. Reference [Function Codes](wiki/concepts/function-codes.md) for operations
-5. Implement using provided code examples
-
-### Scenario 2: Implementing MODBUS RTU over RS-485
-
-1. Study [MODBUS RTU](wiki/concepts/modbus-rtu.md) frame structure
-2. Learn [CRC-16](wiki/concepts/crc-16.md) calculation
-3. Review RS-485 physical layer requirements in serial spec
-4. Understand timing (t1.5, t3.5) and framing
-5. Implement state machine for master/slave operation
-
-### Scenario 3: Adding Security to Existing MODBUS/TCP
-
-1. Read [MODBUS TCP Security](wiki/concepts/modbus-tcp-security.md) specification
-2. Understand TLS requirements and cipher suites
-3. Implement mutual authentication with x.509v3 certificates
-4. Configure role-based authorization
-5. Migrate from port 502 to port 802
-
-## Source Documents
-
-This wiki is based on official MODBUS Organization specifications:
-
-1. **MODBUS Protocol Specification for AI Implementation**
-   - Comprehensive technical reference optimized for AI implementation
-   - Precision, byte-level specifications, and concrete examples
-
-2. **MODBUS Application Protocol Specification**
-   - Official specification defining communication model and data model
-   - Function codes, exception handling, and protocol variants
-
-3. **MODBUS Over Serial Line Specification**
-   - Master-slave protocol for serial communication
-   - RTU and ASCII transmission modes, RS-485 physical layer
-
-4. **MODBUS Messaging on TCP/IP Implementation Guide**
-   - TCP/IP implementation guidance
-   - Connection management, BSD socket interface, client/server architecture
-
-5. **MODBUS TCP Security Protocol Specification**
-   - Secure MODBUS over TLS
-   - Mutual authentication, role-based authorization, certificate management
-
-All source documents are located in [`raw/MODBUS/`](raw/MODBUS/) and remain unmodified.
-
-## Contributing
-
-This wiki is generated from source specifications using an AI-assisted ingestion workflow. When adding new MODBUS specifications:
-
-1. Place source documents in `raw/MODBUS/`
-2. Follow the ingestion workflow defined in [`AGENTS.md`](AGENTS.md)
-3. Create summary pages in `wiki/summaries/MODBUS/`
-4. Create or update concept pages in `wiki/concepts/`
-5. Update `wiki/index.md` with new pages
-6. Append entries to `wiki/log.md`
+The files in `raw/MODBUS` are a mechanical conversion of the official PDFs into Markdown.  The result isn't meant for reading by humans.  If you want to read the original specification, go directly to the MODBUS website https://www.modbus.org/specifications 
 
 ## Resources
 
@@ -193,11 +107,6 @@ This wiki is generated from source specifications using an AI-assisted ingestion
 - Stack Overflow: MODBUS protocol questions
 - Industrial automation forums
 - GitHub: MODBUS implementations and libraries
-
-## License
-
-This wiki summarizes public MODBUS specifications. The MODBUS protocol is maintained by the MODBUS Organization. Refer to official specifications for licensing and usage rights.
-
 ## Version History
 
 See [wiki/log.md](wiki/log.md) for detailed change history.
@@ -217,9 +126,17 @@ For questions or issues:
 
 ## Acknowledgments
 
-This wiki is based on specifications maintained by the MODBUS Organization. Content is extracted and organized for software developer convenience.
+This wiki is based on specifications maintained by the [MODBUS Organization](https://www.modbus.org/). Content is extracted and organized for software developer convenience.
 
----
+## COPYRIGHT NOTICE
 
-*Last Updated: 2026-04-18*
-*Purpose: MODBUS protocol reference for system control software developers*
+This wiki summarizes public MODBUS specifications. The MODBUS protocol is maintained by the MODBUS Organization. Refer to official specifications for licensing and usage rights.
+
+The MODBUS specifications are owned by, copyright by, Modbus Organization, Inc.  The PDFs were downloaded from https://www.modbus.org/, converted to Markdown, then processed using the instructions in [AGENTS.md](./AGENTS.md).  
+
+I am not a Lawyer, but I think the status of the contents of this wiki are:
+
+- The `raw/` directory is directly covered by the MODBUS Organization copyright
+- The `wiki/` directory contains information derived from the official specifications.  These may or may not be covered by the MODBUS Organization copyright.  The information in this wiki is offered not with the intent of infringing on the rights of the MODBUS Orgnization or Schneider, but of providing value to those interested in understanding the MODBUS specifications.
+
+

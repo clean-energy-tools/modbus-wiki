@@ -67,6 +67,16 @@ List of other pages in the Wiki related to this page
 
 List of other pages in the Wiki that link to this page
 
+------------
+
+MODBUS is a trademark of the Modbus Organization, Inc.
+
+All information on this page is derived by summarizing and analyzing solely the MODBUS specifications published by the Modbus Organization, Inc.  The specifications are copyright by the Modbus Organization.
+
+By deriving this information solely from the specifications we hope to stay true to the specification.
+
+No infringement is intended.
+
 ```
 
 The page frontmatter is to be in YAML format, with the target being the Obsidian program.  For example the entry for _Sources_ is described as a list, which means it should be formatted as a YAML array.  The sources are to be relative file URLs from the root of the repository.
@@ -187,6 +197,7 @@ When the user asks you to lint or audit the wiki:
 - Check that all `wiki/summaries` files are linked from `wiki/summaries/README.md`
 - Check that all `wiki/answers` files are linked from `wiki/answers/README.md`
 - Check that all `wiki/concepts` files are linked from `wiki/concepts/README.md`
+- Check that all `wiki/summaries`, `wiki/answers`, and `wiki/concepts` pages contain the disclaimer shown in the example page above at the bottom of the page.
 - Report findings as a numbered list with suggested fixes
 
 ## Rules

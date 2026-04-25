@@ -9,7 +9,94 @@ Sources:
   - raw/MODBUS/modbussecurityprotocol.md
 Categories:
   - quality-assurance
-Last updated: 2026-04-25T16:00:00+03:00
+Last updated: 2026-04-25T16:30:00+03:00
+---
+
+## 2026-04-25T16:30:00+03:00: Added Legal Disclaimer to All Generated Pages
+
+### Changes Made
+
+**Added standard disclaimer footer to all generated wiki pages:**
+
+**Summary pages (5 files):**
+- wiki/summaries/MODBUS/modbusoverserial.md
+- wiki/summaries/MODBUS/modbussecurityprotocol.md
+- wiki/summaries/MODBUS/messagingimplementationguide.md
+- wiki/summaries/MODBUS/modbusprotocolspecification.md
+- wiki/summaries/MODBUS/MODBUS.md
+
+**Concept pages (19 files):**
+- wiki/concepts/master-slave.md
+- wiki/concepts/modbus.md
+- wiki/concepts/protocol.md
+- wiki/concepts/implementation.md
+- wiki/concepts/mbap-header.md
+- wiki/concepts/tcp-connection-management.md
+- wiki/concepts/modbus-tcp-security.md
+- wiki/concepts/modbus-usage-and-applications.md
+- wiki/concepts/discrete-inputs.md
+- wiki/concepts/coils.md
+- wiki/concepts/function-codes.md
+- wiki/concepts/lrc.md
+- wiki/concepts/modbus-tcp.md
+- wiki/concepts/modbus-rtu.md
+- wiki/concepts/modbus-ascii.md
+- wiki/concepts/modbus-data-type-mapping.md
+- wiki/concepts/input-registers.md
+- wiki/concepts/holding-registers.md
+- wiki/concepts/crc-16.md
+
+**Answer pages (19 files):**
+- wiki/answers/modbus-data-validation.md
+- wiki/answers/wireshark-modbus-analysis.md
+- wiki/answers/what-is-mbap.md
+- wiki/answers/tls-and-modbus-security.md
+- wiki/answers/rs485-wiring-for-modbus-rtu.md
+- wiki/answers/reading-modbus-register-maps.md
+- wiki/answers/modbus-tcp-to-rtu-gateway.md
+- wiki/answers/modbus-rtu-vs-ascii.md
+- wiki/answers/modbus-register-data-representation.md
+- wiki/answers/modbus-commissioning-checklist.md
+- wiki/answers/converting-modbus-registers-to-program-variables.md
+- wiki/answers/modbus-function-codes-guide.md
+- wiki/answers/modbus-rtu-daisy-chain-wiring.md
+- wiki/answers/modbus-over-rs232.md
+- wiki/answers/modbus-broadcast.md
+- wiki/answers/modbus-register-addressing.md
+- wiki/answers/modbus-errors-and-exceptions.md
+- wiki/answers/modbus-tcp-message-format.md
+- wiki/answers/connecting-with-modbus-tcp-security.md
+
+**Disclaimer text added:**
+```
+------------
+
+MODBUS is a trademark of the Modbus Organization, Inc.
+
+All information on this page is derived by summarizing and analyzing solely the MODBUS specifications published by the Modbus Organization, Inc.  The specifications are copyright by the Modbus Organization.
+
+By deriving this information solely from the specifications we hope to stay true to the specification.
+
+No infringement is intended.
+```
+
+**Files updated:**
+- 43 wiki pages (5 summaries, 19 concepts, 19 answers)
+- wiki/log.md - This entry
+
+### Rationale
+
+AGENTS.md was updated to require a standard legal disclaimer at the bottom of all generated pages in the `wiki/summaries`, `wiki/concepts`, and `wiki/answers` directories. This disclaimer:
+- Acknowledges MODBUS trademark
+- Cites source of information (Modbus Organization specifications)
+- Clarifies copyright ownership
+- States intent to stay true to specifications
+- Includes no-infringement statement
+
+### Summary
+
+Added standard legal disclaimer to all 43 generated wiki pages to ensure proper attribution of MODBUS trademark and specifications, and to clarify that all information is derived from official Modbus Organization documentation.
+
 ---
 
 ## 2026-04-25T16:00:00+03:00: Added Missing Related Pages and Backlinks Sections
