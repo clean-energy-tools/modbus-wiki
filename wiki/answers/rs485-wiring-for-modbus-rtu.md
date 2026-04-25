@@ -884,7 +884,7 @@ Between D1 and D0:
 - [MODBUS RTU](/wiki/concepts/modbus-rtu.md) - MODBUS RTU protocol details
 - [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md) - Protocol comparison
 - [Master-Slave Architecture](/wiki/concepts/master-slave.md) - MODBUS communication model
-- [MODBUS Errors and Exceptions](/wiki/answers/modbus-errors-and-exceptions.md) - Troubleshooting guide
+- [MODBUS Errors and Exception Responses](/wiki/answers/modbus-errors-and-exceptions.md) - Troubleshooting guide
 
 ## Backlinks
 

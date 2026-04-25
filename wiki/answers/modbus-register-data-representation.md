@@ -18,7 +18,7 @@ MODBUS registers are the fundamental data storage units in the MODBUS protocol. 
 
 ## Register Size
 
-MODBUS registers are **16 bits (2 bytes)** each (source: [holding-registers](/wiki/concepts/holding-registers.md), [input-registers](/wiki/concepts/input-registers.md)).
+MODBUS registers are **16 bits (2 bytes)** each (source: [Holding Registers](/wiki/concepts/holding-registers.md), [Input Registers](/wiki/concepts/input-registers.md)).
 
 There are two types of word-based registers in MODBUS:
 - **Holding Registers:** 16-bit read/write registers for configuration and setpoints

@@ -301,11 +301,11 @@ void byte_to_ascii(uint8_t byte, char *output) {
 
 ## Related pages
 
-- [modbus-rtu](/wiki/concepts/modbus-rtu.md)
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
-- [lrc](/wiki/concepts/lrc.md)
-- [crc-16](/wiki/concepts/crc-16.md)
-- [function-codes](/wiki/concepts/function-codes.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [LRC](/wiki/concepts/lrc.md)
+- [CRC-16](/wiki/concepts/crc-16.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
 
 ## Backlinks
 

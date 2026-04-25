@@ -85,6 +85,12 @@ The _Backlinks_ section is to contain a Markdown list with links to pages that l
 
 When the content of a generated page discusses information related to a page in the concepts directory, make a reference to that page. 
 
+The title field for each page type should be:
+
+- Summary pages - use: _Summary of ORIGINAL DOCUMENT TITLE_
+- Concept pages - generate a human readable title from the text of this concept
+- Answer pages - generate a human readable title from the text of this concept
+
 ## Link format
 
 Internal links must work both in Obsidian and on GitHub.  This means not using the Wikilinks link format preferred by Obsidian (`[[concept-name]]`).   Instead, the generated wiki pages must all use this:
@@ -93,13 +99,61 @@ Internal links must work both in Obsidian and on GitHub.  This means not using t
 
 **IMPORTANT:** All internal links MUST include leading `/` character to work correctly on GitHub. This is required for both Obsidian and GitHub compatibility.
 
-When linking from summary pages to concept pages, use the full path:
-- From `wiki/summaries/`: link as `[Display Text](/wiki/concepts/concept-name.md)`
-- From `wiki/concepts/`: link as `[Display Text](/wiki/concepts/other-concept.md)`
+When linking to summary pages, use the full path: link as `[Summary Title](/wiki/summaries/summary-name.md)`
+
+When linking to concept pages, use the full path: link as `[Concept Title](/wiki/concepts/concept-name.md)`
+
+When linking to answer pages, use the full path: link as `[Answer Title](/wiki/answers/answer-name.md)`
 
 In tables, always use standard Markdown link format: `[Display Text](/wiki/concepts/concept-name.md)`
 
 In all cases, the _Display Text_ should be replaced by either the title of the linked-to page, or the final component of the file name, such as `concept-name.md`.
+
+# Navigation helper pages
+
+In the `wiki/summaries` directory, maintain a file README.md in this format:
+
+```markdown
+---
+title: Source document summaries 
+---
+
+LIST OF SUMMARY DOCUMENTS
+
+```
+
+This should contain a Markdown list of the summary pages where each item is:
+
+```markdown
+* **[TITLE FOR SUMMARY DOCUMENT](./summary-document-file-name.md)**: The text of the summary field from the document
+```
+
+In the `wiki/concepts` directory, maintain a file README.md in the same format as for the summary directory. 
+
+```markdown
+---
+title: Concept documents 
+---
+
+LIST OF CONCEPT DOCUMENTS -- where each item in the list is
+
+* **[TITLE FOR CONCEPT DOCUMENT](./concept-document-file-name.md)**: The text of the summary field from the document
+
+```
+
+In the `wiki/answers` directory, maintain a file README.md in the same format as for the summary directory
+
+
+```markdown
+---
+title: Answer documents 
+---
+
+LIST OF ANSWER DOCUMENTS -- where each item in the list is
+
+* **[TITLE FOR ANSWER DOCUMENT](./answer-document-file-name.md)**: The text of the summary field from the document
+
+```
 
 ## Citation rules
 
@@ -130,6 +184,9 @@ When the user asks you to lint or audit the wiki:
 - Flag claims that may be outdated based on newer sources
 - Check that all pages follow the page format above
 - Check that all links start from the root of the workspace, and are prefixed with "/"
+- Check that all `wiki/summaries` files are linked from `wiki/summaries/README.md`
+- Check that all `wiki/answers` files are linked from `wiki/answers/README.md`
+- Check that all `wiki/concepts` files are linked from `wiki/concepts/README.md`
 - Report findings as a numbered list with suggested fixes
 
 ## Rules

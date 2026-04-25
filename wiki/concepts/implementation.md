@@ -170,7 +170,7 @@ Implement proper exception handling for common error conditions (source: [modbus
 
 ### Type Mapping Implementation
 
-See [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md) for detailed guidance on mapping MODBUS register values to programming language types.
+See [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md) for detailed guidance on mapping MODBUS register values to programming language types.
 
 **Key Principles:**
 - **Word Order Handling:** Support big-endian and little-endian word order
@@ -272,7 +272,7 @@ See [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md) for d
 ### Enhanced Security
 
 **For Sensitive Environments:**
-- **Use [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md)**: Implement TLS encryption
+- **Use [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md)**: Implement TLS encryption
 - **Authentication:** Implement device authentication
 - **Authorization:** Role-based access control
 - **Message Signing:** Consider message authentication for critical commands
@@ -343,11 +343,15 @@ See [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md) for d
 
 ## Related Information
 
-- [modbus](/wiki/concepts/modbus.md) - Comprehensive protocol overview
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md) - TCP/IP implementation details
-- [modbus-rtu](/wiki/concepts/modbus-rtu.md) - Serial RTU specifications
-- [modbus-ascii](/wiki/concepts/modbus-ascii.md) - Serial ASCII specifications
-- [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md) - Data type mapping guidance
-- [function-codes](/wiki/concepts/function-codes.md) - Complete function code reference
+- [MODBUS Protocol](/wiki/concepts/modbus.md) - Comprehensive protocol overview
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - TCP/IP implementation details
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md) - Serial RTU specifications
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) - Serial ASCII specifications
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md) - Data type mapping guidance
+- [Function Codes](/wiki/concepts/function-codes.md) - Complete function code reference
 
 See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for advanced protocol design patterns.
+
+## Related pages
+
+## Backlinks

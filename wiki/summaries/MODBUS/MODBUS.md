@@ -1,5 +1,5 @@
 ---
-title: MODBUS Protocol Specification for AI Implementation
+title: Summary of MODBUS Protocol Specification for AI Implementation
 Summary: Comprehensive technical reference for MODBUS protocol optimized for AI implementations, covering protocol structure, function codes, and transport variants.
 Sources:
   - raw/MODBUS/MODBUS.md
@@ -34,10 +34,10 @@ MODBUS defines four primary data tables. Devices may implement these as separate
 
 | Table | Object Type | Size | Access | Typical Use |
 |-------|-------------|------|--------|-------------|
-| [coils](/wiki/concepts/coils.md) | Bit | 1 bit | Read/Write | Digital outputs, relays |
-| [discrete-inputs](/wiki/concepts/discrete-inputs.md) | Bit | 1 bit | Read-only | Digital inputs, switches |
-| [holding-registers](/wiki/concepts/holding-registers.md) | Word | 16 bits | Read/Write | Configuration, setpoints |
-| [input-registers](/wiki/concepts/input-registers.md) | Word | 16 bits | Read-only | Measurements, status |
+| [Coils](/wiki/concepts/coils.md) | Bit | 1 bit | Read/Write | Digital outputs, relays |
+| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | Bit | 1 bit | Read-only | Digital inputs, switches |
+| [Holding Registers](/wiki/concepts/holding-registers.md) | Word | 16 bits | Read/Write | Configuration, setpoints |
+| [Input Registers](/wiki/concepts/input-registers.md) | Word | 16 bits | Read-only | Measurements, status |
 
 ### Addressing
 
@@ -63,10 +63,10 @@ MODBUS operates over multiple transport layers:
 
 | Variant | Medium | Error Check | Framing |
 |---------|--------|-------------|---------|
-| [modbus-tcp](/wiki/concepts/modbus-tcp.md) | Ethernet | TCP/IP | MBAP header (7 bytes) |
-| [modbus-rtu](/wiki/concepts/modbus-rtu.md) | Serial (RS-485/232) | CRC-16 | Silent intervals |
-| [modbus-ascii](/wiki/concepts/modbus-ascii.md) | Serial | LRC | Start ':' / End CR-LF |
-| [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md) | Ethernet + TLS | TCP/IP + TLS | MBAP over TLS |
+| [MODBUS TCP](/wiki/concepts/modbus-tcp.md) | Ethernet | TCP/IP | MBAP header (7 bytes) |
+| [MODBUS RTU](/wiki/concepts/modbus-rtu.md) | Serial (RS-485/232) | CRC-16 | Silent intervals |
+| [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) | Serial | LRC | Start ':' / End CR-LF |
+| [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) | Ethernet + TLS | TCP/IP + TLS | MBAP over TLS |
 
 ## Protocol Data Unit (PDU)
 
@@ -95,7 +95,7 @@ The document details all major function codes including:
 - Function 0x17: Read/Write Multiple Registers
 - Function 0x2B: Encapsulated Interface Transport
 
-See [function-codes](/wiki/concepts/function-codes.md) for detailed specifications.
+See [Function Codes](/wiki/concepts/function-codes.md) for detailed specifications.
 
 ## Exception Handling
 
@@ -141,12 +141,16 @@ For 32-bit values across two registers, verify device documentation for word ord
 
 ## Related pages
 
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
-- [modbus-rtu](/wiki/concepts/modbus-rtu.md)
-- [modbus-ascii](/wiki/concepts/modbus-ascii.md)
-- [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md)
-- [function-codes](/wiki/concepts/function-codes.md)
-- [coils](/wiki/concepts/coils.md)
-- [discrete-inputs](/wiki/concepts/discrete-inputs.md)
-- [holding-registers](/wiki/concepts/holding-registers.md)
-- [input-registers](/wiki/concepts/input-registers.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+
+## Backlinks
+
+- [MODBUS Protocol](/wiki/concepts/modbus.md)

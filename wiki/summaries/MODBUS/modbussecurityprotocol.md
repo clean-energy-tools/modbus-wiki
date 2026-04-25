@@ -1,5 +1,5 @@
 ---
-title: MODBUS TCP Security Protocol Specification
+title: Summary of MODBUS/TCP Security
 Summary: MODBUS/TCP Security specification defining secure communication over TLS, mutual authentication, role-based authorization, and certificate management.
 Sources:
   - raw/MODBUS/modbussecurityprotocol.md
@@ -16,7 +16,7 @@ This document defines the MODBUS/TCP Security protocol specification that adds T
 
 ## Protocol Overview
 
-[modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md) (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication for MODBUS devices over TCP/IP networks (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
+[MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication for MODBUS devices over TCP/IP networks (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
 ### Key Characteristics
 
@@ -263,8 +263,10 @@ The server returns exception code 0x01 when the client role does not have permis
 
 ## Related pages
 
-- [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md)
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
 - [tls](/wiki/concepts/tls.md)
 - [mutual-authentication](/wiki/concepts/mutual-authentication.md)
 - [role-based-authorization](/wiki/concepts/role-based-authorization.md)
+
+## Backlinks

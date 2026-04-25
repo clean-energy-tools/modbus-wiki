@@ -759,7 +759,7 @@ write_multiple_registers(0, &write_regs)?;
 
 ### Byte Order vs Word Order
 
-**MODBUS has two levels of endianness** (source: [modbus-register-data-representation](/wiki/answers/modbus-register-data-representation.md)):
+**MODBUS has two levels of endianness** (source: [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md)):
 
 1. **Byte order within each register**: Always big-endian (high byte first)
 2. **Word order for multi-register values**: Device-specific

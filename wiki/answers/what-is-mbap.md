@@ -45,7 +45,7 @@ MODBUS was originally designed for serial communication (RS-485/RS-232), which h
 
 ## MBAP Header Structure
 
-The MBAP header consists of four fields totaling 7 bytes (source: [mbap-header.md](/wiki/concepts/mbap-header.md)):
+The MBAP header consists of four fields totaling 7 bytes (source: [MBAP Header](/wiki/concepts/mbap-header.md)):
 
 | Offset | Field | Size | Value | Description |
 |--------|-------|------|-------|-------------|
@@ -356,7 +356,7 @@ MBAP itself provides **no security**:
 
 **Wireshark can easily capture and decode MODBUS TCP traffic** because it's unencrypted.
 
-For secure communication, use [MODBUS/TCP Security](/wiki/concepts/modbus-tcp-security.md) which:
+For secure communication, use [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) which:
 - Runs on port 802 (not 502)
 - Wraps MODBUS TCP in TLS 1.2+
 - Provides encryption, authentication, and authorization
@@ -367,7 +367,7 @@ For secure communication, use [MODBUS/TCP Security](/wiki/concepts/modbus-tcp-se
 - [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - Complete MODBUS TCP protocol
 - [MBAP Header](/wiki/concepts/mbap-header.md) - Detailed MBAP header specification
 - [TCP Connection Management](/wiki/concepts/tcp-connection-management.md) - Managing TCP connections
-- [MODBUS/TCP Security](/wiki/concepts/modbus-tcp-security.md) - Secure variant using TLS
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) - Secure variant using TLS
 
 ## Backlinks
 

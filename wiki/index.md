@@ -19,11 +19,11 @@ Summaries of source documents in `raw/MODBUS/`:
 
 | Document                                                                                                  | Description                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| [MODBUS Protocol Specification for AI Implementation](/wiki/summaries/MODBUS/MODBUS.md)                   | Comprehensive technical reference for MODBUS protocol optimized for AI implementations                                           |
-| [MODBUS Application Protocol Specification](/wiki/summaries/MODBUS/modbusprotocolspecification.md)        | Official MODBUS Application Protocol specification describing communication model, data model, and function codes                |
-| [MODBUS Over Serial Line Specification](/wiki/summaries/MODBUS/modbusoverserial.md)                       | MODBUS serial line specification covering master-slave protocol, RTU and ASCII modes, and RS485 physical layer                   |
-| [MODBUS Messaging on TCP/IP Implementation Guide](/wiki/summaries/MODBUS/messagingimplementationguide.md) | Implementation guide for MODBUS messaging over TCP/IP including TCP connection management and BSD socket interface usage         |
-| [MODBUS TCP Security Protocol Specification](/wiki/summaries/MODBUS/modbussecurityprotocol.md)            | MODBUS/TCP Security specification defining secure communication over TLS with mutual authentication and role-based authorization |
+| [Summary of MODBUS Protocol Specification for AI Implementation](/wiki/summaries/MODBUS/MODBUS.md)                   | Comprehensive technical reference for MODBUS protocol optimized for AI implementations                                           |
+| [Summary of MODBUS Application Protocol Specification](/wiki/summaries/MODBUS/modbusprotocolspecification.md)        | Official MODBUS Application Protocol specification describing communication model, data model, and function codes                |
+| [Summary of MODBUS over serial line specification and implementation guide](/wiki/summaries/MODBUS/modbusoverserial.md)                       | MODBUS serial line specification covering master-slave protocol, RTU and ASCII modes, and RS485 physical layer                   |
+| [Summary of MODBUS Messaging on TCP/IP Implementation Guide](/wiki/summaries/MODBUS/messagingimplementationguide.md) | Implementation guide for MODBUS messaging over TCP/IP including TCP connection management and BSD socket interface usage         |
+| [Summary of MODBUS/TCP Security](/wiki/summaries/MODBUS/modbussecurityprotocol.md)            | MODBUS/TCP Security specification defining secure communication over TLS with mutual authentication and role-based authorization |
 
 ## Core Concepts
 
@@ -44,9 +44,6 @@ Summaries of source documents in `raw/MODBUS/`:
 | [Protocol](/wiki/concepts/protocol.md) | General protocol concepts including OSI model, request-response patterns, and communication principles |
 | [Master-Slave Architecture](/wiki/concepts/master-slave.md) | MODBUS master-slave communication model including roles, addressing, timing, and operational characteristics |
 | [Implementation](/wiki/concepts/implementation.md) | Best practices, patterns, and guidelines for implementing MODBUS client and server functionality in software systems |
-| [Modular Agent Architecture](/wiki/concepts/modular-architecture.md) | Modular agent system enabling specialized, focused agents with minimal context loading and single responsibility principle |
-
-### Protocol Variants
 
 ### Data Model
 
@@ -65,6 +62,7 @@ Summaries of source documents in `raw/MODBUS/`:
 | [MBAP Header](/wiki/concepts/mbap-header.md) | MODBUS Application Protocol header for TCP/IP encapsulation providing transaction management and routing information |
 | [TCP Connection Management](/wiki/concepts/tcp-connection-management.md) | TCP connection lifecycle management for MODBUS/TCP including establishment, maintenance, pooling, and error handling |
 | [CRC-16](/wiki/concepts/crc-16.md) | Cyclic Redundancy Check 16-bit error detection algorithm used in MODBUS RTU mode for frame integrity |
+| [LRC](/wiki/concepts/lrc.md) | Longitudinal Redundancy Check error detection algorithm used in MODBUS ASCII mode for frame integrity |
 
 ### Applications and Usage
 
@@ -139,7 +137,7 @@ Answers to specific questions about MODBUS implementation and usage:
 
 - Browse by [Document Summaries](#document-summaries)
 - Browse by [Core Concepts](#core-concepts)
-- View [Change Log](/wiki/log.md)
+- View [MODBUS Wiki Change Log](/wiki/log.md)
 
 ## Related Information
 

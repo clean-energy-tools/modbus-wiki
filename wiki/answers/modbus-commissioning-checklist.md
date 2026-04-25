@@ -508,7 +508,7 @@ This is the **first thing to do upon arriving at the site**, before installation
   - Frame-by-frame analysis
   - Export to PCAP for documentation
 
-(source: [wireshark-modbus-analysis.md](/wiki/answers/wireshark-modbus-analysis.md))
+(source: [Using Wireshark for MODBUS TCP Analysis](/wiki/answers/wireshark-modbus-analysis.md))
 
 **MODBUS Client/Simulator:**
 - **ModScan** or equivalent MODBUS client simulator
@@ -787,7 +787,7 @@ For MODBUS TCP-to-RTU gateways:
   - Port 502 for MODBUS TCP
   - Port 802 for MODBUS TCP Security
 
-(source: [modbus-tcp-to-rtu-gateway.md](/wiki/answers/modbus-tcp-to-rtu-gateway.md))
+(source: [How MODBUS TCP-to-RTU Gateways Work](/wiki/answers/modbus-tcp-to-rtu-gateway.md))
 
 ## Initial Power-On and Testing
 
@@ -846,7 +846,7 @@ For MODBUS TCP-to-RTU gateways:
   - Exception 0x01 (ILLEGAL FUNCTION)
   - Update device capability documentation
 
-(source: [function-codes.md](/wiki/concepts/function-codes.md))
+(source: [Function Codes](/wiki/concepts/function-codes.md))
 
 ### 4. Address Range Verification
 
@@ -1092,7 +1092,7 @@ For MODBUS TCP-to-RTU gateways:
   - Minimum and maximum values
   - Special values (e.g., 0xFFFF = invalid)
 
-(source: [modbus-data-type-mapping.md](/wiki/concepts/modbus-data-type-mapping.md))
+(source: [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md))
 
 ### 3. Operational Notes
 

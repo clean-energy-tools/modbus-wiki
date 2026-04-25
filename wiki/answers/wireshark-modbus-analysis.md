@@ -916,7 +916,7 @@ tshark -r capture.pcap -Y "modbus.func_code <= 127" | wc -l
 - [MODBUS TCP Message Format](/wiki/answers/modbus-tcp-message-format.md) - Understanding MODBUS TCP structure
 - [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - MODBUS TCP protocol overview
 - [MBAP Header](/wiki/concepts/mbap-header.md) - MBAP header specification
-- [MODBUS/TCP Security](/wiki/concepts/modbus-tcp-security.md) - Secure MODBUS protocol
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) - Secure MODBUS protocol
 - [Connecting with MODBUS/TCP Security](/wiki/answers/connecting-with-modbus-tcp-security.md) - Security setup
 
 ## Backlinks

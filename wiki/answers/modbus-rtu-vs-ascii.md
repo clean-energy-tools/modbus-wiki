@@ -35,7 +35,7 @@ MODBUS RTU and MODBUS ASCII are two transmission modes for MODBUS protocol over 
 
 ### MODBUS RTU Frame
 
-**Binary transmission** - each byte sent as-is (source: [modbus-rtu](/wiki/concepts/modbus-rtu.md)):
+**Binary transmission** - each byte sent as-is (source: [MODBUS RTU](/wiki/concepts/modbus-rtu.md)):
 
 ```
 [Address: 1][Function: 1][Data: 0-252][CRC-16: 2]
@@ -51,7 +51,7 @@ Size: 8 bytes
 
 ### MODBUS ASCII Frame
 
-**ASCII hex encoding** - each byte becomes two ASCII characters (source: [modbus-ascii](/wiki/concepts/modbus-ascii.md)):
+**ASCII hex encoding** - each byte becomes two ASCII characters (source: [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)):
 
 ```
 [':'][Addr: 2][Func: 2][Data: 2N][LRC: 2][CR][LF]
@@ -172,7 +172,7 @@ ASCII characters on wire:
 
 ### RTU Framing: Silent Intervals
 
-**Frame detection using timing** (source: [modbus-rtu](/wiki/concepts/modbus-rtu.md)):
+**Frame detection using timing** (source: [MODBUS RTU](/wiki/concepts/modbus-rtu.md)):
 
 ```
 <-t3.5->|<----- Frame ----->|<-t3.5->|<----- Frame ----->|
@@ -201,7 +201,7 @@ ASCII characters on wire:
 
 ### ASCII Framing: Character Delimiters
 
-**Frame detection using special characters** (source: [modbus-ascii](/wiki/concepts/modbus-ascii.md)):
+**Frame detection using special characters** (source: [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)):
 
 ```
 :<Addr><Func><Data><LRC><CR><LF>:<Addr><Func><Data><LRC><CR><LF>
@@ -226,7 +226,7 @@ Start                   End     Start                     End
 
 ### RTU: CRC-16 (Cyclic Redundancy Check)
 
-**Strength:** Very robust error detection (source: [crc-16](/wiki/concepts/crc-16.md))
+**Strength:** Very robust error detection (source: [CRC-16](/wiki/concepts/crc-16.md))
 
 **Parameters:**
 ```
@@ -276,7 +276,7 @@ Transmitted: 01 03 00 00 00 0A CD C5
 
 ### ASCII: LRC (Longitudinal Redundancy Check)
 
-**Strength:** Weak error detection (source: [modbus-ascii](/wiki/concepts/modbus-ascii.md))
+**Strength:** Weak error detection (source: [MODBUS ASCII](/wiki/concepts/modbus-ascii.md))
 
 **Algorithm:** Two's complement of 8-bit sum
 ```
@@ -380,7 +380,7 @@ Final: CRC = 0xC5CD
 
 ### Lookup Table Algorithm (Optimized)
 
-**Much faster implementation** using pre-computed tables (source: [crc-16](/wiki/concepts/crc-16.md)):
+**Much faster implementation** using pre-computed tables (source: [CRC-16](/wiki/concepts/crc-16.md)):
 
 ```c
 // Pre-computed lookup tables (256 bytes each)

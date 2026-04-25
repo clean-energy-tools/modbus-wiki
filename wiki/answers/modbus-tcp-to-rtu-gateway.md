@@ -248,7 +248,7 @@ Unit ID:        0x05   (echo from request)
 - Send response over TCP socket
 - No CRC needed (TCP provides error checking)
 
-Source: [modbus-tcp-message-format.md](/wiki/answers/modbus-tcp-message-format.md)
+Source: [MODBUS TCP Message Format](/wiki/answers/modbus-tcp-message-format.md)
 
 ## Critical Differences Between TCP and RTU
 

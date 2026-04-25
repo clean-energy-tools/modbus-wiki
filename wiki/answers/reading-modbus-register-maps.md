@@ -333,7 +333,7 @@ Address | FC   | Name
 - Use standard function for that register type
 - Try reading first before writing
 
-(source: [function-codes.md](/wiki/concepts/function-codes.md))
+(source: [Function Codes](/wiki/concepts/function-codes.md))
 
 ## Decoding Data Types
 
@@ -362,7 +362,7 @@ MODBUS registers are 16 bits, but multi-register data types are common:
 | FLOAT64 | 4 regs | ±1.7×10³⁰⁸ | IEEE 754 double-precision float |
 | STRING | N regs | - | ASCII text (2 characters per register) |
 
-(source: [modbus-register-data-representation.md](/wiki/answers/modbus-register-data-representation.md))
+(source: [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md))
 
 ### How Data Types Appear in Documentation
 
@@ -474,7 +474,7 @@ MODBUS registers are integers. To represent fractional values, vendors use scali
 - Range: -400 to 1250
 - Resolution: 0.1°C
 
-(source: [modbus-register-data-representation.md](/wiki/answers/modbus-register-data-representation.md))
+(source: [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md))
 
 ### Reading Scaling Information
 
@@ -595,7 +595,7 @@ Register N+1: 0x1234 (high word)
 3. Big-Endian Byte Swap (BADC): 0x34 0x12 0x78 0x56
 4. Little-Endian Byte Swap (CDAB): 0x56 0x78 0x12 0x34
 
-(source: [modbus-register-data-representation.md](/wiki/answers/modbus-register-data-representation.md))
+(source: [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md))
 
 ### Identifying Word Order From Documentation
 
@@ -987,7 +987,7 @@ Address | Name
 - Determine data types from patterns
 - Verify function codes
 
-(source: [wireshark-modbus-analysis.md](/wiki/answers/wireshark-modbus-analysis.md))
+(source: [Using Wireshark for MODBUS TCP Analysis](/wiki/answers/wireshark-modbus-analysis.md))
 
 ### 5. Contact Vendor Support
 

@@ -373,10 +373,10 @@ Compare with other MODBUS data objects:
 
 ## Related pages
 
-- [input-registers](/wiki/concepts/input-registers.md)
-- [coils](/wiki/concepts/coils.md)
-- [discrete-inputs](/wiki/concepts/discrete-inputs.md)
-- [function-codes](/wiki/concepts/function-codes.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
 
 ## Backlinks
 

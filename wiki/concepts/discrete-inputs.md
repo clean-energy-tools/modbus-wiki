@@ -215,7 +215,9 @@ Compare with other MODBUS data objects:
 
 ## Related pages
 
-- [coils](/wiki/concepts/coils.md)
-- [holding-registers](/wiki/concepts/holding-registers.md)
-- [input-registers](/wiki/concepts/input-registers.md)
-- [function-codes](/wiki/concepts/function-codes.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+
+## Backlinks

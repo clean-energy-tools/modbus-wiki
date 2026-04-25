@@ -533,8 +533,11 @@ When implementing MODBUS data validation, ensure you:
 
 ## Related pages
 
-- [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md) - Data type conversion patterns
-- [function-codes](/wiki/concepts/function-codes.md) - Protocol function codes and limits
-- [holding-registers](/wiki/concepts/holding-registers.md) - Register properties and usage
-- [coils](/wiki/concepts/coils.md) - Coil operations and validation
-- [implementation](/wiki/concepts/implementation.md) - Implementation best practices
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md) - Data type conversion patterns
+- [Function Codes](/wiki/concepts/function-codes.md) - Protocol function codes and limits
+- [Holding Registers](/wiki/concepts/holding-registers.md) - Register properties and usage
+- [Coils](/wiki/concepts/coils.md) - Coil operations and validation
+- [Implementation](/wiki/concepts/implementation.md) - Implementation best practices
+
+## Backlinks
+

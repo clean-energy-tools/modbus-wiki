@@ -288,8 +288,10 @@ When an error occurs, the server responds with function code + 0x80 and an excep
 
 ## Related pages
 
-- [coils](/wiki/concepts/coils.md)
-- [discrete-inputs](/wiki/concepts/discrete-inputs.md)
-- [holding-registers](/wiki/concepts/holding-registers.md)
-- [input-registers](/wiki/concepts/input-registers.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
 - [exception-codes](/wiki/concepts/exception-codes.md)
+
+## Backlinks

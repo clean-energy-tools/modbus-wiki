@@ -1,5 +1,5 @@
 ---
-title: MODBUS Messaging on TCP/IP Implementation Guide
+title: Summary of MODBUS Messaging on TCP/IP Implementation Guide
 Summary: Implementation guide for MODBUS messaging over TCP/IP, including TCP connection management, BSD socket interface usage, and client/server architecture.
 Sources:
   - raw/MODBUS/messagingimplementationguide.md
@@ -282,8 +282,10 @@ select()             // Test events on multiple sockets
 
 ## Related pages
 
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
-- [mbap-header](/wiki/concepts/mbap-header.md)
-- [tcp-connection-management](/wiki/concepts/tcp-connection-management.md)
-- [function-codes](/wiki/concepts/function-codes.md)
-- [modbusprotocolspecification](/wiki/summaries/MODBUS/modbusprotocolspecification.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [MBAP Header](/wiki/concepts/mbap-header.md)
+- [TCP Connection Management](/wiki/concepts/tcp-connection-management.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Summary of MODBUS Application Protocol Specification](/wiki/summaries/MODBUS/modbusprotocolspecification.md)
+
+## Backlinks

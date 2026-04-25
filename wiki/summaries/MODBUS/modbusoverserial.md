@@ -1,5 +1,5 @@
 ---
-title: MODBUS Over Serial Line Specification
+title: Summary of MODBUS over serial line specification and implementation guide
 Summary: MODBUS serial line specification covering master-slave protocol, RTU and ASCII modes, RS485 physical layer, and framing requirements for serial communication.
 Sources:
   - raw/MODBUS/modbusoverserial.md
@@ -37,7 +37,7 @@ MODBUS supports two transmission modes over serial lines:
 
 ### RTU Mode (Remote Terminal Unit)
 
-[modbus-rtu](/wiki/concepts/modbus-rtu.md) transmits data in binary format with CRC-16 error checking.
+[MODBUS RTU](/wiki/concepts/modbus-rtu.md) transmits data in binary format with CRC-16 error checking.
 
 **Character Format:**
 | Field | Bits | Description |
@@ -99,7 +99,7 @@ t3.5 = 3.5 × character_time
 
 ### ASCII Mode
 
-[modbus-ascii](/wiki/concepts/modbus-ascii.md) transmits each byte as two ASCII hexadecimal characters.
+[MODBUS ASCII](/wiki/concepts/modbus-ascii.md) transmits each byte as two ASCII hexadecimal characters.
 
 **Character Format:**
 | Field | Bits | Description |
@@ -230,9 +230,11 @@ Only implement at **one location** (typically master). Using 650Ω allows more d
 
 ## Related pages
 
-- [modbus-rtu](/wiki/concepts/modbus-rtu.md)
-- [modbus-ascii](/wiki/concepts/modbus-ascii.md)
-- [crc-16](/wiki/concepts/crc-16.md)
-- [lrc](/wiki/concepts/lrc.md)
-- [function-codes](/wiki/concepts/function-codes.md)
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [CRC-16](/wiki/concepts/crc-16.md)
+- [LRC](/wiki/concepts/lrc.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+
+## Backlinks

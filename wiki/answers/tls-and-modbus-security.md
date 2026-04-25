@@ -468,7 +468,7 @@ Server enforces role-based access control for every MODBUS request:
 - [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) - Complete protocol specification
 - [Connecting with MODBUS/TCP Security](/wiki/answers/connecting-with-modbus-tcp-security.md) - Implementation guide
 - [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - Standard (unsecured) MODBUS TCP
-- [MODBUS Security Protocol Specification](/wiki/summaries/MODBUS/modbussecurityprotocol.md) - Source document summary
+- [Summary of MODBUS/TCP Security](/wiki/summaries/MODBUS/modbussecurityprotocol.md) - Source document summary
 
 ## Backlinks
 

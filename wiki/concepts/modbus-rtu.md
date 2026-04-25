@@ -275,11 +275,11 @@ RTU mode typically operates over RS-485 (2-wire or 4-wire) or RS232 physical lay
 
 ## Related pages
 
-- [modbus-ascii](/wiki/concepts/modbus-ascii.md)
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
-- [crc-16](/wiki/concepts/crc-16.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [CRC-16](/wiki/concepts/crc-16.md)
 - [rs485](/wiki/concepts/rs485.md)
-- [function-codes](/wiki/concepts/function-codes.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
 
 ## Backlinks
 

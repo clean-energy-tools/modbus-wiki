@@ -1,5 +1,5 @@
 ---
-title: MODBUS Application Protocol Specification
+title: Summary of MODBUS Application Protocol Specification
 Summary: Official MODBUS Application Protocol specification describing the general communication model, data model, function codes, and exception handling for MODBUS protocol.
 Sources:
   - raw/MODBUS/modbusprotocolspecification.md
@@ -35,10 +35,10 @@ MODBUS defines a standardized data model with four primary tables:
 
 | Table | Object Type | Type of Access | Typical Use |
 |-------|-------------|---------------|-------------|
-| [coils](/wiki/concepts/coils.md) | Single bit | Read-Write | Digital outputs, control relays |
-| [discrete-inputs](/wiki/concepts/discrete-inputs.md) | Single bit | Read-Only | Digital inputs, limit switches |
-| [input-registers](/wiki/concepts/input-registers.md) | 16-bit word | Read-Only | Analog inputs, sensor readings |
-| [holding-registers](/wiki/concepts/holding-registers.md) | 16-bit word | Read-Write | Setpoints, configuration values |
+| [Coils](/wiki/concepts/coils.md) | Single bit | Read-Write | Digital outputs, control relays |
+| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | Single bit | Read-Only | Digital inputs, limit switches |
+| [Input Registers](/wiki/concepts/input-registers.md) | 16-bit word | Read-Only | Analog inputs, sensor readings |
+| [Holding Registers](/wiki/concepts/holding-registers.md) | 16-bit word | Read-Write | Setpoints, configuration values |
 
 ### Memory Organization
 
@@ -78,7 +78,7 @@ These are standardized codes that must be implemented according to specification
 | 24 | Read FIFO Queue | Read FIFO queue |
 | 43 | Encapsulated Interface Transport | MEI type transport |
 
-See [function-codes](/wiki/concepts/function-codes.md) for detailed specifications.
+See [Function Codes](/wiki/concepts/function-codes.md) for detailed specifications.
 
 ## Protocol Data Unit (PDU)
 
@@ -131,18 +131,20 @@ The function code in the response has the most significant bit set (function cod
 ## Modbus Variants
 
 The protocol specification serves as the foundation for multiple MODBUS variants:
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md) - MODBUS over TCP/IP
-- [modbus-rtu](/wiki/concepts/modbus-rtu.md) - MODBUS over serial line in RTU mode
-- [modbus-ascii](/wiki/concepts/modbus-ascii.md) - MODBUS over serial line in ASCII mode
-- [modbus-tcp-security](/wiki/concepts/modbus-tcp-security.md) - Secure MODBUS over TLS
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - MODBUS over TCP/IP
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md) - MODBUS over serial line in RTU mode
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) - MODBUS over serial line in ASCII mode
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) - Secure MODBUS over TLS
 
 ## Related pages
 
-- [function-codes](/wiki/concepts/function-codes.md)
-- [coils](/wiki/concepts/coils.md)
-- [discrete-inputs](/wiki/concepts/discrete-inputs.md)
-- [holding-registers](/wiki/concepts/holding-registers.md)
-- [input-registers](/wiki/concepts/input-registers.md)
-- [modbus-tcp](/wiki/concepts/modbus-tcp.md)
-- [modbus-rtu](/wiki/concepts/modbus-rtu.md)
-- [modbus-ascii](/wiki/concepts/modbus-ascii.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+
+## Backlinks

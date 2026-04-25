@@ -275,10 +275,10 @@ Compare with other MODBUS data objects:
 
 ## Related pages
 
-- [holding-registers](/wiki/concepts/holding-registers.md)
-- [coils](/wiki/concepts/coils.md)
-- [discrete-inputs](/wiki/concepts/discrete-inputs.md)
-- [function-codes](/wiki/concepts/function-codes.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
 
 ## Backlinks
 
