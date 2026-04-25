@@ -8,7 +8,7 @@ Sources:
   - raw/MODBUS/messagingimplementationguide.md
   - raw/MODBUS/modbussecurityprotocol.md
 date-created: 2026-04-18T12:00:00+03:00
-last-updated: 2026-04-24T17:00:00+03:00
+last-updated: 2026-04-25T10:00:00+03:00
 ---
 
 Welcome to the MODBUS Protocol Wiki. This wiki contains organized information about the MODBUS protocol specifications, extracted from official MODBUS documentation.
@@ -100,6 +100,7 @@ Answers to specific questions about MODBUS implementation and usage:
 | [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md) | Comprehensive comparison of MODBUS RTU and ASCII transmission modes including protocol frames, encoding differences, error checking methods, CRC calculation, and when to use each mode |
 | [RS-485 Wiring for MODBUS RTU](/wiki/answers/rs485-wiring-for-modbus-rtu.md) | Comprehensive guide to RS-485 physical wiring for MODBUS RTU including topology, voltage levels, 2-wire vs 4-wire configurations, shielding, termination resistors, polarization, device limits, and practical installation guidelines |
 | [MODBUS over RS-232](/wiki/answers/modbus-over-rs232.md) | Comprehensive guide to running MODBUS over RS-232 including setup, limitations, comparison with RS-485, point-to-point operation, wiring, and when to use RS-232 vs RS-485 for MODBUS RTU |
+| [TLS and MODBUS Security](/wiki/answers/tls-and-modbus-security.md) | Comprehensive explanation of TLS, its role in MODBUS Security, cyber-attacks prevented by TLS, and how TLS prevents unauthorized access to MODBUS devices through mutual authentication and role-based authorization |
 
 ## Quick Reference
 

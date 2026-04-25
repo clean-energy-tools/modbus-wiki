@@ -9,7 +9,61 @@ Sources:
   - raw/MODBUS/modbussecurityprotocol.md
 Categories:
   - quality-assurance
-Last updated: 2026-04-24T17:00:00+03:00
+Last updated: 2026-04-25T10:00:00+03:00
+---
+
+## 2026-04-25T10:00:00+03:00: Added "TLS and MODBUS Security" Answer
+
+### Changes Made
+
+**New answer page created:**
+- wiki/answers/tls-and-modbus-security.md
+
+**Content:**
+- Comprehensive explanation of TLS (Transport Layer Security)
+- TLS configuration for MODBUS (cipher suite TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256)
+- TLS version requirements (1.2 minimum, 1.3 recommended)
+- Role of TLS in MODBUS Security:
+  - Confidentiality (AES-128-GCM encryption)
+  - Integrity (TLS MAC verification)
+  - Authentication (mutual TLS certificates)
+  - Authorization (role-based access control)
+- Protocol structure (port 802, same MODBUS frames encrypted within TLS)
+- Cyber-attacks prevented by TLS:
+  - Eavesdropping/network sniffing
+  - Man-in-the-middle attacks
+  - Replay attacks
+  - Data tampering/modification
+  - Unauthorized access
+  - Impersonation/spoofing
+- How TLS prevents unauthorized access:
+  - Mutual authentication process
+  - Client certificate requirements
+  - Server certificate validation
+  - Role-based authorization with certificate extensions (OID 1.3.6.1.4.1.50316.802.1)
+  - Standard roles and permissions (readonly, operator, administrator)
+  - Authorization enforcement
+- Example attack prevention scenarios
+- Certificate management for access control
+- Security benefits summary
+- Comparison table: standard vs secure MODBUS/TCP
+
+**Updated files:**
+- wiki/index.md - Added entry to Answers section
+- wiki/index.md - Updated last-updated timestamp
+- wiki/log.md - This entry
+
+### Source
+
+**Question from user:** "What is TLS? What role does TLS play in MODBUS Security? What forms of cyber-attacks are prevented by MODBUS Security with TLS? How can TLS prevent access from an unauthorized system to MODBUS devices?"
+
+**Sources referenced:**
+- /raw/MODBUS/modbussecurityprotocol.md
+
+### Summary
+
+Created comprehensive answer document explaining TLS, its critical role in securing MODBUS communications, specific cyber-attacks it prevents (eavesdropping, MITM, replay, tampering, unauthorized access, impersonation), and detailed explanation of how TLS prevents unauthorized access through mutual authentication and role-based authorization.
+
 ---
 
 ## 2026-04-24T17:00:00+03:00: Added "MODBUS Function Codes Complete Guide" Answer
