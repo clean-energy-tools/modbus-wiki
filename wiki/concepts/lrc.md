@@ -278,6 +278,8 @@ LRC is simpler but less robust than [CRC-16](/wiki/concepts/crc-16.md):
 
 ## Backlinks
 
+No backlinks (yet)
+
 ------------
 
 MODBUS is a trademark of the Modbus Organization, Inc.

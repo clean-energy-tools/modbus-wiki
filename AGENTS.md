@@ -67,15 +67,8 @@ List of other pages in the Wiki related to this page
 
 List of other pages in the Wiki that link to this page
 
-------------
+LEGAL DISCLAIMER GOES HERE
 
-MODBUS is a trademark of the Modbus Organization, Inc.
-
-All information on this page is derived by summarizing and analyzing solely the MODBUS specifications published by the Modbus Organization, Inc.  The specifications are copyright by the Modbus Organization.
-
-By deriving this information solely from the specifications we hope to stay true to the specification.
-
-No infringement is intended.
 
 ```
 
@@ -100,6 +93,29 @@ The title field for each page type should be:
 - Summary pages - use: _Summary of ORIGINAL DOCUMENT TITLE_
 - Concept pages - generate a human readable title from the text of this concept
 - Answer pages - generate a human readable title from the text of this concept
+
+The _Backlinks_ section requires special attention due to the legal disclaimer that is at the bottom of each page.
+
+The list of backlinks must immediately follow the `## Backlinks`.  If there are no backlinks, the text _No backlinks (yet)_ should take the place of the list.
+
+The legal disclaimer must immediately follow the list of backlinks.
+
+The text for the legal disclaimer is:
+
+```markdown
+
+------------
+
+MODBUS is a trademark of the Modbus Organization, Inc.
+
+All information on this page is derived by summarizing and analyzing solely the MODBUS specifications published by the Modbus Organization, Inc.  The specifications are copyright by the Modbus Organization.
+
+By deriving this information solely from the specifications we hope to stay true to the specification.
+
+No infringement is intended.
+
+```
+
 
 ## Link format
 
@@ -198,6 +214,8 @@ When the user asks you to lint or audit the wiki:
 - Check that all `wiki/answers` files are linked from `wiki/answers/README.md`
 - Check that all `wiki/concepts` files are linked from `wiki/concepts/README.md`
 - Check that all `wiki/summaries`, `wiki/answers`, and `wiki/concepts` pages contain the disclaimer shown in the example page above at the bottom of the page.
+- Check that the list of backlinks precede the legal disclaimer
+- Check that the legal disclaimer is the very last thing on the page
 - Report findings as a numbered list with suggested fixes
 
 ## Rules

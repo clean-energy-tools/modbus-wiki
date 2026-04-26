@@ -371,7 +371,7 @@ For secure communication, use [MODBUS TCP Security](/wiki/concepts/modbus-tcp-se
 
 ## Backlinks
 
-None yet.
+No backlinks (yet)
 
 ------------
 

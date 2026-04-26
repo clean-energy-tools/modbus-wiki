@@ -296,6 +296,8 @@ When an error occurs, the server responds with function code + 0x80 and an excep
 
 ## Backlinks
 
+No backlinks (yet)
+
 ------------
 
 MODBUS is a trademark of the Modbus Organization, Inc.
