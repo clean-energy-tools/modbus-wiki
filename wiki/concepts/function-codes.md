@@ -296,7 +296,29 @@ When an error occurs, the server responds with function code + 0x80 and an excep
 
 ## Backlinks
 
-No backlinks (yet)
+- [MODBUS Commissioning Checklist](/wiki/answers/modbus-commissioning-checklist.md)
+- [MODBUS Data Validation](/wiki/answers/modbus-data-validation.md)
+- [MODBUS Errors and Exception Responses](/wiki/answers/modbus-errors-and-exceptions.md)
+- [MODBUS Function Codes Complete Guide](/wiki/answers/modbus-function-codes-guide.md)
+- [MODBUS Register Addressing and Address Space Organization](/wiki/answers/modbus-register-addressing.md)
+- [Reading MODBUS Register Maps](/wiki/answers/reading-modbus-register-maps.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Implementation](/wiki/concepts/implementation.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MBAP Header](/wiki/concepts/mbap-header.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
+- [MODBUS Protocol](/wiki/concepts/modbus.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [Protocol](/wiki/concepts/protocol.md)
+- [TCP Connection Management](/wiki/concepts/tcp-connection-management.md)
+- [Summary of MODBUS Application Protocol Specification](/wiki/summaries/MODBUS/MODBUS.md)
+- [Summary of MODBUS Messaging on TCP/IP Implementation Guide](/wiki/summaries/MODBUS/messagingimplementationguide.md)
+- [Summary of MODBUS over serial line specification and implementation guide](/wiki/summaries/MODBUS/modbusoverserial.md)
+- [Summary of MODBUS Protocol Specification for AI Implementation](/wiki/summaries/MODBUS/modbusprotocolspecification.md)
 
 ------------
 

@@ -535,7 +535,13 @@ fn read_temperature(registers: &[u16]) -> Option<f32> {
 
 ## Backlinks
 
-No backlinks (yet)
+- [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md)
+- [Reading MODBUS Register Maps](/wiki/answers/reading-modbus-register-maps.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
 
 ------------
 
@@ -546,5 +552,3 @@ All information on this page is derived by summarizing and analyzing solely the 
 By deriving this information solely from the specifications we hope to stay true to the specification.
 
 No infringement is intended.
-
-- [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md) - Type-safe conversion with Rust examples

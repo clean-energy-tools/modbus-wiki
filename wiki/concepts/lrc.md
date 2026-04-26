@@ -278,7 +278,10 @@ LRC is simpler but less robust than [CRC-16](/wiki/concepts/crc-16.md):
 
 ## Backlinks
 
-No backlinks (yet)
+- [CRC-16](/wiki/concepts/crc-16.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [Summary of MODBUS over serial line specification and implementation guide](/wiki/summaries/MODBUS/modbusoverserial.md)
 
 ------------
 
@@ -289,7 +292,3 @@ All information on this page is derived by summarizing and analyzing solely the 
 By deriving this information solely from the specifications we hope to stay true to the specification.
 
 No infringement is intended.
-
-- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
-- [CRC-16](/wiki/concepts/crc-16.md)
-- [Summary of MODBUS over serial line specification and implementation guide](/wiki/summaries/MODBUS/modbusoverserial.md)

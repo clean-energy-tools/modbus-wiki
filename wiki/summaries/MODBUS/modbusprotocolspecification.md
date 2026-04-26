@@ -149,7 +149,18 @@ The protocol specification serves as the foundation for multiple MODBUS variants
 
 ## Backlinks
 
-No backlinks (yet)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md)
+- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md)
+- [Summary of messagingimplementationguide](/wiki/summaries/MODBUS/messagingimplementationguide.md)
 
 ------------
 

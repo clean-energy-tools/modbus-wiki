@@ -819,7 +819,16 @@ impl ModbusMapping<DeviceConfig> for DeviceConfig {
 
 ## Backlinks
 
-No backlinks (yet)
+- [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md)
+- [MODBUS Commissioning Checklist](/wiki/answers/modbus-commissioning-checklist.md)
+- [MODBUS Data Validation](/wiki/answers/modbus-data-validation.md)
+- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Implementation](/wiki/concepts/implementation.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md)
 
 ------------
 
@@ -830,9 +839,6 @@ All information on this page is derived by summarizing and analyzing solely the 
 By deriving this information solely from the specifications we hope to stay true to the specification.
 
 No infringement is intended.
-
-- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md) - Comprehensive guide to register data representation
-- [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md) - Type-safe conversion with Rust examples
 
 ## See Also
 

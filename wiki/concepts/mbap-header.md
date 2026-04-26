@@ -385,7 +385,17 @@ mbap_header decode_mbap_header(uint8_t *header) {
 
 ## Backlinks
 
-No backlinks (yet)
+- [Connecting with MODBUS TCP Security](/wiki/answers/connecting-with-modbus-tcp-security.md)
+- [MODBUS TCP Message Format](/wiki/answers/modbus-tcp-message-format.md)
+- [MODBUS TCP to RTU Gateway](/wiki/answers/modbus-tcp-to-rtu-gateway.md)
+- [What is MBAP](/wiki/answers/what-is-mbap.md)
+- [Wireshark MODBUS Analysis](/wiki/answers/wireshark-modbus-analysis.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [MODBUS](/wiki/concepts/modbus.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [Protocol](/wiki/concepts/protocol.md)
+- [TCP Connection Management](/wiki/concepts/tcp-connection-management.md)
+- [Summary of messagingimplementationguide](/wiki/summaries/MODBUS/messagingimplementationguide.md)
 
 ------------
 

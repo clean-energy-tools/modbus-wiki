@@ -815,7 +815,10 @@ fn broadcast_write_with_verify(
 
 ## Backlinks
 
-No backlinks (yet)
+- [How MODBUS TCP-to-RTU Gateways Work](/wiki/answers/modbus-tcp-to-rtu-gateway.md)
+- [Master-Slave Architecture](/wiki/concepts/master-slave.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
 
 ------------
 
@@ -826,5 +829,3 @@ All information on this page is derived by summarizing and analyzing solely the 
 By deriving this information solely from the specifications we hope to stay true to the specification.
 
 No infringement is intended.
-
-None yet.

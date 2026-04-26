@@ -342,7 +342,13 @@ if (!validate_crc(frame, len)) {
 
 ## Backlinks
 
-No backlinks (yet)
+- [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md)
+- [MODBUS TCP Message Format](/wiki/answers/modbus-tcp-message-format.md)
+- [LRC](/wiki/concepts/lrc.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [Protocol](/wiki/concepts/protocol.md)
+- [Summary of modbusoverserial](/wiki/summaries/MODBUS/modbusoverserial.md)
 
 ------------
 
@@ -353,5 +359,3 @@ All information on this page is derived by summarizing and analyzing solely the 
 By deriving this information solely from the specifications we hope to stay true to the specification.
 
 No infringement is intended.
-
-- [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md) - CRC-16 calculation and comparison with LRC

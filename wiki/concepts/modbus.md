@@ -185,6 +185,24 @@ See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for d
 
 No backlinks (yet)
 
+## Backlinks
+
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MBAP Header](/wiki/concepts/mbap-header.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md)
+- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md)
+- [Implementation](/wiki/concepts/implementation.md)
+- [Protocol](/wiki/concepts/protocol.md)
+- [Summary of MODBUS](/wiki/summaries/MODBUS/MODBUS.md)
+
 ------------
 
 MODBUS is a trademark of the Modbus Organization, Inc.

@@ -9,7 +9,93 @@ Sources:
   - raw/MODBUS/modbussecurityprotocol.md
 Categories:
   - quality-assurance
-Last updated: 2026-04-25T16:45:00+03:00
+Last updated: 2026-04-25T17:00:00+03:00
+---
+
+## 2026-04-25T17:00:00+03:00: Populated Backlinks for All Pages
+
+### Changes Made
+
+**Updated backlinks sections with actual links for all 36 pages that have incoming links:**
+
+Previously, all pages showed "No backlinks (yet)" even though many pages were being linked to by other pages in the wiki. This update populates the actual backlinks for each page.
+
+**Concept pages updated (19 files):**
+- wiki/concepts/modbus-tcp.md (24 backlinks)
+- wiki/concepts/function-codes.md (23 backlinks)
+- wiki/concepts/modbus-rtu.md (19 backlinks)
+- wiki/concepts/holding-registers.md (15 backlinks)
+- wiki/concepts/modbus-ascii.md (13 backlinks)
+- wiki/concepts/coils.md (13 backlinks)
+- wiki/concepts/input-registers.md (13 backlinks)
+- wiki/concepts/modbus-tcp-security.md (12 backlinks)
+- wiki/concepts/discrete-inputs.md (11 backlinks)
+- wiki/concepts/mbap-header.md (10 backlinks)
+- wiki/concepts/crc-16.md (7 backlinks)
+- wiki/concepts/master-slave.md (7 backlinks)
+- wiki/concepts/modbus-data-type-mapping.md (6 backlinks)
+- wiki/concepts/tcp-connection-management.md (6 backlinks)
+- wiki/concepts/modbus.md (5 backlinks)
+- wiki/concepts/implementation.md (4 backlinks)
+- wiki/concepts/lrc.md (3 backlinks)
+- wiki/concepts/protocol.md (3 backlinks)
+- wiki/concepts/modbus-usage-and-applications.md (1 backlink)
+
+**Answer pages updated (13 files):**
+- wiki/answers/modbus-register-data-representation.md (5 backlinks)
+- wiki/answers/modbus-rtu-vs-ascii.md (5 backlinks)
+- wiki/answers/modbus-broadcast.md (4 backlinks)
+- wiki/answers/modbus-data-validation.md (4 backlinks)
+- wiki/answers/modbus-errors-and-exceptions.md (4 backlinks)
+- wiki/answers/modbus-tcp-message-format.md (4 backlinks)
+- wiki/answers/wireshark-modbus-analysis.md (4 backlinks)
+- wiki/answers/converting-modbus-registers-to-program-variables.md (3 backlinks)
+- wiki/answers/modbus-tcp-to-rtu-gateway.md (3 backlinks)
+- wiki/answers/rs485-wiring-for-modbus-rtu.md (3 backlinks)
+- wiki/answers/connecting-with-modbus-tcp-security.md (2 backlinks)
+- wiki/answers/what-is-mbap.md (2 backlinks)
+- wiki/answers/reading-modbus-register-maps.md (1 backlink)
+
+**Summary pages updated (4 files):**
+- wiki/summaries/MODBUS/modbusprotocolspecification.md (3 backlinks)
+- wiki/summaries/MODBUS/MODBUS.md (3 backlinks)
+- wiki/summaries/MODBUS/modbussecurityprotocol.md (1 backlink)
+- wiki/summaries/MODBUS/modbusoverserial.md (1 backlink)
+
+**Pages with no backlinks (7 files remain with "No backlinks (yet)"):**
+- wiki/answers/modbus-commissioning-checklist.md
+- wiki/answers/modbus-function-codes-guide.md
+- wiki/answers/modbus-over-rs232.md
+- wiki/answers/modbus-register-addressing.md
+- wiki/answers/modbus-rtu-daisy-chain-wiring.md
+- wiki/answers/tls-and-modbus-security.md
+- wiki/summaries/MODBUS/messagingimplementationguide.md
+
+**Files updated:**
+- 36 wiki pages with populated backlinks
+- wiki/log.md - This entry
+
+### Backlinks Format
+
+All backlinks are formatted as:
+- Organized by page type (answer pages first, then concept pages, then summary pages)
+- Sorted alphabetically within each section
+- Using standard Markdown link format: `- [Page Title](/wiki/path/to/page.md)`
+- All links include leading "/" for GitHub compatibility
+- Positioned immediately before the legal disclaimer
+
+### Rationale
+
+Backlinks improve wiki navigation by showing users which other pages reference each concept. This creates a bidirectional link structure that helps users:
+- Discover related content
+- Understand the importance of a concept (more backlinks = more referenced)
+- Navigate between related pages efficiently
+- Identify orphan pages that may need better integration
+
+### Summary
+
+Populated actual backlinks for 36 wiki pages (19 concept pages, 13 answer pages, 4 summary pages) based on comprehensive analysis of all internal wiki links. 7 pages remain with "No backlinks (yet)" as they are currently not referenced by other pages.
+
 ---
 
 ## 2026-04-25T16:45:00+03:00: Fixed Backlinks Section Ordering

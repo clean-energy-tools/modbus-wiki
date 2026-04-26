@@ -239,7 +239,12 @@ Only implement at **one location** (typically master). Using 650Ω allows more d
 
 ## Backlinks
 
-No backlinks (yet)
+- [CRC-16](/wiki/concepts/crc-16.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [LRC](/wiki/concepts/lrc.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
 
 ------------
 

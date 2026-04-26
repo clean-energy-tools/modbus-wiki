@@ -283,7 +283,25 @@ RTU mode typically operates over RS-485 (2-wire or 4-wire) or RS232 physical lay
 
 ## Backlinks
 
-No backlinks (yet)
+- [How MODBUS TCP-to-RTU Gateways Work](/wiki/answers/modbus-tcp-to-rtu-gateway.md)
+- [MODBUS Broadcast](/wiki/answers/modbus-broadcast.md)
+- [MODBUS Commissioning Checklist](/wiki/answers/modbus-commissioning-checklist.md)
+- [MODBUS over RS-232](/wiki/answers/modbus-over-rs232.md)
+- [MODBUS RTU Daisy-Chain Wiring Explained](/wiki/answers/modbus-rtu-daisy-chain-wiring.md)
+- [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md)
+- [MODBUS TCP Message Format](/wiki/answers/modbus-tcp-message-format.md)
+- [RS-485 Wiring for MODBUS RTU](/wiki/answers/rs485-wiring-for-modbus-rtu.md)
+- [CRC-16](/wiki/concepts/crc-16.md)
+- [Implementation](/wiki/concepts/implementation.md)
+- [LRC (Longitudinal Redundancy Check)](/wiki/concepts/lrc.md)
+- [Master-Slave Architecture](/wiki/concepts/master-slave.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS Protocol](/wiki/concepts/modbus.md)
+- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md)
+- [Protocol](/wiki/concepts/protocol.md)
+- [Summary of MODBUS Application Protocol Specification](/wiki/summaries/MODBUS/MODBUS.md)
+- [Summary of MODBUS over serial line specification and implementation guide](/wiki/summaries/MODBUS/modbusoverserial.md)
+- [Summary of MODBUS Protocol Specification for AI Implementation](/wiki/summaries/MODBUS/modbusprotocolspecification.md)
 
 ------------
 

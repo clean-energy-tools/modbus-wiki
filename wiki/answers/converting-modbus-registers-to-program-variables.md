@@ -1220,7 +1220,13 @@ The complete Rust implementation provided in this guide handles all these concer
 
 ## Backlinks
 
-No backlinks (yet)
+- [MODBUS Data Validation](/wiki/answers/modbus-data-validation.md)
+- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md)
+- [Reading MODBUS Register Maps](/wiki/answers/reading-modbus-register-maps.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
 
 ------------
 
@@ -1231,5 +1237,3 @@ All information on this page is derived by summarizing and analyzing solely the 
 By deriving this information solely from the specifications we hope to stay true to the specification.
 
 No infringement is intended.
-
-None yet.

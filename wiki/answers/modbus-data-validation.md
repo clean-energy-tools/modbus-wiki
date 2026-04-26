@@ -541,7 +541,14 @@ When implementing MODBUS data validation, ensure you:
 
 ## Backlinks
 
-No backlinks (yet)
+- [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md)
+- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md)
+- [Reading MODBUS Register Maps](/wiki/answers/reading-modbus-register-maps.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Implementation](/wiki/concepts/implementation.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
 
 ------------
 

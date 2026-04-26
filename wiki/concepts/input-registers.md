@@ -282,7 +282,19 @@ Compare with other MODBUS data objects:
 
 ## Backlinks
 
-No backlinks (yet)
+- [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md)
+- [MODBUS Function Codes Guide](/wiki/answers/modbus-function-codes-guide.md)
+- [MODBUS Register Addressing](/wiki/answers/modbus-register-addressing.md)
+- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md)
+- [Reading MODBUS Register Maps](/wiki/answers/reading-modbus-register-maps.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [MODBUS](/wiki/concepts/modbus.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
+- [Summary of MODBUS](/wiki/summaries/MODBUS/MODBUS.md)
+- [Summary of modbusprotocolspecification](/wiki/summaries/MODBUS/modbusprotocolspecification.md)
 
 ------------
 
@@ -293,5 +305,3 @@ All information on this page is derived by summarizing and analyzing solely the 
 By deriving this information solely from the specifications we hope to stay true to the specification.
 
 No infringement is intended.
-
-- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md) - Comprehensive guide to register data representation

@@ -356,7 +356,16 @@ See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for a
 
 ## Backlinks
 
-No backlinks (yet)
+- [MODBUS Data Validation](/wiki/answers/modbus-data-validation.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Master-Slave Architecture](/wiki/concepts/master-slave.md)
+- [MODBUS](/wiki/concepts/modbus.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md)
+- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md)
 
 ------------
 

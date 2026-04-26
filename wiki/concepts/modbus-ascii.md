@@ -309,7 +309,19 @@ void byte_to_ascii(uint8_t byte, char *output) {
 
 ## Backlinks
 
-No backlinks (yet)
+- [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md)
+- [CRC-16](/wiki/concepts/crc-16.md)
+- [Implementation](/wiki/concepts/implementation.md)
+- [LRC (Longitudinal Redundancy Check)](/wiki/concepts/lrc.md)
+- [Master-Slave Architecture](/wiki/concepts/master-slave.md)
+- [MODBUS Protocol](/wiki/concepts/modbus.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md)
+- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md)
+- [Protocol](/wiki/concepts/protocol.md)
+- [Summary of MODBUS Application Protocol Specification](/wiki/summaries/MODBUS/MODBUS.md)
+- [Summary of MODBUS over serial line specification and implementation guide](/wiki/summaries/MODBUS/modbusoverserial.md)
+- [Summary of MODBUS Protocol Specification for AI Implementation](/wiki/summaries/MODBUS/modbusprotocolspecification.md)
 
 ------------
 

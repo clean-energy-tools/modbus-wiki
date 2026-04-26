@@ -380,7 +380,21 @@ Compare with other MODBUS data objects:
 
 ## Backlinks
 
-No backlinks (yet)
+- [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md)
+- [MODBUS Data Validation](/wiki/answers/modbus-data-validation.md)
+- [MODBUS Function Codes Complete Guide](/wiki/answers/modbus-function-codes-guide.md)
+- [MODBUS Register Addressing and Address Space Organization](/wiki/answers/modbus-register-addressing.md)
+- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md)
+- [Reading MODBUS Register Maps](/wiki/answers/reading-modbus-register-maps.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Discrete Inputs](/wiki/concepts/discrete-inputs.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MODBUS Data Type Mapping](/wiki/concepts/modbus-data-type-mapping.md)
+- [MODBUS Protocol](/wiki/concepts/modbus.md)
+- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md)
+- [Summary of MODBUS Application Protocol Specification](/wiki/summaries/MODBUS/MODBUS.md)
+- [Summary of MODBUS Protocol Specification for AI Implementation](/wiki/summaries/MODBUS/modbusprotocolspecification.md)
 
 ------------
 

@@ -222,7 +222,17 @@ Compare with other MODBUS data objects:
 
 ## Backlinks
 
-No backlinks (yet)
+- [MODBUS Function Codes Guide](/wiki/answers/modbus-function-codes-guide.md)
+- [MODBUS Register Addressing](/wiki/answers/modbus-register-addressing.md)
+- [MODBUS Register Data Representation](/wiki/answers/modbus-register-data-representation.md)
+- [Reading MODBUS Register Maps](/wiki/answers/reading-modbus-register-maps.md)
+- [Coils](/wiki/concepts/coils.md)
+- [Function Codes](/wiki/concepts/function-codes.md)
+- [Holding Registers](/wiki/concepts/holding-registers.md)
+- [Input Registers](/wiki/concepts/input-registers.md)
+- [MODBUS](/wiki/concepts/modbus.md)
+- [Summary of MODBUS](/wiki/summaries/MODBUS/MODBUS.md)
+- [Summary of modbusprotocolspecification](/wiki/summaries/MODBUS/modbusprotocolspecification.md)
 
 ------------
 

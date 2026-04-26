@@ -946,7 +946,12 @@ Throughput: 2.23 transactions/second
 
 ## Backlinks
 
-No backlinks (yet)
+- [MODBUS Over RS232](/wiki/answers/modbus-over-rs232.md)
+- [RS485 Wiring for MODBUS RTU](/wiki/answers/rs485-wiring-for-modbus-rtu.md)
+- [CRC-16](/wiki/concepts/crc-16.md)
+- [Master-Slave Architecture](/wiki/concepts/master-slave.md)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md)
 
 ------------
 
@@ -957,5 +962,3 @@ All information on this page is derived by summarizing and analyzing solely the 
 By deriving this information solely from the specifications we hope to stay true to the specification.
 
 No infringement is intended.
-
-None yet.
