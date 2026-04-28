@@ -15,37 +15,37 @@ date-created: 2026-04-23T13:30:00+03:00
 last-updated: 2026-04-23T13:30:00+03:00
 ---
 
-Wireshark is a powerful network protocol analyzer that can capture and decode MODBUS TCP traffic. This guide covers how to use Wireshark for byte-level MODBUS TCP analysis, recognize packet boundaries, leverage Wireshark's built-in MODBUS decoder, and analyze both standard and secure MODBUS traffic.
+Wireshark is a powerful network analysis tool that can capture and decode MODBUS TCP traffic. This guide covers how to use Wireshark for analyzing MODBUS TCP at the byte level, recognize MODBUS packets, use Wireshark's built-in MODBUS decoder, and analyze both standard and secure MODBUS traffic.
 
-## Quick Answer Summary
+## Quick Answers
 
 **Can Wireshark analyze MODBUS TCP?** Yes, completely.
 
-**Does Wireshark decode MODBUS?** Yes, Wireshark has a built-in MODBUS dissector that automatically decodes MODBUS TCP frames.
+**Does Wireshark understand MODBUS?** Yes, Wireshark has built-in MODBUS decoding that automatically interprets MODBUS TCP messages.
 
-**Can Wireshark analyze MODBUS Security traffic?** Partially - it can see TLS handshake and encrypted records, but cannot decode the encrypted MODBUS data without TLS keys.
+**Can Wireshark analyze MODBUS Security traffic?** Partially - it can see the TLS encryption setup and encrypted data, but cannot read the encrypted MODBUS messages without the encryption keys.
 
-**How to recognize MODBUS packets?** Look for TCP port 502 (standard) or 802 (secure), and the 7-byte MBAP header pattern.
+**How do I recognize MODBUS packets?** Look for TCP port 502 (standard) or 802 (secure), and the 7-byte MBAP header pattern.
 
-## Overview: Wireshark and MODBUS TCP
+## What Wireshark Can Do with MODBUS
 
-### What Wireshark Can Do
+### Standard MODBUS TCP (Port 502)
 
-**Standard MODBUS TCP (Port 502):**
 - ✅ Capture all MODBUS TCP traffic
-- ✅ Automatically decode MBAP header fields
-- ✅ Automatically decode MODBUS PDU (function codes, data)
-- ✅ Display register values, coil states, addresses
-- ✅ Show request/response pairing (Transaction ID matching)
+- ✅ Automatically decode the MBAP header
+- ✅ Automatically decode MODBUS commands (function codes and data)
+- ✅ Show register values, coil states, and addresses
+- ✅ Match requests with their responses (using Transaction ID)
 - ✅ Identify errors and exceptions
-- ✅ Calculate timing and performance metrics
+- ✅ Calculate timing and performance
 
-**MODBUS/TCP Security (Port 802):**
-- ✅ Capture TLS-encrypted traffic
-- ✅ Decode TLS handshake (certificate exchange, cipher negotiation)
-- ✅ Show TLS record layer structure
-- ❌ Cannot decode encrypted MODBUS data (without TLS session keys)
-- ⚠️ Can decrypt if you provide TLS session keys (advanced)
+### MODBUS/TCP Security (Port 802)
+
+- ✅ Capture encrypted traffic
+- ✅ Decode the TLS handshake (certificate exchange, encryption negotiation)
+- ✅ Show TLS structure
+- ❌ Cannot read encrypted MODBUS data (unless you provide the encryption keys)
+- ⚠️ Can decrypt if you provide TLS session keys (advanced feature)
 
 Source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:233)
 

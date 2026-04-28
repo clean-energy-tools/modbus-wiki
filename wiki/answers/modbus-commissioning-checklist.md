@@ -16,44 +16,44 @@ date-created: 2026-04-24T16:00:00+03:00
 last-updated: 2026-04-24T16:30:00+03:00
 ---
 
-This comprehensive commissioning checklist covers everything needed to successfully install, configure, and validate MODBUS communications on site. It includes pre-commissioning preparation, required tools, step-by-step procedures, and troubleshooting guidelines.
+This checklist covers everything you need to successfully install, set up, and test MODBUS communications on site. It includes preparation before you go, required tools, step-by-step procedures, and troubleshooting help.
 
-## Overview: Commissioning Phases
+## Overview: The Five Phases
 
-MODBUS commissioning is best approached in distinct phases:
+MODBUS installation works best when done in these phases:
 
-1. **Pre-Commissioning** (office work, before site visit)
-   - Gather documentation and device information
-   - Plan network architecture and addressing
-   - Prepare materials and tools
-   - Create site-specific documentation package
+1. **Pre-Commissioning** (office work, before going to the site)
+   - Collect documentation and device information
+   - Plan the network layout and addresses
+   - Gather materials and tools
+   - Create site-specific documentation
 
-2. **On-Site Verification** (first activity on site)
-   - Verify physical infrastructure (RS-485 or Ethernet)
-   - Check existing installations
-   - Validate site conditions
+2. **On-Site Verification** (first thing when you arrive)
+   - Check the physical infrastructure (RS-485 cables or Ethernet)
+   - Look at what's already installed
+   - Confirm site conditions
 
 3. **Installation** (physical work)
    - Install cables and devices
-   - Wire connections
-   - Install termination and grounding
+   - Wire all connections
+   - Install termination resistors and grounding
 
-4. **Configuration and Testing** (bring system online)
-   - Configure devices
-   - Power-up and test
-   - Validate communications
-   - Performance testing
+4. **Configuration and Testing** (getting the system working)
+   - Configure each device
+   - Power up and test
+   - Verify communications work
+   - Check performance
 
 5. **Documentation and Handover**
-   - As-built documentation
-   - Training
-   - Final acceptance
+   - Update documentation with what was actually built
+   - Train the customer
+   - Get final sign-off
 
 ---
 
 ## Pre-Commissioning Checklist
 
-This phase happens **before arriving on site**. Complete preparation ensures efficient site work and reduces costly return visits.
+Do this phase **before going to the site**. Good preparation makes the site work go smoothly and prevents expensive return trips.
 
 ### 1. Device Information Gathering
 

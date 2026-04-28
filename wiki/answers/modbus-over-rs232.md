@@ -14,50 +14,50 @@ date-created: 2026-04-24T14:30:00+03:00
 last-updated: 2026-04-24T14:30:00+03:00
 ---
 
-Yes, MODBUS can run over RS-232 connections, but with significant limitations compared to RS-485. RS-232 is supported in the MODBUS specification but is intended only for **short-distance, point-to-point communication** between two devices (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:2289-2290)).
+Yes, MODBUS can run over RS-232 connections, but with important limitations compared to RS-485. RS-232 is supported in the MODBUS specification but is meant only for **short-distance, point-to-point communication** between two devices (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:2289-2290)).
 
 ## Can MODBUS Run Over RS-232?
 
 ### Yes, But With Limitations
 
-**MODBUS over RS-232 is supported** as an optional physical layer in the MODBUS specification (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:173-176)).
+**MODBUS over RS-232 is supported** as an option in the MODBUS specification (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:173-176)).
 
-**Official statement from specification:**
+**What the specification says:**
 > "A TIA/EIA-232-E (RS232) serial interface may also be used as an interface, when only short point to point communication is required."
 
-**Key limitations:**
-- **Point-to-point only** (1 master, 1 slave maximum)
-- **Short distances** (typically <20m, maximum 25m)
-- **No multi-drop** (cannot connect multiple devices)
-- **Lower noise immunity** (compared to differential RS-485)
+**Important limitations:**
+- **Only two devices** (1 controller, 1 device maximum)
+- **Short distances only** (typically less than 20 meters, maximum 25 meters)
+- **Can't connect multiple devices** (no multi-drop capability)
+- **Less resistant to electrical noise** (compared to RS-485)
 
-### MODBUS Protocol Layer Unchanged
+### The MODBUS Commands Stay the Same
 
-The **MODBUS application protocol remains identical** whether using RS-232 or RS-485:
-- Same function codes (0x01-0x7F)
-- Same data model (coils, registers)
-- Same RTU or ASCII transmission mode
-- Same frame structure
-- Same CRC-16 (RTU) or LRC (ASCII) error checking
+The **MODBUS commands and messages work exactly the same** whether you're using RS-232 or RS-485:
+- Same function codes (numbered 0x01-0x7F)
+- Same data types (coils and registers)
+- Same RTU or ASCII modes
+- Same message structure
+- Same error checking (CRC-16 for RTU or LRC for ASCII)
 
-**Only the physical layer changes** (voltage levels, signaling, connectors).
+**Only the electrical signaling changes** (voltage levels, how signals are sent, connector types).
 
-## RS-232 vs RS-485: Fundamental Differences
+## RS-232 vs RS-485: Key Differences
 
-### Physical Layer Comparison
+### Physical Comparison
 
-| Aspect | RS-232 | RS-485 |
+| Feature | RS-232 | RS-485 |
 |--------|--------|--------|
-| **Signaling** | Single-ended (voltage to ground) | Differential (voltage between two wires) |
-| **Topology** | Point-to-point only | Multi-drop (up to 32 devices) |
-| **Max distance** | ~15m (spec), 25m (practical) | 1200m (up to 1km+ practical) |
-| **Max devices** | 2 (1 master, 1 slave) | 32 (or more with repeaters) |
-| **Noise immunity** | Low (single-ended) | High (differential) |
-| **Data rates** | Up to 115.2 kbps (typical) | Up to 10 Mbps (MODBUS uses 9600-115.2k) |
-| **Cable** | Unshielded acceptable for short runs | Shielded twisted pair required |
+| **How signals work** | Single wire (voltage measured against ground) | Two wires (voltage measured between them) |
+| **Network type** | Point-to-point only | Multi-drop (up to 32 devices on one cable) |
+| **Maximum distance** | About 15m (spec), 25m (real world) | 1200m (over 1km in practice) |
+| **Maximum devices** | 2 (1 controller, 1 device) | 32 (or more with repeaters) |
+| **Noise resistance** | Low (single wire picks up noise) | High (difference between wires rejects noise) |
+| **Speed** | Up to 115.2 kbps typically | Up to 10 Mbps (MODBUS typically uses 9600-115.2k) |
+| **Cable type** | Unshielded okay for short runs | Shielded twisted pair required |
 | **Connectors** | DB9 or DB25 | Screw terminals, RJ45, DB9 |
-| **Voltage levels** | ±3V to ±15V (to ground) | ±1.5V to ±6V (differential) |
-| **Common use** | Legacy serial devices, PC connections | Industrial networks, field buses |
+| **Voltage levels** | ±3V to ±15V (measured to ground) | ±1.5V to ±6V (measured between wires) |
+| **Where it's used** | Old serial devices, PC connections | Industrial networks, factory floor |
 
 ### Signaling Differences
 

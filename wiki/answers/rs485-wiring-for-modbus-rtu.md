@@ -15,43 +15,43 @@ date-created: 2026-04-24T14:00:00+03:00
 last-updated: 2026-04-24T14:00:00+03:00
 ---
 
-RS-485 is the physical layer (OSI Layer 1) used by MODBUS RTU for serial communication. Understanding proper RS-485 wiring is essential for reliable MODBUS networks, as poor wiring causes the majority of communication problems in MODBUS installations.
+RS-485 is the physical wiring standard used by MODBUS RTU for serial communication. Understanding proper RS-485 wiring is essential for reliable MODBUS networks, because poor wiring causes most communication problems in MODBUS installations.
 
 ## RS-485 Physical Wiring Basics
 
 ### What is RS-485?
 
-RS-485 (TIA/EIA-485) is a differential signaling standard that allows:
-- **Multi-drop networks** (multiple devices on same bus)
-- **Long distances** (up to 1200m)
-- **Noise immunity** (differential signaling)
-- **High data rates** (up to 10 Mbps, typically 9600-115200 for MODBUS)
+RS-485 (also called TIA/EIA-485) is a wiring standard that allows:
+- **Multiple devices on one cable** (multi-drop networks)
+- **Long distances** (up to 1200 meters / about 4000 feet)
+- **Resistance to electrical noise** (uses differential signaling)
+- **High speeds** (up to 10 Mbps, though MODBUS typically uses 9600-115200 bps)
 
-### Differential Signaling
+### How Differential Signaling Works
 
-RS-485 uses **differential signaling** with two wires (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
+RS-485 uses **differential signaling** with two wires that carry opposite signals (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 
 ```
 Device A                        Device B
-Transmitter                     Receiver
+Sending                         Receiving
   ├─── D1 (A) ─────────────────── D1 (A)
   │                                 │
-  │    + 2V (logic 1)               │
-  │    or                           │ Differential
-  │    - 2V (logic 0)               │ Receiver
+  │    + 2V (represents 1)          │
+  │    or                           │ Reads the
+  │    - 2V (represents 0)          │ difference
   │                                 │
   └─── D0 (B) ─────────────────── D0 (B)
 ```
 
-**Signal names** (both used interchangeably):
-- **D1 / A / TXD1:** Positive signal line
-- **D0 / B / TXD0:** Negative signal line  
-- **Common / GND:** Signal reference
+**Wire names** (these names are used interchangeably):
+- **D1 / A / TXD1:** Positive signal wire
+- **D0 / B / TXD0:** Negative signal wire  
+- **Common / GND:** Signal reference (ground)
 
-**Differential voltage:**
-- Logic 1: D1 - D0 = +2V to +6V
-- Logic 0: D1 - D0 = -2V to -6V
-- Receive threshold: ±200mV
+**Voltage differences:**
+- Binary 1: Voltage between D1 and D0 = +2V to +6V
+- Binary 0: Voltage between D1 and D0 = -2V to -6V
+- Minimum to detect: ±200mV difference
 
 ## Voltage Range for MODBUS RTU
 
@@ -86,17 +86,17 @@ RS-485 transceivers typically powered by:
 
 ### 2-Wire RS-485 (Half-Duplex)
 
-**Most common for MODBUS RTU** (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:173-174)).
+**This is the standard for MODBUS RTU** (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:173-174)).
 
-**Configuration:**
-- 2 signal wires: D0 (B), D1 (A)
-- 1 common wire: Signal Common/GND
-- All devices share same wire pair
-- **Half-duplex:** Only one device transmits at a time
+**What you need:**
+- 2 signal wires: D0 (B) and D1 (A)
+- 1 ground wire: Signal Common/GND
+- All devices share the same pair of wires
+- **Half-duplex:** Only one device can transmit at a time
 
 **Wiring diagram:**
 ```
-Master                 Slave 1               Slave 2               Slave 3
+Controller             Device 1              Device 2              Device 3
  ┌───┐                  ┌───┐                 ┌───┐                 ┌───┐
  │485│                  │485│                 │485│                 │485│
  └─┬─┘                  └─┬─┘                 └─┬─┘                 └─┬─┘
@@ -106,24 +106,24 @@ Master                 Slave 1               Slave 2               Slave 3
    │ COM    grey   ───────┼─────────────────────┼─────────────────────┤
    │                      │                     │                     │
   120Ω                   ...                   ...                   120Ω
-  Term                                                                Term
+ Terminator                                                        Terminator
 ```
 
-**Characteristics:**
+**Benefits:**
 - **Simple wiring:** Only 3 wires total
-- **Cost effective:** Less cable, simpler transceivers
-- **Master-slave only:** Only one transmits at a time (MODBUS requirement)
-- **Turnaround time:** Devices must disable transmitter after sending
+- **Lower cost:** Less cable, simpler electronics
+- **Matches MODBUS:** MODBUS works this way (controller talks, devices respond)
+- **One talker at a time:** Devices must stop transmitting after sending their response
 
 ### 4-Wire RS-485 (Full-Duplex)
 
 **Optional for MODBUS**, rarely used (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:174-175)).
 
-**Configuration:**
-- 4 signal wires: TXD0, TXD1 (transmit pair), RXD0, RXD1 (receive pair)
-- 1 common wire: Signal Common/GND
-- Separate transmit and receive paths
-- **Full-duplex:** Simultaneous TX and RX possible
+**What you need:**
+- 4 signal wires: TXD0, TXD1 (for transmitting), RXD0, RXD1 (for receiving)
+- 1 ground wire: Signal Common/GND
+- Separate paths for sending and receiving
+- **Full-duplex:** Can send and receive at the same time
 
 **Wiring diagram (star topology):**
 ```

@@ -13,142 +13,146 @@ date-created: 2026-04-23T12:00:00+03:00
 last-updated: 2026-04-23T12:00:00+03:00
 ---
 
-MBAP stands for **MODBUS Application Protocol header**. It is a 7-byte header that identifies and manages MODBUS messages on TCP/IP networks, replacing the address field from MODBUS serial (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
+MBAP stands for **MODBUS Application Protocol header**. It's a 7-byte package of information attached to the front of every MODBUS message when using TCP/IP networks. Think of it like a shipping label on a package - it helps the message get to the right place and lets you track it (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-## Why MBAP Exists
+## Why MBAP is Needed
 
-MODBUS was originally designed for serial communication (RS-485/RS-232), which has very different characteristics than TCP/IP networks. The MBAP header solves several critical problems when adapting MODBUS to TCP/IP:
+MODBUS started as a protocol for serial cables (like RS-485 and RS-232). Those cables work very differently from modern Ethernet networks. When engineers adapted MODBUS to work over TCP/IP networks, they needed to solve three problems:
 
-### Problem 1: Message Boundaries
+### Problem 1: Knowing When a Message is Complete
 
-**Serial MODBUS:** Uses silent intervals (3.5 character times) to mark message boundaries. When the line goes quiet, you know the message is complete.
+**With serial cables:** When data stops arriving for a brief moment (3.5 character transmission times), you know the message is finished. The silence marks the boundary.
 
-**TCP/IP:** Stream-oriented protocol with no inherent message boundaries. Data can be split across multiple packets or combined into one packet.
+**With TCP/IP:** Data flows continuously like a stream of water. There are no natural breaks between messages. A single message might arrive split across multiple network packets, or several messages might arrive bunched together in one packet.
 
-**MBAP Solution:** The Length field tells you exactly how many bytes follow, allowing you to detect complete messages even if they span multiple TCP packets.
+**MBAP's solution:** The header includes a Length field that states exactly how many bytes belong to this message. This lets the receiver know when it has received a complete message (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-### Problem 2: Request/Response Matching
+### Problem 2: Matching Responses to Requests
 
-**Serial MODBUS:** Only one transaction at a time (master-slave model). No ambiguity about which response matches which request.
+**With serial cables:** Only one conversation happens at a time. The master sends a request, waits for the response, then sends the next request. There's no confusion about which response belongs to which request.
 
-**TCP/IP:** Multiple requests can be outstanding on the same connection simultaneously.
+**With TCP/IP:** You can send multiple requests without waiting for responses. This is faster but creates a matching problem - when responses arrive (possibly in a different order), how do you know which request each response answers?
 
-**MBAP Solution:** The Transaction ID field allows matching responses to requests, enabling concurrent transactions on a single TCP connection.
+**MBAP's solution:** Each request gets a unique Transaction ID number. The server copies this number into its response. When the response arrives, the client checks the Transaction ID to find the matching request (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-### Problem 3: Gateway Routing
+### Problem 3: Routing Through Gateways
 
-**Serial MODBUS:** Direct point-to-point communication using slave address.
+**With serial cables:** Messages include a slave address that identifies which device on the cable should respond.
 
-**TCP/IP:** Often deployed with gateways that bridge between MODBUS TCP and serial MODBUS devices.
+**With TCP/IP:** Organizations often use gateway devices that connect TCP/IP networks to older serial MODBUS devices. A single gateway might connect to multiple serial devices.
 
-**MBAP Solution:** The Unit ID field allows routing through gateways to address specific serial devices behind the gateway.
+**MBAP's solution:** The header includes a Unit ID field that tells the gateway which serial device should receive the message. When connecting directly to a TCP device (no gateway), this field is typically set to 255 (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-## MBAP Header Structure
+## What's Inside the MBAP Header
 
-The MBAP header consists of four fields totaling 7 bytes (source: [MBAP Header](/wiki/concepts/mbap-header.md)):
+The MBAP header contains four pieces of information packed into 7 bytes (source: [MBAP Header](/wiki/concepts/mbap-header.md)):
 
-| Offset | Field | Size | Value | Description |
+| Position | Field | Size | Value | What It Does |
 |--------|-------|------|-------|-------------|
-| 0 | Transaction ID | 2 bytes | Varies | Request/response pairing |
-| 2 | Protocol ID | 2 bytes | 0x0000 | Always 0 for MODBUS |
-| 4 | Length | 2 bytes | N+1 | Bytes following (Unit ID + PDU) |
-| 6 | Unit ID | 1 byte | 0x01-0xFF | Device identifier |
+| Bytes 0-1 | Transaction ID | 2 bytes | Varies | Matches requests with responses |
+| Bytes 2-3 | Protocol ID | 2 bytes | 0x0000 | Always 0 for MODBUS |
+| Bytes 4-5 | Length | 2 bytes | N+1 | How many bytes follow this field |
+| Byte 6 | Unit ID | 1 byte | 0x01-0xFF | Which device to talk to |
 
-All fields use **big-endian** (network byte order) encoding.
+All multi-byte numbers use **big-endian** format, which means the most significant byte comes first. This is also called network byte order (source: [MBAP Header](/wiki/concepts/mbap-header.md)).
 
 ### Transaction ID (Bytes 0-1)
 
-**Purpose:** Pairs requests with responses and enables concurrent transactions.
+**What it does:** Acts like a claim ticket at a coat check - it pairs each request with its matching response.
 
 **How it works:**
-1. Client assigns a unique Transaction ID to each request
-2. Server echoes the same Transaction ID back in the response
-3. Client matches the Transaction ID to find the pending request
+1. The client assigns a unique number to each request it sends
+2. The server copies this same number into its response
+3. When the response arrives, the client checks the number to find which request it answers
 
 **Example:**
 ```
-Client sends Request A with Transaction ID = 0x0001
-Client sends Request B with Transaction ID = 0x0002
-Server responds to B first with Transaction ID = 0x0002
-Server responds to A second with Transaction ID = 0x0001
-Client correctly matches each response to its request
+Client sends Request A with Transaction ID = 1
+Client sends Request B with Transaction ID = 2
+Server finishes B first and sends response with Transaction ID = 2
+Server finishes A second and sends response with Transaction ID = 1
+Client uses the numbers to correctly match each response to its request
 ```
 
-**Implementation:** Most implementations use a simple counter that increments for each request.
+Most programs use a simple counter that increases by one for each new request (source: [MBAP Header](/wiki/concepts/mbap-header.md)).
 
 ### Protocol ID (Bytes 2-3)
 
-**Purpose:** Identifies the protocol type, allowing multiplexing of different protocols on the same port.
+**What it does:** Identifies which protocol is being used. This field was designed to allow multiple communication protocols to share the same network port.
 
-**Value:** Always **0x0000** for MODBUS protocol.
+**Value:** Always **0x0000** for MODBUS.
 
-**Usage:**
-- Client sets to 0x0000
-- Server echoes it back
-- Reserved for future protocol extensions
+**How it's used:**
+- The client sets it to 0x0000
+- The server copies the same value back in its response
+- The field is reserved for possible future use
 
-**Note:** While this field theoretically allows other protocols to share port 502, in practice MODBUS/TCP uses a dedicated port.
+In practice, MODBUS uses its own dedicated port (port 502), so this field always contains zero (source: [MBAP Header](/wiki/concepts/mbap-header.md)).
 
 ### Length (Bytes 4-5)
 
-**Purpose:** Specifies the number of bytes following this field.
+**What it does:** Tells the receiver how many bytes of data follow this field.
 
-**Calculation:**
+**How to calculate it:**
 ```
-Length = 1 (Unit ID) + PDU_length
+Length = 1 (for the Unit ID byte) + size of the MODBUS command and data
 ```
 
 **Example:**
 ```
-Read Holding Registers request:
+For a "Read Holding Registers" request:
   Unit ID: 1 byte
   Function Code: 1 byte
   Start Address: 2 bytes
   Quantity: 2 bytes
-  PDU = 5 bytes
+  Command and data = 5 bytes
   Length = 1 + 5 = 6
 ```
 
-**Why it's critical:**
-- TCP is stream-oriented with no message boundaries
-- Length field lets receiver know when complete message has arrived
-- Messages can be split across multiple TCP packets
-- Receiver can buffer partial messages until complete
+**Why this matters:**
+- TCP sends data as a continuous stream without natural breaks between messages
+- The Length field tells the receiver when it has received a complete message
+- Messages might arrive split across multiple network packets
+- The receiver can wait until all bytes arrive before processing the message
+
+(source: [MBAP Header](/wiki/concepts/mbap-header.md))
 
 ### Unit ID (Byte 6)
 
-**Purpose:** Routes messages through gateways to serial MODBUS devices.
+**What it does:** Identifies which device should handle the message. This is mainly useful when routing messages through gateway devices.
 
-**Values:**
-- **0xFF** (255): Direct connection to TCP device (most common)
-- **0x01-0xF7** (1-247): Gateway routing to serial slave with this address
-- **0x00**: Reserved, not used
-- **0xF8-0xFF**: Reserved
+**Common values:**
+- **255 (0xFF)**: Talking directly to a TCP device - the most common case
+- **1-247 (0x01-0xF7)**: Routing through a gateway to a specific serial device
+- **0 (0x00)**: Reserved, not used
+- **248-254 (0xF8-0xFE)**: Reserved for future use
 
-**Direct Connection Example:**
+**Example - Direct connection:**
 ```
-MODBUS TCP Client → MODBUS TCP Server (Unit ID = 0xFF)
+MODBUS TCP Client → MODBUS TCP Server (Unit ID = 255)
 ```
 
-**Gateway Example:**
+**Example - Through a gateway:**
 ```
-MODBUS TCP Client → Gateway → RS-485 Bus → Slave #5
+MODBUS TCP Client → Gateway → RS-485 Cable → Device #5
                    (Unit ID = 5)
 ```
 
-The gateway receives the TCP message, extracts the Unit ID, and forwards the request to the serial slave with that address.
+When using a gateway, the gateway reads the Unit ID, then forwards the message to the serial device that has that address (source: [MBAP Header](/wiki/concepts/mbap-header.md)).
 
-## Complete MODBUS TCP Message (ADU)
+## A Complete MODBUS TCP Message
 
-A complete MODBUS TCP Application Data Unit (ADU) consists of:
+A complete MODBUS TCP message (called an Application Data Unit or ADU) has two parts:
 
 ```
-[MBAP Header (7 bytes)] + [MODBUS PDU (Function Code + Data)]
+[MBAP Header (7 bytes)] + [MODBUS Command and Data]
 ```
 
-**Maximum size:** 260 bytes total
+**Size limits:** 260 bytes total
 - MBAP header: 7 bytes
-- PDU: 253 bytes maximum
+- Command and data: 253 bytes maximum
+
+(source: [MBAP Header](/wiki/concepts/mbap-header.md))
 
 **Example - Read Holding Registers:**
 
@@ -179,88 +183,95 @@ Offset  Field              Hex Value
 11-12   Register 1         00 14     (value = 20)
 ```
 
-## How MBAP Enables TCP Features
+## How MBAP Enables Multiple Requests at Once
 
-### Concurrent Transactions
-
-Unlike serial MODBUS which processes one request at a time, MODBUS TCP can handle multiple outstanding requests on the same connection:
+With serial cables, MODBUS handles one request at a time. MODBUS TCP can handle multiple requests simultaneously on the same connection:
 
 ```
-Client:    Send Req A (TID=1) → Send Req B (TID=2) → Send Req C (TID=3)
+Client:    Send Request A (ID=1) → Send Request B (ID=2) → Send Request C (ID=3)
            Wait for responses...
-           ← Recv Resp B (TID=2)
-           ← Recv Resp A (TID=1)
-           ← Recv Resp C (TID=3)
+           ← Receive Response B (ID=2)
+           ← Receive Response A (ID=1)
+           ← Receive Response C (ID=3)
 ```
 
-The Transaction ID allows correct pairing even when responses arrive out of order.
+The Transaction ID numbers let the client correctly match each response to its request, even when responses arrive in a different order than the requests were sent (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-### Message Framing Over TCP
+## How MBAP Handles Message Boundaries
 
-TCP is a byte stream without message boundaries. The Length field solves this:
+TCP sends data as a continuous stream. The Length field solves the boundary problem:
 
-**Scenario 1 - Message split across packets:**
+**Scenario 1 - Message split across network packets:**
 ```
-TCP Packet 1: [MBAP Header (7 bytes)] [Function Code (1 byte)]
-TCP Packet 2: [Start Address (2 bytes)] [Quantity (2 bytes)]
+Network Packet 1: [MBAP Header (7 bytes)] [Function Code (1 byte)]
+Network Packet 2: [Start Address (2 bytes)] [Quantity (2 bytes)]
 
-Receiver uses Length=6 to know it needs 6 bytes after the header,
-waits for second packet before processing complete message.
-```
-
-**Scenario 2 - Multiple messages in one packet:**
-```
-TCP Packet: [Message 1 (complete)] [Message 2 (complete)]
-
-Receiver uses Length field to know where first message ends
-and second begins.
+The receiver reads Length=6, knows it needs 6 more bytes after the header,
+and waits for the second packet before processing the complete message.
 ```
 
-### Gateway Routing
+**Scenario 2 - Multiple messages in one network packet:**
+```
+Network Packet: [Complete Message 1] [Complete Message 2]
 
-The Unit ID enables protocol conversion:
+The receiver uses the Length field to find where the first message ends
+and the second message begins.
+```
+
+(source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
+
+## How MBAP Enables Gateway Routing
+
+The Unit ID field lets gateways connect TCP networks to serial MODBUS devices:
 
 ```
-[TCP Client] → [Gateway with IP 192.168.1.100] → [RS-485 Bus]
-                                                      ↓
-                                              [Slave 1, 2, 3...]
+[TCP Client] → [Gateway at 192.168.1.100] → [RS-485 Cable]
+                                                  ↓
+                                        [Device 1, Device 2, Device 3...]
 
 Client sends to 192.168.1.100 with Unit ID = 2
-Gateway forwards to Slave #2 on serial bus
-Gateway translates MODBUS TCP ↔ MODBUS RTU
+Gateway forwards the message to Device #2 on the serial cable
+Gateway converts between MODBUS TCP and MODBUS RTU formats
 ```
 
-## Differences from MODBUS Serial
+(source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
 
-| Aspect | MODBUS Serial | MODBUS TCP (MBAP) |
+## How MBAP Differs from Serial MODBUS
+
+| Feature | MODBUS Serial | MODBUS TCP (with MBAP) |
 |--------|---------------|-------------------|
-| **Addressing** | 1-byte slave address | 1-byte Unit ID (for gateway) |
-| **Transaction tracking** | One at a time | Transaction ID enables concurrent requests |
-| **Message boundaries** | Silent intervals (3.5 char) | Length field |
-| **Error checking** | CRC-16 (RTU) or LRC (ASCII) | TCP/IP checksum (inherent) |
-| **Framing** | Timing-based | Length-based |
-| **Concurrent requests** | Not supported | Supported |
+| **Device addressing** | 1-byte slave address | 1-byte Unit ID (mainly for gateways) |
+| **Multiple requests** | One request at a time | Can send multiple requests without waiting |
+| **Finding message boundaries** | Silence on the line (3.5 character times) | Length field in header |
+| **Error detection** | CRC checksum (RTU) or LRC checksum (ASCII) | TCP's built-in checksum |
+| **Message framing** | Based on timing | Based on Length field |
 
-## Implementation Guidelines
+(source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
+
+## How to Build and Process MBAP Messages
 
 ### Building a Request
 
-1. **Assign Transaction ID:** Use counter or random value (must be unique per connection)
-2. **Set Protocol ID:** Always 0x0000
-3. **Calculate Length:** Count Unit ID + PDU bytes
-4. **Set Unit ID:** 0xFF for direct, or slave address for gateway
-5. **Append PDU:** Function code + request data
-6. **Send as single TCP write:** Don't split MBAP header and PDU across separate sends
+When creating a MODBUS TCP request:
+
+1. **Assign a Transaction ID:** Use a counter or pick a unique number for this request
+2. **Set Protocol ID:** Always use 0x0000
+3. **Calculate Length:** Add 1 (for Unit ID) plus the size of your command and data
+4. **Set Unit ID:** Use 255 for direct connections, or the device number for gateways
+5. **Add your command:** Include the function code and request data
+6. **Send the complete message:** Send the header and data together in one operation
 
 ### Processing a Response
 
-1. **Read MBAP header first:** Always read 7 bytes
-2. **Validate Protocol ID:** Must be 0x0000
-3. **Extract Transaction ID:** Use to find matching request
-4. **Read remaining bytes:** Use Length field to determine how many bytes follow
-5. **Process PDU:** Once complete message received
+When receiving a MODBUS TCP response:
 
-### Transaction ID Management
+1. **Read the MBAP header:** Always read 7 bytes first
+2. **Check Protocol ID:** It must be 0x0000
+3. **Read the Transaction ID:** Use it to find which request this response answers
+4. **Read the rest:** Use the Length field to know how many more bytes to read
+5. **Process the data:** Once you have the complete message
+
+### Managing Transaction IDs
 
 **Simple counter approach:**
 ```c
@@ -273,7 +284,7 @@ uint16_t allocate_transaction_id() {
 }
 ```
 
-**Concurrent transaction tracking:**
+**Tracking multiple requests:**
 ```c
 struct pending_transaction {
     uint16_t transaction_id;
@@ -281,86 +292,90 @@ struct pending_transaction {
     callback_fn response_handler;
 };
 
-// Store in hash map or array
-// Look up by transaction_id when response arrives
+// Store these in a lookup table (hash map or array)
+// Find the matching request when a response arrives
 ```
 
-## Common Mistakes
+(source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
 
-### Mistake 1: Wrong Length Calculation
+## Common Mistakes to Avoid
 
-**Wrong:**
-```
-Length = PDU_length  // Missing Unit ID byte
-```
+### Mistake 1: Calculating Length Wrong
 
-**Correct:**
+**Wrong approach:**
 ```
-Length = 1 + PDU_length  // Must include Unit ID
+Length = size of command and data  // Forgot to include the Unit ID byte
 ```
 
-### Mistake 2: Reusing Transaction IDs Too Soon
-
-**Wrong:**
+**Correct approach:**
 ```
-Send request with TID=1
-Send request with TID=1  // COLLISION - previous request still pending!
+Length = 1 + size of command and data  // Must add 1 for the Unit ID
 ```
 
-**Correct:**
+### Mistake 2: Reusing Transaction IDs Too Quickly
+
+**Wrong approach:**
 ```
-Send request with TID=1
-Send request with TID=2  // Different ID while TID=1 is outstanding
+Send request with ID=1
+Send another request with ID=1  // Problem! The first request hasn't been answered yet
 ```
 
-### Mistake 3: Batching Multiple ADUs in One TCP Write
-
-**Wrong:**
+**Correct approach:**
 ```
-tcp_send([ADU1][ADU2][ADU3])  // Multiple ADUs in one send
-```
-
-**Correct:**
-```
-tcp_send([ADU1])
-tcp_send([ADU2])
-tcp_send([ADU3])
-// One ADU per TCP write operation
+Send request with ID=1
+Send next request with ID=2  // Use a different ID while the first is still waiting
 ```
 
-Source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)
+### Mistake 3: Sending Multiple Messages Together
 
-### Mistake 4: Not Handling Partial Reads
-
-**Wrong:**
+**Wrong approach:**
 ```
-read(socket, buffer, 12);  // Assume full message arrives
+tcp_send([Message1][Message2][Message3])  // All at once
 ```
 
-**Correct:**
+**Correct approach:**
 ```
-// Read MBAP header first
+tcp_send([Message1])
+tcp_send([Message2])
+tcp_send([Message3])
+// Send each message separately
+```
+
+(source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
+
+### Mistake 4: Assuming Complete Messages Arrive at Once
+
+**Wrong approach:**
+```
+read(socket, buffer, 12);  // Assumes the full message arrives in one read
+```
+
+**Correct approach:**
+```
+// Read the MBAP header first
 read(socket, header, 7);
 length = decode_length(header);
 
-// Read remaining bytes
-read(socket, pdu, length);
+// Then read the remaining bytes
+read(socket, command_and_data, length);
 ```
+
+(source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md))
 
 ## Security Considerations
 
-MBAP itself provides **no security**:
-- No encryption - all data visible in plaintext
-- No authentication - any client can connect
-- No integrity protection beyond TCP checksum
+MBAP provides **no security features**:
+- No encryption - anyone can read the data as it travels across the network
+- No authentication - any client can connect and send commands
+- No tamper protection beyond TCP's basic checksum
 
-**Wireshark can easily capture and decode MODBUS TCP traffic** because it's unencrypted.
+Network analysis tools like Wireshark can capture and decode MODBUS TCP traffic because the data is sent in plain text (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-For secure communication, use [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) which:
-- Runs on port 802 (not 502)
-- Wraps MODBUS TCP in TLS 1.2+
-- Provides encryption, authentication, and authorization
-- Uses the same MBAP structure inside TLS tunnel
+For secure communication, use [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md), which:
+- Uses port 802 instead of port 502
+- Wraps MODBUS messages in TLS encryption (version 1.2 or later)
+- Adds authentication and authorization
+- Uses the same MBAP structure, but inside an encrypted tunnel
 
 ## Related Pages
 

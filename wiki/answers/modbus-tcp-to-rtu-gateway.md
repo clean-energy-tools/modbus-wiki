@@ -15,15 +15,15 @@ date-created: 2026-04-23T14:00:00+03:00
 last-updated: 2026-04-23T14:00:00+03:00
 ---
 
-You're absolutely right that there's much more to MODBUS TCP-to-RTU gateways than simple connection translation. This document explains how these gateways work in detail, covering protocol conversion, addressing, timing, error handling, and practical implementation considerations.
+MODBUS TCP-to-RTU gateways do much more than just connect cables - they convert between two different protocols. This document explains how these gateways work, covering protocol conversion, addressing, timing, error handling, and practical things to know.
 
 ## Quick Overview
 
-A MODBUS TCP-to-RTU gateway is a protocol converter that bridges the gap between:
+A MODBUS TCP-to-RTU gateway is a protocol converter that connects:
 - **TCP side:** Ethernet network with MODBUS TCP clients
-- **RTU side:** RS-485/RS-232 serial bus with MODBUS RTU slave devices
+- **RTU side:** RS-485 or RS-232 serial cable with MODBUS RTU devices
 
-**Key function:** Translate between two fundamentally different protocols while maintaining semantic equivalence.
+**What it does:** Translates between two very different protocols while keeping the meaning of messages the same.
 
 ## Gateway Architecture
 
@@ -59,31 +59,31 @@ A MODBUS TCP-to-RTU gateway is a protocol converter that bridges the gap between
          └─────────┘              └─────────┘    └─────────┘
 ```
 
-### Gateway Components
+### What's Inside a Gateway
 
-**1. TCP/IP Network Interface:**
-- Ethernet port (RJ-45)
-- TCP/IP stack
+**1. Ethernet Network Connection:**
+- Ethernet port (RJ-45 jack)
+- TCP/IP software
 - Listens on port 502 for MODBUS TCP connections
-- Manages multiple concurrent TCP client connections
+- Handles multiple TCP connections at once
 
-**2. Serial Interface:**
-- RS-485 or RS-232 port (typically RS-485)
-- UART (Universal Asynchronous Receiver/Transmitter)
-- Handles serial timing and character transmission
-- Acts as MODBUS RTU master on serial side
+**2. Serial Connection:**
+- RS-485 or RS-232 port (usually RS-485)
+- Serial communication hardware
+- Handles the timing of serial data transmission
+- Acts as the controller on the serial side
 
-**3. Protocol Converter:**
-- Core gateway logic
-- Translates MODBUS TCP ↔ MODBUS RTU
-- Maps Unit ID to slave addresses
-- Manages request queuing and response routing
+**3. Protocol Translator:**
+- The main gateway software
+- Converts between MODBUS TCP and MODBUS RTU
+- Routes messages to the right serial device
+- Manages the queue of requests and routes responses back
 
-**4. Configuration:**
-- Serial port settings (baud rate, parity, stop bits)
+**4. Settings:**
+- Serial port settings (speed, parity, stop bits)
 - Timeout values
-- Optional: slave address mapping tables
-- Optional: transaction filtering/security
+- Optional: tables that map addresses
+- Optional: security filtering
 
 Source: [mbap-header.md](/wiki/concepts/mbap-header.md:129)
 

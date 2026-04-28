@@ -36,6 +36,46 @@ When the user adds a new source to `raw/` and asks you to ingest it:
 
 A single source may touch 10-15 wiki pages. That is normal.
 
+## Writing style and approach
+
+The wiki content must be **transformative and beginner-friendly** while remaining **factually grounded** in the specifications.
+
+**Core Principles:**
+
+1. **Translate Jargon into Plain Language**
+   - Replace technical terms with everyday words where possible
+   - When technical terms are necessary, explain them clearly in simple language
+   - Use analogies and everyday examples to clarify abstract concepts
+
+2. **Explain What and How, Not Why**
+   - Describe *what* things are and *how* they work
+   - Avoid speculation about *why* design decisions were made
+   - Stick strictly to facts stated in the specifications
+
+3. **Stay Grounded in Facts**
+   - Every statement must trace back to the source specifications
+   - Never invent facts or make assumptions
+   - When something is unclear in the specs, explicitly note the ambiguity
+
+4. **Organize for Learning**
+   - Present concepts in logical order for beginners
+   - Build from simple to complex ideas
+   - Group related information that may be scattered across multiple specs
+   - Define terms before using them
+
+5. **Use Clear, Active Language**
+   - Write in active voice with simple sentences
+   - Break complex ideas into digestible pieces
+   - Use concrete examples where helpful
+
+**Example Transformation:**
+
+Spec language: "The MODBUS application protocol defines a simple protocol data unit (PDU) independent of the underlying communication layers."
+
+Wiki language: "MODBUS messages have a standard structure that works the same way whether you're using serial cables, Ethernet, or other communication methods. This core message format is called the Protocol Data Unit (PDU)."
+
+The goal is to make the specifications accessible to beginners without sacrificing accuracy or adding interpretations beyond what the specs explicitly state.
+
 ## Page format
 
 Every wiki page should follow this structure:

@@ -15,70 +15,70 @@ date-created: 2026-04-24T16:30:00+03:00
 last-updated: 2026-04-24T16:30:00+03:00
 ---
 
-Reading MODBUS register maps is often more complicated than it should be due to inconsistent vendor documentation, multiple addressing conventions, ambiguous data types, and missing information. This guide explains how to decode MODBUS register maps and extract the information needed for implementation.
+Reading MODBUS register maps is often more complicated than it should be because of inconsistent vendor documentation, multiple addressing systems, unclear data types, and missing information. This guide explains how to understand MODBUS register maps and find the information you need for your code.
 
 ## Quick Answer: What You Need From a Register Map
 
-At minimum, a register map should provide:
+At minimum, a register map should tell you:
 
-1. **Register address** (actual protocol address, not convention notation)
-2. **Register name** (descriptive identifier)
-3. **Register type** (Coil, Discrete Input, Holding Register, Input Register)
+1. **Register address** (the actual address to use in your code, not old-style notation)
+2. **Register name** (what it's called)
+3. **Register type** (Coil, Discrete Input, Holding Register, or Input Register)
 4. **Function code** to use (0x01, 0x03, 0x04, etc.)
-5. **Data type** (UINT16, INT16, FLOAT32, etc.)
-6. **Access** (Read-only, Read/Write)
-7. **Scaling/units** (if applicable)
-8. **Description** (purpose and meaning)
+5. **Data type** (like unsigned 16-bit, signed 16-bit, 32-bit float, etc.)
+6. **Can you write to it?** (Read-only or Read/Write)
+7. **Units and scaling** (if the value needs to be divided or multiplied)
+8. **What it means** (description of its purpose)
 
-However, vendors rarely provide all this information clearly, requiring detective work to extract what you need.
+However, vendors rarely provide all this information clearly, so you often need to do detective work to figure it out.
 
-## The MODBUS Addressing Mess
+## The MODBUS Addressing Confusion
 
-### Protocol vs Convention Addresses
+### Two Different Address Systems
 
-**The Core Problem:** MODBUS has TWO completely different addressing systems that vendors mix inconsistently in documentation.
+**The Core Problem:** MODBUS has TWO completely different ways to write addresses, and vendors mix them inconsistently in their documentation.
 
-#### Protocol Addresses (What You Use in Code)
+#### Protocol Addresses (What You Actually Use in Your Code)
 
-**MODBUS protocol addresses are simple:**
+**MODBUS protocol addresses are straightforward:**
 - All addresses start at 0
-- Addresses are 16-bit unsigned integers: 0-65535
-- This is what you actually send in MODBUS requests
+- Addresses are numbers from 0 to 65,535
+- This is what you actually put in your MODBUS messages
 
 **Example:**
 ```
-Read Holding Registers (0x03):
+Read Holding Registers (function 0x03):
   Address: 0
   Quantity: 10
 ```
-This reads holding registers 0-9.
+This reads holding registers 0 through 9.
 
 (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md))
 
 #### Convention Addresses (Old Documentation Style)
 
-**The "Modicon Convention" from legacy PLCs:**
+**The "Modicon Convention" from old PLCs:**
 
-This old system encoded the register type in the address number:
+This old system embedded the register type into the address number itself:
 
-| Address Range | Register Type | Protocol Address Calculation |
+| Address Range | Register Type | How to Get Protocol Address |
 |---------------|---------------|------------------------------|
-| 00001-09999 | Coils | Address = (Convention - 1) |
-| 10001-19999 | Discrete Inputs | Address = (Convention - 10001) |
-| 30001-39999 | Input Registers | Address = (Convention - 30001) |
-| 40001-49999 | Holding Registers | Address = (Convention - 40001) |
+| 00001-09999 | Coils | Subtract 1 |
+| 10001-19999 | Discrete Inputs | Subtract 10001 |
+| 30001-39999 | Input Registers | Subtract 30001 |
+| 40001-49999 | Holding Registers | Subtract 40001 |
 
 **Example - Convention Address 40001:**
-- Register type: Holding Register (4xxxx range)
+- Register type: Holding Register (starts with 4)
 - Protocol address: 40001 - 40001 = **0**
-- Function code: 0x03 (Read Holding Registers)
+- Function code to use: 0x03 (Read Holding Registers)
 
 **Example - Convention Address 30108:**
-- Register type: Input Register (3xxxx range)
+- Register type: Input Register (starts with 3)
 - Protocol address: 30108 - 30001 = **107**
-- Function code: 0x04 (Read Input Registers)
+- Function code to use: 0x04 (Read Input Registers)
 
-**Why This Exists:** Legacy Modicon PLCs displayed addresses this way on their front panels. Modern devices don't use this, but documentation often still does.
+**Why this old system exists:** Old Modicon PLCs displayed addresses this way on their screens. Modern devices don't use this system, but documentation often still does for historical reasons.
 
 ### How to Identify Which Convention Is Used
 

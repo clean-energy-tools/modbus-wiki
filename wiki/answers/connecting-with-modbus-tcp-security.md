@@ -13,58 +13,58 @@ date-created: 2026-04-23T12:30:00+03:00
 last-updated: 2026-04-23T12:30:00+03:00
 ---
 
-When connecting to a MODBUS device using MODBUS/TCP Security (MBAPS), you need to understand several critical differences from standard MODBUS TCP. This document covers all the key considerations for establishing secure MODBUS connections.
+When connecting to a MODBUS device using MODBUS/TCP Security (MBAPS), you need to know several important differences from standard MODBUS TCP. This document covers what you need to establish secure MODBUS connections.
 
 ## Quick Reference: Standard vs Secure MODBUS
 
-| Aspect | MODBUS TCP | MODBUS/TCP Security |
+| Feature | MODBUS TCP | MODBUS/TCP Security |
 |--------|------------|---------------------|
 | Port | 502 | **802** |
-| Encryption | None (plaintext) | TLS 1.2+ |
-| Authentication | None | Mutual TLS certificates required |
-| Authorization | None | Role-based from certificate |
-| Certificate | Not needed | **Required for both client and server** |
-| Wireshark visibility | Full (plaintext) | Only encrypted packets visible |
-| Performance | Higher | Lower (TLS overhead) |
+| Encryption | None (readable by anyone) | TLS 1.2+ (encrypted) |
+| Identity verification | None | Digital certificates required |
+| Permission control | None | Role-based from certificate |
+| Certificate needed? | No | **Yes - both client and server must have one** |
+| Can Wireshark see your data? | Yes (everything is readable) | No (only sees encrypted data) |
+| Speed | Faster | Slightly slower (encryption overhead) |
 | Complexity | Simple | Moderate |
 
 Source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:263)
 
-## Critical Requirement #1: Port Configuration
+## Critical Requirement #1: Use Port 802
 
 **MODBUS/TCP Security uses port 802, NOT port 502.**
 
 ```
-Standard MODBUS TCP:     tcp://192.168.1.100:502  (unencrypted)
-MODBUS/TCP Security:     tcp://192.168.1.100:802  (TLS encrypted)
+Standard MODBUS TCP:     tcp://192.168.1.100:502  (no encryption)
+MODBUS/TCP Security:     tcp://192.168.1.100:802  (encrypted with TLS)
 ```
 
-**Important:** Many devices support both ports simultaneously:
-- Port 502 for legacy/unsecured clients
-- Port 802 for secure clients
+**Important:** Many devices support both ports at the same time:
+- Port 502 for old/unsecured connections
+- Port 802 for secure connections
 
 **Always connect to port 802** when using MODBUS/TCP Security.
 
 Source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:51)
 
-## Critical Requirement #2: Client Certificate
+## Critical Requirement #2: You Need a Client Certificate
 
-You **must have a valid X.509v3 client certificate** to connect. The server will reject connections without a valid client certificate.
+You **must have a valid X.509v3 client certificate** to connect. The server will reject your connection without a valid certificate.
 
-### Client Certificate Requirements
+### What Your Client Certificate Needs
 
-Your client certificate must contain:
+Your client certificate must have:
 
-1. **Valid X.509v3 structure**
-2. **Role extension** (mandatory for MODBUS/TCP Security)
-   - OID: `1.3.6.1.4.1.50316.802.1`
-   - Encoding: UTF8String
-   - Value: Your role name (e.g., "operator", "administrator")
-3. **Valid signature** from trusted CA or self-signed for private networks
-4. **Valid dates** (not expired, not before valid period)
-5. **Private key** (you must possess the private key for this certificate)
+1. **Standard X.509v3 structure**
+2. **Role extension** (required for MODBUS/TCP Security)
+   - Extension ID: `1.3.6.1.4.1.50316.802.1`
+   - Format: UTF8String
+   - Contents: Your role name (like "operator" or "administrator")
+3. **Valid signature** from a trusted Certificate Authority, or self-signed for private networks
+4. **Valid dates** (not expired, not used before its start date)
+5. **Private key** (you must have the matching private key for this certificate)
 
-### Example Certificate Extension
+### Example of the Role Extension
 
 ```
 X509v3 Extension:

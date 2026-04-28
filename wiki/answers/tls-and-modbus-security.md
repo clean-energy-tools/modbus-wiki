@@ -13,25 +13,25 @@ date-created: 2026-04-25T10:00:00+03:00
 last-updated: 2026-04-25T10:00:00+03:00
 ---
 
-This document provides a comprehensive overview of TLS (Transport Layer Security) and its critical role in securing MODBUS communications, including the specific cyber-attacks it prevents and how it blocks unauthorized system access.
+This document explains TLS (Transport Layer Security) and how it protects MODBUS communications from cyber-attacks and unauthorized access.
 
 ## What is TLS?
 
-TLS (Transport Layer Security) is a cryptographic protocol that provides secure communication over a network. In MODBUS/TCP Security, TLS version 1.2 or higher (1.3 recommended) is used to encrypt all MODBUS traffic between clients and servers (source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:76)).
+TLS (Transport Layer Security) is a security technology that protects network communication from eavesdropping and tampering. When used with MODBUS/TCP Security, TLS version 1.2 or higher (1.3 is better) encrypts all MODBUS messages traveling between clients and servers (source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:76)).
 
-### TLS Configuration for MODBUS
+### TLS Settings for MODBUS
 
-The TLS configuration for MODBUS uses the mandatory cipher suite:
+MODBUS requires a specific encryption method called a cipher suite:
 
 ```
 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 ```
 
-**Cipher suite components:**
-- **ECDHE**: Elliptic Curve Diffie-Hellman Ephemeral - provides perfect forward secrecy
-- **RSA**: RSA authentication - authenticates certificates
-- **AES-128-GCM**: AES encryption in Galois/Counter Mode - encrypts data with good performance/security balance
-- **SHA256**: SHA-256 for integrity - ensures data integrity
+**What these components do:**
+- **ECDHE**: A key exchange method that provides perfect forward secrecy (even if keys are stolen later, past conversations stay secret)
+- **RSA**: Verifies digital certificates to prove identity
+- **AES-128-GCM**: The encryption algorithm that scrambles the data (good balance of speed and security)
+- **SHA256**: Creates checksums to detect any tampering
 
 (source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:62))
 
@@ -46,29 +46,29 @@ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 
 (source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:76))
 
-## What Role Does TLS Play in MODBUS Security?
+## What Does TLS Do for MODBUS Security?
 
-TLS encapsulates standard MODBUS/TCP messages within an encrypted tunnel, providing three critical security layers (source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:231)):
+TLS wraps standard MODBUS/TCP messages in an encrypted envelope, providing three layers of security (source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:231)):
 
-### 1. Confidentiality
+### 1. Privacy (Confidentiality)
 
-- **All MODBUS traffic encrypted**: MBAP headers and PDUs are encrypted with AES-128-GCM
-- **Data values protected**: Register values, coil states, and device configurations protected from eavesdropping
-- **Network sniffing ineffective**: Wireshark and other packet capture tools cannot decode encrypted MODBUS traffic (only see encrypted TLS records)
+- **Everything is encrypted**: Both message headers and data are encrypted with AES-128-GCM
+- **Data stays secret**: Register values, coil states, and device settings can't be read by eavesdroppers
+- **Network monitoring tools can't see your data**: Tools like Wireshark only see encrypted gibberish, not your actual MODBUS messages
 
-### 2. Integrity
+### 2. Tamper Protection (Integrity)
 
-- **TLS MAC**: Message Authentication Code ensures data hasn't been tampered with during transit
-- **Tampering detection**: Any modification to MODBUS messages in transit is detected and rejected
-- **MITM prevention**: Prevents man-in-the-middle attacks from modifying data
-- **Verification**: Confirms data received is exactly what was sent
+- **TLS checksums**: Special codes ensure data hasn't been changed during transmission
+- **Detects modifications**: Any attempt to modify messages in transit is detected and the message is rejected
+- **Stops man-in-the-middle attacks**: Prevents attackers from changing your data while it's traveling
+- **Guarantees accuracy**: What you receive is exactly what was sent
 
-### 3. Authentication & Authorization
+### 3. Identity Verification and Access Control
 
-- **Mutual authentication**: Both client and server verify each other's identity using X.509v3 certificates
-- **Role-based authorization**: Roles encoded in certificate extensions (OID 1.3.6.1.4.1.50316.802.1) determine what operations each client can perform
-- **Certificate-based identity**: Cryptographic proof of identity, not just passwords
-- **Fine-grained access control**: Granular permission assignment per role
+- **Both sides prove who they are**: Client and server verify each other's identity using digital certificates (X.509v3 certificates)
+- **Role-based permissions**: Certificates include role information (stored in extension OID 1.3.6.1.4.1.50316.802.1) that determines what each client can do
+- **Cryptographic proof**: Uses math-based certificates instead of just passwords
+- **Detailed permission control**: Each role gets specific permissions
 
 ### Protocol Structure
 
@@ -87,33 +87,33 @@ The MBAP header and PDU are identical to standard MODBUS/TCP, just encrypted wit
 
 (source: [modbus-tcp-security.md](/wiki/concepts/modbus-tcp-security.md:34))
 
-## What Forms of Cyber-Attacks Are Prevented by MODBUS Security with TLS?
+## What Cyber-Attacks Does MODBUS Security with TLS Prevent?
 
-MODBUS/TCP Security with TLS prevents several critical attack vectors:
+MODBUS/TCP Security with TLS stops several types of attacks:
 
-### Eavesdropping/Network Sniffing Attacks
+### Eavesdropping (Listening In)
 
-**Attack:** Attacker monitors network traffic to read MODBUS data (register values, coil states, device configurations).
+**The attack:** An attacker monitors network traffic to read your MODBUS data - register values, coil states, and device settings.
 
-**Prevention:**
-- All MODBUS traffic encrypted with AES-128-GCM
-- Plain-text values are never transmitted on the wire
-- Packet capture tools (Wireshark) cannot decode encrypted traffic
-- Attackers see only encrypted TLS records, not actual MODBUS data
+**How TLS stops it:**
+- All MODBUS traffic is encrypted with AES-128-GCM
+- Plain readable values are never sent on the network
+- Network monitoring tools (like Wireshark) cannot decode the encrypted traffic
+- Attackers only see encrypted scrambled data, not your actual MODBUS messages
 
-**Without TLS:** Standard MODBUS/TCP transmits all data in plain-text, easily readable by network sniffers.
+**Without TLS:** Standard MODBUS/TCP sends everything in plain text that anyone can read with network monitoring software.
 
-### Man-in-the-Middle (MITM) Attacks
+### Man-in-the-Middle Attacks (Intercepting Communication)
 
-**Attack:** Attacker intercepts communication between client and server, potentially reading or modifying data.
+**The attack:** An attacker positions themselves between your client and server, reading or changing the data as it passes through.
 
-**Prevention:**
-- TLS MAC and mutual certificate authentication prevent MITM attacks
-- Certificate validation ensures you're communicating with the legitimate server, not an imposter
-- Any tampering with encrypted data is detected by TLS integrity checks
-- Perfect forward secrecy (ECDHE) ensures past sessions cannot be decrypted even if keys are compromised
+**How TLS stops it:**
+- TLS checksums and certificate verification prevent these attacks
+- Certificate checking ensures you're talking to the real server, not a fake one
+- Any tampering with the encrypted data is detected by integrity checks
+- Perfect forward secrecy means even if encryption keys are stolen later, past conversations stay secret
 
-**Without TLS:** Attackers can position themselves between client and server, intercepting and modifying all traffic.
+**Without TLS:** Attackers can insert themselves between client and server, reading and changing everything.
 
 ### Replay Attacks
 
@@ -484,4 +484,4 @@ By deriving this information solely from the specifications we hope to stay true
 
 No infringement is intended.
 
-None yet.
+

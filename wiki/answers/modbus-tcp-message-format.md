@@ -15,36 +15,36 @@ date-created: 2026-04-23T13:00:00+03:00
 last-updated: 2026-04-23T13:00:00+03:00
 ---
 
-This document provides a comprehensive description of the MODBUS TCP message format, including the MBAP header structure, complete frame layout, detailed field descriptions, differences from MODBUS RTU, and the rationale for TCP error checking.
+This document describes the MODBUS TCP message format, including the MBAP header structure, complete message layout, what each field does, how it differs from MODBUS RTU, and why TCP error checking works the way it does.
 
 ## MODBUS TCP Message Structure Overview
 
-A complete MODBUS TCP message (called an ADU - Application Data Unit) consists of two parts:
+A complete MODBUS TCP message (called an ADU - Application Data Unit) has two parts:
 
 ```
-[MBAP Header: 7 bytes] + [MODBUS PDU: up to 253 bytes]
+[MBAP Header: 7 bytes] + [MODBUS Command and Data: up to 253 bytes]
 ```
 
-**Maximum MODBUS TCP ADU size:** 260 bytes total
+**Maximum MODBUS TCP message size:** 260 bytes total
 
 Source: [modbus-tcp.md](/wiki/concepts/modbus-tcp.md:29)
 
 ## MBAP Header Structure
 
-The MBAP (MODBUS Application Protocol) header is a 7-byte header unique to MODBUS TCP that replaces the address and CRC fields used in MODBUS serial protocols.
+The MBAP (MODBUS Application Protocol) header is a 7-byte package of information that's unique to MODBUS TCP. It takes the place of the address and CRC checksum fields used in MODBUS serial protocols.
 
 ### Complete MBAP Header Layout
 
-| Offset | Field | Size | Value Range | Description |
+| Position | Field | Size | Possible Values | What It Does |
 |--------|-------|------|-------------|-------------|
-| 0-1 | Transaction ID | 2 bytes | 0x0000-0xFFFF | Request/response pairing identifier |
-| 2-3 | Protocol ID | 2 bytes | 0x0000 | Always 0 for MODBUS protocol |
-| 4-5 | Length | 2 bytes | 0x0002-0x00FE | Byte count of following data (Unit ID + PDU) |
-| 6 | Unit ID | 1 byte | 0x01-0xFF | Device identifier (0xFF for direct connection) |
+| Bytes 0-1 | Transaction ID | 2 bytes | 0x0000-0xFFFF | Pairs requests with responses |
+| Bytes 2-3 | Protocol ID | 2 bytes | 0x0000 | Always 0 for MODBUS |
+| Bytes 4-5 | Length | 2 bytes | 0x0002-0x00FE | How many bytes follow this field |
+| Byte 6 | Unit ID | 1 byte | 0x01-0xFF | Which device (0xFF for direct connection) |
 
 **Total MBAP header size:** 7 bytes
 
-**Byte order:** All fields use big-endian (network byte order) encoding
+**Byte order:** All numbers use big-endian format (most significant byte first, also called network byte order)
 
 Source: [mbap-header.md](/wiki/concepts/mbap-header.md:31)
 
@@ -83,30 +83,30 @@ Source: [mbap-header.md](/wiki/concepts/mbap-header.md:166)
 
 ### Field 1: Transaction Identifier (Bytes 0-1)
 
-**Purpose:** Pairs requests with responses and enables concurrent transactions
+**What it does:** Pairs requests with responses and allows multiple requests at once
 
-**Size:** 2 bytes (big-endian)
+**Size:** 2 bytes (most significant byte first)
 
-**Value Range:** 0x0000 to 0xFFFF (0 to 65535)
+**Possible values:** 0x0000 to 0xFFFF (0 to 65,535)
 
 **How it works:**
-1. Client assigns a unique Transaction ID to each request
-2. Server echoes the same Transaction ID in the response
-3. Client uses Transaction ID to match response to pending request
+1. The client assigns a unique number (Transaction ID) to each request
+2. The server copies the same Transaction ID into its response
+3. The client uses the Transaction ID to figure out which request this response answers
 
-**Critical feature:** Allows multiple outstanding requests on the same TCP connection
+**Important feature:** Lets you send multiple requests without waiting for responses
 
 **Example:**
 ```
-Client sends:    Request A (Transaction ID = 0x0001)
-Client sends:    Request B (Transaction ID = 0x0002)
-Server responds: Response B (Transaction ID = 0x0002)
-Server responds: Response A (Transaction ID = 0x0001)
-Client matches:  Transaction ID 0x0002 → Request B
-Client matches:  Transaction ID 0x0001 → Request A
+Client sends:    Request A (Transaction ID = 1)
+Client sends:    Request B (Transaction ID = 2)
+Server responds: Response B (Transaction ID = 2)
+Server responds: Response A (Transaction ID = 1)
+Client matches:  Transaction ID 2 → That's for Request B
+Client matches:  Transaction ID 1 → That's for Request A
 ```
 
-**Implementation:**
+**How to implement:**
 ```c
 // Simple counter approach
 uint16_t next_transaction_id = 0;
@@ -116,7 +116,7 @@ uint16_t allocate_transaction_id() {
 }
 ```
 
-**Must be unique:** At any given time on each TCP connection, no two outstanding requests can have the same Transaction ID.
+**Important rule:** On any TCP connection, you can't have two pending requests with the same Transaction ID.
 
 Source: [mbap-header.md](/wiki/concepts/mbap-header.md:44)
 

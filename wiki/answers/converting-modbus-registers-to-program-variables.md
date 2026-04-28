@@ -14,72 +14,72 @@ date-created: 2026-04-24T12:30:00+03:00
 last-updated: 2026-04-24T12:30:00+03:00
 ---
 
-Converting between MODBUS registers and modern programming language variables is challenging because MODBUS uses a simple flat array of 16-bit registers while modern languages have rich type systems with integers, floats, strings, structs, and enums. This guide shows how to bridge this gap with practical Rust implementations.
+Converting between MODBUS registers and modern programming language variables is challenging because MODBUS uses a simple list of 16-bit numbers while modern languages have many different data types like integers, decimals, text strings, structures, and more. This guide shows how to handle this conversion with practical code examples.
 
 ## The Core Problem
 
-### Type System Mismatch
+### Different Data Systems
 
-| Aspect | MODBUS | Modern Languages (Rust) |
+| Feature | MODBUS | Modern Languages (like Rust) |
 |--------|--------|-------------------------|
-| Data model | Flat `u16` array | Rich types: i32, f32, String, structs |
-| Type safety | None (all registers are u16) | Compile-time type checking |
-| Metadata | No type information | Full type information |
-| Endianness | Big-endian bytes, device-specific words | Native endianness |
-| Floats | IEEE 754 in registers (if supported) | Native IEEE 754 |
+| How data is stored | Simple list of 16-bit numbers | Many different types: whole numbers, decimals, text, structures |
+| Type safety | None (everything is a 16-bit number) | Compiler checks types for you |
+| Type information | No information about what type each register holds | Full information about each variable's type |
+| Byte ordering | Bytes always most-significant first, but register order varies by device | Uses the computer's native ordering |
+| Decimal numbers | IEEE 754 format stored across registers (if device supports it) | Native IEEE 754 format |
 
-**The challenge:** You must manually track which registers hold which types, handle endianness conversion, and deal with multi-register values correctly.
+**The challenge:** You need to manually track which registers hold which types of data, convert between different byte orderings, and correctly handle values that span multiple registers.
 
-## Design Principles
+## Good Design Principles
 
-### 1. Type-Safe Abstractions
+### 1. Use Type-Safe Functions
 
-Don't work with raw `Vec<u16>` everywhere. Create abstractions that encapsulate the conversion logic.
+Don't work with raw arrays of 16-bit numbers everywhere. Create functions that handle the conversion logic safely.
 
-**Bad approach:**
+**Not recommended:**
 ```rust
-// Manual bit manipulation everywhere - error-prone
+// Manual bit manipulation everywhere - easy to make mistakes
 let value = ((registers[0] as u32) << 16) | (registers[1] as u32);
 ```
 
-**Good approach:**
+**Better approach:**
 ```rust
 // Type-safe conversion with error handling
 let value = u32::from_modbus_registers(&registers, WordOrder::BigEndian)?;
 ```
 
-### 2. Explicit Word Order
+### 2. Always Specify Register Order
 
-Always make word order explicit - never assume big-endian or little-endian.
+Always explicitly state the register order - never assume most-significant or least-significant first.
 
-**Bad approach:**
+**Not recommended:**
 ```rust
-// Implicit assumption - will break with some devices
+// Hidden assumption - will break with some devices
 let value = u32_from_registers(&regs);
 ```
 
-**Good approach:**
+**Better approach:**
 ```rust
-// Explicit word order from device configuration
+// Explicit register order from device configuration
 let value = u32_from_registers(&regs, device.word_order);
 ```
 
-### 3. Error Handling
+### 3. Handle Errors Properly
 
-MODBUS conversions can fail (wrong register count, invalid values). Use `Result` types.
+MODBUS conversions can fail (not enough registers, invalid values). Your code should handle these errors gracefully.
 
-**Bad approach:**
+**Not recommended:**
 ```rust
-// Panic on error
+// Crashes the program on error
 fn from_registers(regs: &[u16]) -> u32 {
-    assert!(regs.len() >= 2);  // Will crash
+    assert!(regs.len() >= 2);  // Program will crash here
     // ...
 }
 ```
 
-**Good approach:**
+**Better approach:**
 ```rust
-// Proper error handling
+// Returns an error that can be handled
 fn from_registers(regs: &[u16]) -> Result<u32, ConversionError> {
     if regs.len() < 2 {
         return Err(ConversionError::NotEnoughRegisters { 

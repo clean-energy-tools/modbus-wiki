@@ -15,55 +15,55 @@ date-created: 2026-04-24T13:00:00+03:00
 last-updated: 2026-04-24T13:00:00+03:00
 ---
 
-MODBUS broadcast is a mechanism that allows a master/client to send a single command to all slave/server devices on a network simultaneously. Understanding broadcast addressing, its limitations, and protocol-specific behavior is essential for proper MODBUS network operation.
+MODBUS broadcast lets you send a single command to all devices on a network at once. Instead of talking to each device individually, you send one message that all devices receive and act on simultaneously. Understanding how broadcast works, its limitations, and where it can be used is important for proper MODBUS operation.
 
 ## What is MODBUS Broadcast?
 
-MODBUS broadcast is a **one-to-many communication mode** where the master sends a single request that is executed by all slaves on the network (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:391-394)).
+MODBUS broadcast is a **one-to-many communication mode** where the controller sends a single command that all devices on the network execute (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:391-394)).
 
-### Key Characteristics
+### Key Differences from Normal Communication
 
-| Aspect | Unicast (Normal) | Broadcast |
+| Feature | Normal (Unicast) | Broadcast |
 |--------|------------------|-----------|
-| Addressing | Specific slave (1-247) | All slaves (address 0) |
-| Response | Single slave responds | No slaves respond |
-| Confirmation | Master receives response | No confirmation |
-| Typical use | Read/write operations | Write operations only |
-| Reliability | High (confirmed) | Lower (unconfirmed) |
+| Who receives | One specific device (address 1-247) | All devices (address 0) |
+| Who responds | That one device sends back a response | No devices send responses |
+| Confirmation | Controller receives confirmation | No confirmation |
+| What you can do | Read or write data | Write data only |
+| Reliability | High (you get confirmation) | Lower (no confirmation) |
 
-**Critical limitation:** Broadcast requests are **necessarily writing commands** (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:393)). Read operations cannot use broadcast because multiple devices would respond simultaneously, causing bus collisions.
+**Important limitation:** Broadcast can **only be used for writing data** (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:393)). You cannot use broadcast for reading because all devices would try to respond at once, causing their messages to collide and corrupt each other.
 
-### Communication Flow
+### How Communication Flows
 
-**Unicast mode:**
+**Normal (unicast) mode:**
 ```
-Master → Request (Address 5) → Slave 5
-Master ← Response             ← Slave 5
+Controller → Request (to Device 5) → Device 5
+Controller ← Response              ← Device 5
 ```
 
 **Broadcast mode:**
 ```
-Master → Request (Address 0) → All Slaves
-                                Slave 1 (executes, no response)
-                                Slave 2 (executes, no response)
-                                Slave 3 (executes, no response)
-                                ...
+Controller → Request (to All) → All Devices
+                                 Device 1 (does it, stays quiet)
+                                 Device 2 (does it, stays quiet)
+                                 Device 3 (does it, stays quiet)
+                                 ...
 ```
 
 ## The Two MODBUS Broadcast Addresses
 
-MODBUS defines **two broadcast address values**, but their usage differs between serial and TCP implementations:
+MODBUS uses **two different address values** that might look like broadcasts, but they work differently depending on whether you're using serial cables or TCP networks:
 
-### Address 0: Serial Line Broadcast
+### Address 0: For Serial Cables
 
-**Usage:** MODBUS RTU and MODBUS ASCII on serial lines
+**Where it's used:** MODBUS RTU and MODBUS ASCII on serial cables
 
-**Definition:** Address 0 is reserved as the broadcast address (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:454)).
+**What it means:** Address 0 is the broadcast address (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md:454)).
 
-**Requirements:**
-- All slave nodes **must recognize** the broadcast address
-- All slaves **must execute** broadcast write commands
-- No slave **may respond** to broadcast requests
+**How devices must behave:**
+- All devices **must recognize** address 0 as broadcast
+- All devices **must execute** broadcast write commands
+- No device **may send a response** to broadcast messages
 
 **Frame format (MODBUS RTU):**
 ```
@@ -82,16 +82,16 @@ Request:  00 05 00 0A FF 00 [CRC]
 Response: (none - all slaves execute but don't respond)
 ```
 
-### Address 0xFF (255): TCP Direct Connection
+### Address 255 (0xFF): For TCP Direct Connections
 
-**Usage:** MODBUS TCP when addressing a server directly
+**Where it's used:** MODBUS TCP when talking directly to a server
 
-**Definition:** The value 0xFF is used for the Unit Identifier when addressing a MODBUS server directly connected to TCP/IP (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md:1917)).
+**What it means:** The value 255 (0xFF) is used in the Unit Identifier field when addressing a MODBUS server that's directly connected to the TCP/IP network (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md:1917)).
 
-**Important distinction:** This is **not a broadcast address** for MODBUS TCP. Rather, it indicates:
-- The MODBUS server is directly connected to the TCP/IP network
-- The Unit Identifier field is not significant
-- The TCP connection itself uniquely identifies the server
+**Important distinction:** This is **not a broadcast address** for MODBUS TCP. Instead, it means:
+- You're talking directly to a MODBUS server on the TCP network
+- The Unit Identifier field doesn't matter (the TCP connection identifies the server)
+- Only one server receives the message (the one you connected to)
 
 **MBAP header with 0xFF:**
 ```

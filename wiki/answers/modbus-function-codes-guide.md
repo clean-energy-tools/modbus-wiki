@@ -14,20 +14,20 @@ date-created: 2026-04-24T17:00:00+03:00
 last-updated: 2026-04-24T17:00:00+03:00
 ---
 
-MODBUS function codes specify which operation the server should perform. This guide explains what each function code does, how they are grouped, when to use one over another, and whether multiple-register operations are more efficient than single-register operations.
+MODBUS function codes tell the device which operation to perform. This guide explains what each function code does, how they're organized, when to use one instead of another, and whether reading/writing multiple values at once is more efficient than one at a time.
 
 ## Quick Answer: What Are Function Codes?
 
-**Function codes are 1-byte values (0x01-0x7F) that specify the operation:**
+**Function codes are 1-byte numbers (0x01 to 0x7F) that specify what to do:**
 - Read data (coils, discrete inputs, registers)
 - Write data (coils, registers)
 - Perform special operations (diagnostics, device identification)
 
 **The function code determines:**
-- Which data type to access (coils vs registers)
-- Whether to read or write
-- How many values can be transferred
-- The format of the request and response
+- Which type of data to access (bits vs 16-bit values)
+- Whether you're reading or writing
+- How many values you can transfer at once
+- What the request and response messages look like
 
 (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md))
 

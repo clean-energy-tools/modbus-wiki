@@ -14,31 +14,31 @@ date-created: 2026-04-24T12:00:00+03:00
 last-updated: 2026-04-24T12:00:00+03:00
 ---
 
-MODBUS registers are the fundamental data storage units in the MODBUS protocol. Understanding how different data types are represented in these 16-bit registers is essential for correctly reading from and writing to MODBUS devices.
+MODBUS registers are the basic storage locations where MODBUS devices keep their data. Understanding how different types of information are stored in these 16-bit registers helps you correctly read from and write to MODBUS devices.
 
 ## Register Size
 
 MODBUS registers are **16 bits (2 bytes)** each (source: [Holding Registers](/wiki/concepts/holding-registers.md), [Input Registers](/wiki/concepts/input-registers.md)).
 
 There are two types of word-based registers in MODBUS:
-- **Holding Registers:** 16-bit read/write registers for configuration and setpoints
-- **Input Registers:** 16-bit read-only registers for measurements and sensor values
+- **Holding Registers:** 16-bit locations you can read from and write to - used for settings and control values
+- **Input Registers:** 16-bit locations you can only read from - used for measurements and sensor readings
 
-Both types have identical data representation characteristics; the difference is only in access permissions.
+Both types store data the same way; the only difference is whether you can write to them.
 
-## Storing Different Data Types
+## How Different Data Types Are Stored
 
-### Booleans
+### True/False Values (Booleans)
 
-**Single-bit storage (preferred):**
-- Use [Coils](/wiki/concepts/coils.md) (read/write) or [Discrete Inputs](/wiki/concepts/discrete-inputs.md) (read-only)
-- Each boolean occupies exactly 1 bit
-- Most efficient for digital I/O signals
+**Best way - single-bit storage:**
+- Use [Coils](/wiki/concepts/coils.md) (can read and write) or [Discrete Inputs](/wiki/concepts/discrete-inputs.md) (read-only)
+- Each true/false value takes exactly 1 bit
+- Most efficient for on/off signals and digital inputs
 
-**Register-based storage:**
-- Can store booleans as bit fields within 16-bit registers
-- Allows packing up to 16 boolean values in a single register
-- Requires bit masking to extract individual values
+**Alternative - packed in registers:**
+- You can store true/false values as bits within 16-bit registers
+- Lets you pack up to 16 true/false values in a single register
+- You need to use bit operations to extract individual values
 
 Example bit field (source: [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md:393-432)):
 ```rust
@@ -50,63 +50,63 @@ let warning = (bits & 0x0004) != 0;      // Bit 2
 let manual_mode = (bits & 0x0008) != 0;  // Bit 3
 ```
 
-### Integers
+### Whole Numbers (Integers)
 
-#### Single-Register Integers (16-bit)
+#### Small Integers (16-bit, one register)
 
-**Unsigned 16-bit (u16):**
-- Storage: 1 register
+**Positive numbers only (unsigned 16-bit):**
+- Uses: 1 register
 - Range: 0 to 65,535
-- Direct mapping from register value
+- The register value is the number directly
 
-**Signed 16-bit (i16):**
-- Storage: 1 register
+**Positive or negative (signed 16-bit):**
+- Uses: 1 register
 - Range: -32,768 to 32,767
-- Uses two's complement representation
-- Example: 0xF000 = -4,096 (signed) or 61,440 (unsigned)
+- Uses two's complement (a standard way to represent negative numbers)
+- Example: 0xF000 = -4,096 (if treated as signed) or 61,440 (if treated as unsigned)
 
-#### Multi-Register Integers
+#### Large Integers (32-bit and 64-bit, multiple registers)
 
-**Unsigned 32-bit (u32):**
-- Storage: 2 registers
+**32-bit positive numbers (unsigned):**
+- Uses: 2 registers
 - Range: 0 to 4,294,967,295
-- Word order is device-specific (see [Endianness](#endianness-and-byte-order))
+- How the registers are ordered depends on the device (see [Endianness](#endianness-and-byte-order))
 
-**Signed 32-bit (i32):**
-- Storage: 2 registers
+**32-bit positive or negative (signed):**
+- Uses: 2 registers
 - Range: -2,147,483,648 to 2,147,483,647
-- Two's complement representation
-- Word order is device-specific
+- Uses two's complement
+- Register order depends on the device
 
-**64-bit integers (u64/i64):**
-- Storage: 4 registers
-- Word order is device-specific
+**64-bit integers:**
+- Uses: 4 registers
+- Register order depends on the device
 
-### Floating-Point Numbers
+### Decimal Numbers (Floating-Point)
 
-**32-bit float (f32):**
-- Storage: 2 registers
-- Format: IEEE 754 single-precision
-- Word order is device-specific
-- Example: Temperature, pressure, flow rate values
+**32-bit decimals:**
+- Uses: 2 registers
+- Format: IEEE 754 single-precision (a standard way computers store decimal numbers)
+- Register order depends on the device
+- Examples: Temperature, pressure, flow rate values
 
-**64-bit float (f64):**
-- Storage: 4 registers
+**64-bit decimals (higher precision):**
+- Uses: 4 registers
 - Format: IEEE 754 double-precision
-- Word order is device-specific
+- Register order depends on the device
 
-**Scaled integer values (alternative to floats):**
-Many devices use integer registers with scale factors instead of IEEE 754 floats (source: [holding-registers](/wiki/concepts/holding-registers.md:207-218)):
+**Scaled whole numbers (common alternative):**
+Many devices avoid decimal numbers entirely and instead use whole numbers with a scale factor (source: [holding-registers](/wiki/concepts/holding-registers.md:207-218)):
 
 ```
-engineering_value = raw_value / scale_factor
-raw_value = engineering_value × scale_factor
+actual_value = register_value / scale_factor
+register_value = actual_value × scale_factor
 ```
 
 Examples:
-- Temperature: 2550 with scale factor 100 = 25.50°C
-- Percentage: 875 with scale factor 10 = 87.5%
-- Current: 12345 with scale factor 1000 = 12.345 A
+- Temperature: register contains 2550, scale factor is 100 → actual temperature is 25.50°C
+- Percentage: register contains 875, scale factor is 10 → actual percentage is 87.5%
+- Current: register contains 12345, scale factor is 1000 → actual current is 12.345 A
 
 ### Strings
 
@@ -134,30 +134,31 @@ Register 11: 0x6572  "er"
 
 Fixed-length strings shorter than the allocated space are typically padded with null bytes (0x00).
 
-## Endianness and Byte Order
+## Byte Order and Register Order (Endianness)
 
-MODBUS has **two levels** of endianness (source: [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md:72-104)).
+MODBUS has **two levels** of byte ordering (source: [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md:72-104)).
 
-### Byte Order (Within Each Register)
+### Byte Order Within Each Register
 
-**Always big-endian** (network byte order):
-- High byte transmitted/stored first
-- Low byte transmitted/stored second
-- **Consistent across all MODBUS devices**
+**Always most-significant-byte first** (called big-endian or network byte order):
+- The more important byte is sent/stored first
+- The less important byte is sent/stored second
+- **This is the same for all MODBUS devices - it never changes**
 
 Example: Register value 0x1234
 ```
-Wire/Memory: [0x12] [0x34]
-              MSB    LSB
+On wire or in memory: [0x12] [0x34]
+                       first  second
 ```
 
-This is a protocol requirement and never varies by device.
+This is required by the MODBUS protocol and is never different.
 
-### Word Order (For Multi-Register Values)
+### Register Order For Values Bigger Than 16 Bits
 
-**Device-specific** - varies by manufacturer:
-- Can be big-endian (most common) or little-endian
-- **Must be determined from device documentation**
+**Depends on the device** - varies by manufacturer:
+- Can be most-significant-register first (called big-endian, most common)
+- Or least-significant-register first (called little-endian)
+- **You must check the device documentation to know which one**
 
 Example: 32-bit value 0x12345678
 
@@ -296,26 +297,26 @@ Status Register bits:
   - Bit 3: Stale data
 ```
 
-## Determining Device Byte Order
+## How to Find Out Your Device's Register Order
 
-Since word order for multi-register values is **device-specific**, you must determine it for each device type.
+Since register order for values larger than 16 bits is **different for each device**, you need to find out which order your device uses.
 
-### Method 1: Check Device Documentation (Primary Method)
+### Method 1: Check the Device Manual (Best Method)
 
-**Always consult the device manual or datasheet** (source: [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md:70, 90, 600)).
+**Always start with the device manual or datasheet** (source: [modbus-data-type-mapping](/wiki/concepts/modbus-data-type-mapping.md:70, 90, 600)).
 
-Look for:
-- "Byte order" or "Word order" specifications
-- "Endianness" settings
-- "Register format" descriptions
-- Data table examples showing multi-register values
+Look for sections about:
+- "Byte order" or "Word order"
+- "Endianness"
+- "Register format"
+- Data tables showing examples of multi-register values
 
-Common terminology in documentation:
-- "Big-endian" / "MSW first" → Big-endian word order
-- "Little-endian" / "LSW first" → Little-endian word order
-- "ABCD format" → Big-endian
-- "CDAB format" → Little-endian word order
-- "Byte swap" → Little-endian word order
+Common terms you might see:
+- "Big-endian" or "MSW first" → Most important register comes first
+- "Little-endian" or "LSW first" → Least important register comes first
+- "ABCD format" → Most important register first
+- "CDAB format" → Least important register first
+- "Byte swap" → Least important register first
 
 ### Method 2: Test with Known Values
 

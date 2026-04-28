@@ -15,18 +15,18 @@ date-created: 2026-04-19T12:00:00+03:00
 last-updated: 2026-04-19T12:00:00+03:00
 ---
 
-MODBUS data validation is critical for reliable communication with industrial devices. Validation occurs at three levels: protocol-level (enforced by the device), data type validation (when mapping registers to program variables), and output validation (when sending values to devices).
+MODBUS data validation is important for reliable communication with industrial devices. Validation happens at three levels: the device checks your requests (protocol-level), you check data when converting it from registers to usable values (data type validation), and you check values before sending them to devices (output validation).
 
-## Protocol-Level Validation
+## Device-Level Validation
 
-MODBUS devices enforce specific validation rules and will reject invalid requests with exception codes.
+MODBUS devices enforce specific rules and will reject invalid requests with error codes.
 
-### Exception Code 0x03: ILLEGAL DATA VALUE
+### Error Code 0x03: ILLEGAL DATA VALUE
 
-The device returns exception code 0x03 when:
-- Invalid quantity or value in request (source: [function-codes](/wiki/concepts/function-codes.md:280))
+The device sends back error code 0x03 when:
+- The quantity or value in your request is invalid (source: [function-codes](/wiki/concepts/function-codes.md:280))
 - Coil values are not exactly 0xFF00 (ON) or 0x0000 (OFF) (source: [coils](/wiki/concepts/coils.md:106))
-- Quantity exceeds protocol limits
+- The quantity you requested exceeds the limits
 
 ### Quantity Limits
 
@@ -42,30 +42,30 @@ MODBUS defines strict limits on data transfer sizes (source: [function-codes](/w
 | Write Multiple Registers | 0x10 | 123 registers |
 | Read/Write Multiple Registers | 0x17 | Read: 125, Write: 121 |
 
-### Address Range Validation
+### Address Validation
 
-Exception code 0x02 (ILLEGAL DATA ADDRESS) is returned when:
-- Address is outside the device's valid range (source: [function-codes](/wiki/concepts/function-codes.md:279))
-- Address does not exist in device's memory map
-- Address is not accessible (e.g., read-only address for write operation)
+Error code 0x02 (ILLEGAL DATA ADDRESS) is sent back when:
+- The address is outside the device's valid range (source: [function-codes](/wiki/concepts/function-codes.md:279))
+- The address doesn't exist in the device's memory
+- The address can't be accessed the way you're trying (like trying to write to a read-only address)
 
-## Data Type Validation: Registers to Program Variables
+## Checking Data When Reading From Devices
 
-When reading MODBUS registers and converting them to program variables, validate the following:
+When reading MODBUS registers and converting them to usable values in your program, check the following:
 
-### Range Validation
+### Value Range Checking
 
-**16-bit unsigned (u16):**
-- Valid range: 0-65535 (source: [holding-registers](/wiki/concepts/holding-registers.md:35))
-- All values are technically valid, but device-specific limits may apply
+**16-bit positive numbers (unsigned):**
+- Valid range: 0 to 65,535 (source: [holding-registers](/wiki/concepts/holding-registers.md:35))
+- All values in this range are technically valid, but individual devices may have tighter limits
 
-**16-bit signed (i16):**
-- Valid range: -32768 to 32767 (source: [holding-registers](/wiki/concepts/holding-registers.md:35))
-- Two's complement representation
+**16-bit positive or negative numbers (signed):**
+- Valid range: -32,768 to 32,767 (source: [holding-registers](/wiki/concepts/holding-registers.md:35))
+- Uses two's complement (the standard way to represent negative numbers)
 
-### Register Count Validation
+### Checking You Have Enough Registers
 
-Ensure sufficient registers before parsing multi-register values (source: [implementation](/wiki/concepts/implementation.md:262)):
+Make sure you have enough registers before trying to extract multi-register values (source: [implementation](/wiki/concepts/implementation.md:262)):
 
 ```rust
 pub fn validate_register_count(registers: &[u16], expected: usize) -> Result<(), ValidationError> {

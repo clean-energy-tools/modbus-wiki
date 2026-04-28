@@ -15,79 +15,79 @@ date-created: 2026-04-23T14:30:00+03:00
 last-updated: 2026-04-23T14:30:00+03:00
 ---
 
-MODBUS communication can fail in many ways, from network issues to device-specific limitations. This comprehensive guide covers all types of MODBUS errors, how devices respond with exceptions, exception code meanings, and diagnostic procedures for common problems.
+MODBUS communication can fail in many ways, from network problems to device limitations. This guide covers the different types of MODBUS errors, how devices report problems with exception messages, what the exception codes mean, and how to diagnose common issues.
 
-## Quick Reference: Error Categories
+## Quick Reference: Types of Errors
 
-| Error Category | Detection Level | Examples |
+| Error Type | Where It's Detected | Examples |
 |----------------|----------------|----------|
-| **Communication Errors** | Network/Transport | Connection timeout, CRC error, no response |
-| **Protocol Errors** | MODBUS Layer | Invalid MBAP header, malformed frame |
-| **MODBUS Exceptions** | Application | Address out of range, unsupported function, invalid value |
-| **Device Errors** | Device-Specific | Internal failure, busy, memory parity error |
+| **Network Errors** | Network/Connection | Connection timeout, CRC error, no response |
+| **Message Errors** | MODBUS Message Layer | Invalid header, badly formed message |
+| **MODBUS Exceptions** | Application Level | Address doesn't exist, unsupported function, invalid value |
+| **Device Problems** | Inside the Device | Internal failure, device busy, memory corruption |
 
 ## What is a MODBUS Exception Response?
 
-### Definition
+### What It Is
 
-A **MODBUS exception response** is a standardized error message sent by a MODBUS server (slave) when it cannot process a client's (master's) request.
+A **MODBUS exception response** is a standardized error message sent by a MODBUS device when it cannot do what you asked.
 
-**Key characteristics:**
-- Server MUST respond with exception (not just ignore bad requests)
-- Exception format is standardized across all MODBUS variants
-- Client can programmatically identify the error type
-- Distinguishable from normal responses by function code MSB
+**How they work:**
+- The device MUST send back an exception (not just stay silent when something is wrong)
+- The exception format is the same for all MODBUS systems
+- Your program can identify the specific error type
+- Exception responses look different from normal responses (the function code has bit 7 set)
 
 Source: [function-codes.md](/wiki/concepts/function-codes.md:273)
 
 ### When Devices Send Exceptions
 
-MODBUS servers send exception responses when:
+MODBUS devices send exception responses when:
 
-1. **Unsupported function code** - Device doesn't implement requested function
-2. **Invalid address** - Address is out of range or doesn't exist
-3. **Invalid data value** - Quantity too large, illegal value (e.g., coil value not 0xFF00/0x0000)
-4. **Device is busy** - Device processing previous request
-5. **Internal device failure** - Hardware or software error
-6. **Memory parity error** - Corrupted memory detected
-7. **Gateway problems** - Gateway can't reach target device
+1. **Function not supported** - Device doesn't have the function you requested
+2. **Bad address** - The address is out of range or doesn't exist
+3. **Invalid value** - Quantity too large, or illegal value (like a coil value that's not 0xFF00 or 0x0000)
+4. **Device is busy** - Device is still working on a previous request
+5. **Internal problem** - Hardware or software error inside the device
+6. **Memory corruption** - Device detected corrupted memory
+7. **Gateway issues** - Gateway device can't reach the target device
 
-**Important:** Device MUST respond. Silent failures violate MODBUS specification.
+**Important:** The device MUST send a response. Staying silent when there's an error violates the MODBUS specification.
 
-## Exception Response Format
+## How Exception Responses Look
 
-### Exception PDU Structure
+### Exception Message Structure
 
 **Normal response function code:** 0x01-0x7F (bit 7 = 0)
 
-**Exception response function code:** Original function + 0x80 (bit 7 = 1)
+**Exception response function code:** Original function code + 0x80 (bit 7 = 1)
 
-**Exception PDU (2 bytes):**
+**Exception message (2 bytes):**
 ```
 [Exception Function Code: 1 byte][Exception Code: 1 byte]
 ```
 
-### Complete Exception Frame
+### Complete Exception Messages
 
-**MODBUS TCP Exception (9 bytes):**
+**MODBUS TCP Exception (9 bytes total):**
 ```
-┌──────── MBAP Header (7 bytes) ────────┬─ Exception PDU ─┐
+┌──────── MBAP Header (7 bytes) ────────┬─ Exception ─┐
 │ Trans ID │ Proto ID │ Length │ Unit ID│ Ex Func │ Ex Code│
 │  2 bytes │  2 bytes │2 bytes │ 1 byte │ 1 byte  │ 1 byte │
 └──────────┴──────────┴────────┴────────┴─────────┴────────┘
 ```
 
-**MODBUS RTU Exception (5 bytes):**
+**MODBUS RTU Exception (5 bytes total):**
 ```
-┌─────── Exception Frame ───────┐
+┌─────── Exception Message ───────┐
 │ Address │ Ex Func │ Ex Code │ CRC │
 │ 1 byte  │ 1 byte  │ 1 byte  │2 byt│
 └─────────┴─────────┴─────────┴─────┘
 ```
 
-### Exception Function Code
+### How to Recognize Exceptions
 
-**Calculation:** Exception Function Code = Original Function Code + 0x80
+**How it's calculated:** Exception Function Code = Original Function Code + 0x80
 
 **Examples:**
 ```
@@ -97,15 +97,15 @@ Write Single Register:     0x06 → Exception: 0x86 (0x06 + 0x80)
 Write Multiple Registers:  0x10 → Exception: 0x90 (0x10 + 0x80)
 ```
 
-**Binary representation:**
+**In binary:**
 ```
 Normal Function Code:   0x03 = 0b00000011 (bit 7 = 0)
 Exception Function Code: 0x83 = 0b10000011 (bit 7 = 1)
                                     ↑
-                                  MSB set
+                                  Bit 7 is set
 ```
 
-**Detection:** Check if function code ≥ 0x80 or test bit 7.
+**How to detect:** Check if the function code is ≥ 0x80, or test if bit 7 is set.
 
 Source: [function-codes.md](/wiki/concepts/function-codes.md:22)
 
@@ -131,23 +131,23 @@ Source: [function-codes.md](/wiki/concepts/function-codes.md:277)
 
 #### 0x01: ILLEGAL FUNCTION
 
-**Meaning:** The function code in the request is not supported by the device.
+**What it means:** The device doesn't support the function code you requested.
 
-**Common causes:**
-- Requesting Write Multiple Registers (0x10) from read-only device
-- Using advanced function (0x17, 0x2B) on basic device
-- Wrong function code (typo or protocol error)
+**Common reasons:**
+- You tried to write to a read-only device (like requesting Write Multiple Registers from a device that can only be read)
+- You used an advanced function on a basic device that doesn't have it
+- There's a typo or error in your function code
 
 **Example:**
 ```
-Request:  Read/Write Multiple Registers (0x17) from simple PLC
-Response: Exception 0x97, Code 0x01 (ILLEGAL FUNCTION)
+Your request:  Read/Write Multiple Registers (0x17) to a simple PLC
+Device response: Exception 0x97, Code 0x01 (ILLEGAL FUNCTION)
 ```
 
-**Diagnosis:**
-1. Check device documentation for supported functions
-2. Verify device model/firmware supports function
-3. Use simpler function (e.g., 0x03 instead of 0x17)
+**How to fix it:**
+1. Check the device manual to see which functions it supports
+2. Verify your device model and firmware version support this function
+3. Try using a simpler function (for example, use 0x03 instead of 0x17)
 
 **Resolution:**
 - Use supported function codes only

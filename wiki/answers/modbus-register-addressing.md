@@ -14,20 +14,20 @@ date-created: 2026-04-23T15:00:00+03:00
 last-updated: 2026-04-23T15:00:00+03:00
 ---
 
-MODBUS register addressing can be confusing due to multiple addressing schemes and legacy conventions. This comprehensive guide explains how MODBUS organizes its address space, the different register types, addressing conventions, and the critical differences between documentation addresses and protocol addresses.
+MODBUS register addressing can be confusing because there are multiple addressing schemes and old conventions still in use. This guide explains how MODBUS organizes its data, the different register types, addressing conventions, and the important differences between documentation addresses and the actual addresses used in messages.
 
 ## Quick Answer: The Four Data Tables
 
-MODBUS organizes its address space into **four separate data tables**:
+MODBUS organizes its data into **four separate tables**:
 
-| Table | Size | Access | Typical Use | Function Codes | Legacy Notation |
+| Table | Size | Can You Write? | What It's For | Function Codes | Old Notation |
 |-------|------|--------|-------------|----------------|-----------------|
-| **Coils** | 1 bit | Read/Write | Digital outputs, relays | 0x01, 0x05, 0x0F | **0**xxxx (00001-09999) |
-| **Discrete Inputs** | 1 bit | Read-only | Digital inputs, switches | 0x02 | **1**xxxx (10001-19999) |
-| **Input Registers** | 16 bits | Read-only | Measurements, sensors | 0x04 | **3**xxxx (30001-39999) |
-| **Holding Registers** | 16 bits | Read/Write | Configuration, setpoints | 0x03, 0x06, 0x10, 0x16, 0x17 | **4**xxxx (40001-49999) |
+| **Coils** | 1 bit | Yes (Read/Write) | Digital outputs, relays | 0x01, 0x05, 0x0F | **0**xxxx (00001-09999) |
+| **Discrete Inputs** | 1 bit | No (Read-only) | Digital inputs, switches | 0x02 | **1**xxxx (10001-19999) |
+| **Input Registers** | 16 bits | No (Read-only) | Measurements, sensors | 0x04 | **3**xxxx (30001-39999) |
+| **Holding Registers** | 16 bits | Yes (Read/Write) | Settings, control values | 0x03, 0x06, 0x10, 0x16, 0x17 | **4**xxxx (40001-49999) |
 
-**Critical point:** These are **separate address spaces**. Address 0 exists in all four tables independently.
+**Important point:** These are **separate address spaces**. Address 0 exists in all four tables independently - they're completely different locations.
 
 ## MODBUS Data Model Overview
 
@@ -70,36 +70,36 @@ MODBUS defines four types of data objects, each with its own address space:
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Important:** Address 100 in "Holding Registers" is completely separate from address 100 in "Input Registers". They are distinct memory locations accessed by different function codes.
+**Important:** Address 100 in "Holding Registers" is completely separate from address 100 in "Input Registers". They are different memory locations that you access with different function codes.
 
 Source: [holding-registers.md](/wiki/concepts/holding-registers.md:20)
 
-### Register Types Explained
+### What Each Register Type Is For
 
 #### 1. Coils (0xxxx)
 
-**Properties:**
-- **Size:** 1 bit (binary: 0 or 1)
-- **Access:** Read/Write
-- **Typical use:** Digital outputs, relays, indicator lights
-- **Address range:** 0-65535
-- **Value range:** ON (1) or OFF (0)
+**What they are:**
+- **Size:** 1 bit (can be 0 or 1, off or on)
+- **Can you write?** Yes (Read/Write)
+- **What they're for:** Digital outputs, relays, indicator lights
+- **How many:** 0 to 65,535 addresses
+- **Values:** ON (1) or OFF (0)
 
-**Function codes:**
-- **0x01:** Read Coils (read status)
-- **0x05:** Write Single Coil (write one coil)
-- **0x0F (15):** Write Multiple Coils (write multiple coils)
+**Function codes to use:**
+- **0x01:** Read Coils (check if they're on or off)
+- **0x05:** Write Single Coil (turn one on or off)
+- **0x0F (15):** Write Multiple Coils (turn several on or off at once)
 
-**Common applications:**
-- Motor start/stop
-- Valve open/close
-- Pump on/off
-- Indicator lights
-- Relay control
+**Real-world examples:**
+- Starting or stopping a motor
+- Opening or closing a valve
+- Turning a pump on or off
+- Controlling indicator lights
+- Activating relays
 
 **Example:**
 ```
-Turn on relay at coil address 5
+Turn on a relay at coil address 5
 Write Single Coil: Address=5, Value=0xFF00 (ON)
 ```
 
@@ -107,27 +107,27 @@ Source: [coils.md](/wiki/concepts/coils.md:16)
 
 #### 2. Discrete Inputs (1xxxx)
 
-**Properties:**
-- **Size:** 1 bit (binary: 0 or 1)
-- **Access:** Read-only
-- **Typical use:** Digital inputs, switches, limit sensors
-- **Address range:** 0-65535
-- **Value range:** ON (1) or OFF (0)
+**What they are:**
+- **Size:** 1 bit (can be 0 or 1, off or on)
+- **Can you write?** No (Read-only)
+- **What they're for:** Digital inputs, switches, limit sensors
+- **How many:** 0 to 65,535 addresses
+- **Values:** ON (1) or OFF (0)
 
-**Function codes:**
+**Function codes to use:**
 - **0x02:** Read Discrete Inputs (read-only)
 
-**Common applications:**
-- Limit switches
-- Push buttons
-- Proximity sensors
-- Safety interlocks
-- Status indicators
-- Photoelectric sensors
+**Real-world examples:**
+- Limit switches (is something at the end of travel?)
+- Push buttons (is the button pressed?)
+- Proximity sensors (is something nearby?)
+- Safety interlocks (is the safety cover closed?)
+- Status indicators (is the machine running?)
+- Photoelectric sensors (is the beam blocked?)
 
 **Example:**
 ```
-Read limit switch at discrete input address 10
+Check if a limit switch at discrete input address 10 is pressed
 Read Discrete Inputs: Address=10, Quantity=1
 ```
 
@@ -135,18 +135,18 @@ Source: [discrete-inputs.md](/wiki/concepts/discrete-inputs.md:16)
 
 #### 3. Input Registers (3xxxx)
 
-**Properties:**
+**What they are:**
 - **Size:** 16 bits (2 bytes)
-- **Access:** Read-only
-- **Typical use:** Measurements, sensor values, analog inputs
-- **Address range:** 0-65535
-- **Value range:** 0-65535 (unsigned) or -32768 to 32767 (signed)
-- **Byte order:** Big-endian (MSB first)
+- **Can you write?** No (Read-only)
+- **What they're for:** Measurements, sensor values, analog readings
+- **How many:** 0 to 65,535 addresses
+- **Value range:** 0 to 65,535 (positive numbers only) or -32,768 to 32,767 (positive or negative)
+- **Byte order:** Big-endian (most significant byte first)
 
-**Function codes:**
+**Function codes to use:**
 - **0x04:** Read Input Registers (read-only)
 
-**Common applications:**
+**Real-world examples:**
 - Temperature measurements
 - Pressure readings
 - Flow rates

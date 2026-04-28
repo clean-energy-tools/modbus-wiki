@@ -14,31 +14,31 @@ date-created: 2026-04-24T15:00:00+03:00
 last-updated: 2026-04-24T15:00:00+03:00
 ---
 
-"MODBUS RTU daisy-chain wiring" is **simply the correct way to wire an RS-485 bus** - it's not a special MODBUS feature or something distinct from "normal RS-485." The term "daisy-chain" describes the **linear topology** required by the RS-485 electrical specification.
+"MODBUS RTU daisy-chain wiring" is **simply the correct way to wire an RS-485 cable** - it's not a special MODBUS feature or something different from "normal RS-485." The term "daisy-chain" describes the **linear layout** required by the RS-485 electrical standard.
 
-## Daisy-Chain IS Correct RS-485 Wiring
+## Daisy-Chain IS Just Correct RS-485 Wiring
 
-### No Distinction
+### They're the Same Thing
 
-**Key point:** There is **no difference** between:
+**Important point:** There is **no difference** between:
 - "MODBUS RTU daisy-chain wiring"
-- "Correctly wired RS-485 bus"
-- "RS-485 linear topology"
+- "Correctly wired RS-485 cable"
+- "RS-485 linear layout"
 - "RS-485 multi-drop network"
 
-These all describe the **same thing**: a linear trunk cable with devices connected along its length.
+These all mean the **same thing**: a main cable running in a line with devices connected along it.
 
-### Why the Term "Daisy-Chain"?
+### Why Is It Called "Daisy-Chain"?
 
-The term describes how devices are connected **in series along a line**, like daisies in a chain:
+The term describes how devices are connected **in a line**, like daisies linked in a chain:
 
 ```
-Term ──[Device 1]──[Device 2]──[Device 3]──[Device 4]──[Device 5]── Term
+End ──[Device 1]──[Device 2]──[Device 3]──[Device 4]──[Device 5]── End
 ```
 
-Each device is connected to the main trunk, one after another, forming a "chain."
+Each device is connected to the main cable, one after another, forming a "chain."
 
-**Origin:** The term comes from the physical appearance when devices are connected sequentially, similar to linking daisies together to form a garland.
+**Where the name comes from:** The term describes the physical pattern when devices are connected one after another, like linking daisies together to make a flower garland.
 
 ## What IS Daisy-Chain Wiring?
 
