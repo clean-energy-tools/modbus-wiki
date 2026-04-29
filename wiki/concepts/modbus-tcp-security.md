@@ -12,41 +12,41 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS/TCP Security (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication with role-based authorization for MODBUS devices (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
+MODBUS/TCP Security (MBAPS) is MODBUS/TCP wrapped in encryption (TLS), making messages private and verifying who's talking (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)). Think of it like putting MODBUS messages in a locked, tamper-proof envelope.
 
-## Protocol Overview
+## What MODBUS TCP Security Does
 
-MODBUS/TCP Security adds a security layer to MODBUS/TCP by encapsulating the standard protocol within TLS v1.2+, providing confidentiality, integrity, and mutual authentication (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
+MODBUS/TCP Security adds encryption and authentication to MODBUS/TCP using TLS version 1.2 or newer (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)). This keeps messages private, prevents tampering, and proves both sides are who they claim to be.
 
-### Key Characteristics
+### Security Features
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| Port | 802 (secure MODBUS) |
-| TLS Version | 1.2 minimum, 1.3 recommended |
-| Authentication | Mutual TLS (client and server certificates) |
-| Certificate Format | x.509v3 |
-| Role Encoding | Certificate extension (OID 1.3.6.1.4.1.50316.802.1) |
-| Cipher Suite | TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 |
+| Port number | 802 (different from regular MODBUS on 502) |
+| Encryption version | TLS 1.2 minimum, TLS 1.3 better |
+| Who can connect | Both client and server verify each other with certificates |
+| Certificate type | x.509v3 (standard digital certificates) |
+| User roles | Stored in certificate (special field) |
+| Encryption method | TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 |
 
-## Protocol Stack
+## How the Encryption Works
 
-### Secure MODBUS Frame Structure
+### Secure Message Structure
 
 ```
-[TLS Record Layer]
-  └─ [Encrypted MBAP Header: 7 bytes][Encrypted MODBUS PDU: up to 253 bytes]
+[TLS Encryption Wrapper]
+  └─ [Encrypted Header: 7 bytes][Encrypted MODBUS Message: up to 253 bytes]
 ```
 
-**Standard MODBUS/TCP ADU:**
+**Regular MODBUS/TCP (no encryption):**
 ```
-[MBAP Header: 7 bytes][MODBUS PDU: up to 253 bytes]
+[Header: 7 bytes][MODBUS Message: up to 253 bytes]
 ```
 
-**Secure MODBUS/TCP ADU:**
-- Same MBAP header and PDU structure
-- Encrypted within TLS record layer
-- Protected by TLS MAC (Message Authentication Code)
+**Secure MODBUS/TCP (encrypted):**
+- Same header and message format inside
+- Everything wrapped in TLS encryption
+- Extra authentication code to prevent tampering
 
 ## Port Allocation
 

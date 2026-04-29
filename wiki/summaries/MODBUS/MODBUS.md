@@ -12,42 +12,42 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document provides a comprehensive technical reference for the MODBUS protocol, specifically optimized for AI agents generating MODBUS client/server implementations. It emphasizes precision, byte-level specifications, and concrete examples.
+This page summarizes the MODBUS specification document. It provides detailed information for building MODBUS software, with precise technical details and examples (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
-## Protocol Overview
+## What MODBUS Is
 
-MODBUS is an application-layer messaging protocol (OSI Layer 7) providing client/server communication between devices. Originally developed by Modicon in 1979 for programmable logic controllers, it remains the de facto standard for industrial device communication (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
+MODBUS is a messaging system that lets industrial devices talk to each other. Created by Modicon in 1979 for factory controllers, it's still the most common way industrial devices communicate today (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
-### Key Characteristics
+### Main Features
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| Architecture | Client/Server (Master/Slave) |
-| Data encoding | Big-endian |
-| Max PDU size | 253 bytes |
-| TCP port | 502 (standard), 802 (secure/TLS) |
-| Byte order | Most significant byte first |
+| How it works | One device asks (client), others answer (server) |
+| Number format | Big-endian (high byte first) |
+| Max message size | 253 bytes for the core message |
+| Port numbers | 502 (normal), 802 (encrypted) |
+| Byte order | Most important byte sent first |
 
-## Data Model
+## MODBUS Data Types
 
-MODBUS defines four primary data tables. Devices may implement these as separate memory areas or as overlapping views of the same memory:
+MODBUS organizes data into four types. Devices can store these separately or use the same memory for multiple types:
 
-| Table | Object Type | Size | Access | Typical Use |
-|-------|-------------|------|--------|-------------|
-| [Coils](/wiki/concepts/coils.md) | Bit | 1 bit | Read/Write | Digital outputs, relays |
-| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | Bit | 1 bit | Read-only | Digital inputs, switches |
-| [Holding Registers](/wiki/concepts/holding-registers.md) | Word | 16 bits | Read/Write | Configuration, setpoints |
-| [Input Registers](/wiki/concepts/input-registers.md) | Word | 16 bits | Read-only | Measurements, status |
+| Data Type | Size | Can You Change It? | What It's For |
+|-------|-------------|------|--------|
+| [Coils](/wiki/concepts/coils.md) | 1 bit (ON/OFF) | Yes (Read/Write) | Controlling relays and outputs |
+| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | 1 bit (ON/OFF) | No (Read-only) | Reading switches and inputs |
+| [Holding Registers](/wiki/concepts/holding-registers.md) | 16 bits (number) | Yes (Read/Write) | Settings and setpoints |
+| [Input Registers](/wiki/concepts/input-registers.md) | 16 bits (number) | No (Read-only) | Measurements and status |
 
-### Addressing
+### How Addressing Works
 
-**CRITICAL: PDU addresses are 0-based. Documentation often uses 1-based numbering.**
+**IMPORTANT: Addresses in messages start at 0, but documentation often counts from 1.**
 
-| Data Model Reference | PDU Address | Wire Value |
+| How Documentation Labels It | Actual Address in Message | Sent as Hex |
 |---------------------|-------------|------------|
 | Register 1 | 0 | 0x0000 |
 | Register 100 | 99 | 0x0063 |
-| Register 40001 | 0 | 0x0000 (Holding Register context) |
+| Register 40001 | 0 | 0x0000 (in Holding Register context) |
 
 The "40001" notation is a legacy convention where:
 - 0xxxx = Coils

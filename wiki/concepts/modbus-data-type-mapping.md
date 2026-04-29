@@ -14,25 +14,25 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS uses a flat array of 16-bit registers, while modern programming languages like Rust have rich type systems with complex data structures. This page describes techniques and patterns for mapping between these two models (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+MODBUS stores everything as simple 16-bit numbers in registers, but your program likely uses many different data types like integers, floating-point numbers, text, and complex structures (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). This page explains how to convert between MODBUS's simple numbers and your program's data types.
 
-## The Fundamental Mismatch
+## The Basic Problem
 
-| Aspect | MODBUS Registers | Modern Languages (Rust) |
+| What | MODBUS Registers | Modern Programming Languages |
 |--------|------------------|-------------------------|
-| Data model | Flat array of u16 | Rich types: structs, enums, floats, strings |
-| Type info | Lost in protocol | Compile-time type safety |
-| Alignment | 16-bit boundaries | Various alignments |
-| Endianness | Big-endian bytes, device-specific word order | Native endianness |
-| Complex types | Device-specific conventions | Language-defined semantics |
+| Data format | Simple list of 16-bit numbers | Rich variety: whole numbers, decimals, text, structures |
+| Type tracking | No type information | Knows exactly what type each value is |
+| Number sizes | Always 16-bit chunks | Various sizes (8, 16, 32, 64 bits, etc.) |
+| Byte order | High byte first (within each register) | Depends on processor |
+| Complex data | Each device does it differently | Language has standard ways |
 
-**Key challenges:**
-- No built-in type information in the protocol
-- Multi-register values for 32-bit, 64-bit types
-- Device-specific word order conventions
-- Scaling factors for engineering units
-- String encoding and padding
-- Bit fields and packed data
+**Main challenges:**
+- MODBUS doesn't tell you what type a number is
+- Bigger numbers (32-bit, 64-bit) need multiple registers
+- Different devices order multi-register values differently
+- Real-world values often need scaling (like "2550" means "25.5 degrees")
+- Text strings need special handling
+- Sometimes multiple values are packed into one register
 
 ## Common Data Type Representations
 

@@ -13,42 +13,43 @@ date-created: 2026-04-25T15:00:00+03:00
 last-updated: 2026-04-25T15:00:00+03:00
 ---
 
-LRC (Longitudinal Redundancy Check) is a simple error detection algorithm used in [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) mode to verify frame integrity. It provides basic error detection through an 8-bit checksum calculation (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+LRC (Longitudinal Redundancy Check) is a simple way to catch errors in [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) messages (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). It adds up all the numbers in the message and includes a checksum so the receiver can verify nothing got corrupted.
 
-## Overview
+## What LRC Does
 
-LRC is an error-checking field that verifies the contents of MODBUS ASCII messages, exclusive of the beginning colon `:` and ending CR-LF pair (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). While less robust than [CRC-16](/wiki/concepts/crc-16.md) used in MODBUS RTU, LRC provides adequate error detection for the slower MODBUS ASCII transmission mode.
+LRC checks everything in a MODBUS ASCII message except the starting colon ':' and the ending Enter (CR-LF) (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). It's simpler and less powerful than [CRC-16](/wiki/concepts/crc-16.md) used in MODBUS RTU, but it's good enough for the slower ASCII mode.
 
-## LRC Field Characteristics
+## How LRC Works
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| Size | 1 byte (8-bit binary value) |
-| Transmission | 2 ASCII characters (hex representation) |
-| Position | Before CR-LF terminator |
-| Calculation | Sum of bytes + two's complement |
-| Coverage | Address through last data byte |
+| Size | 1 byte (8 bits) |
+| Sent as | 2 text characters (like "A5") |
+| Where it goes | Just before the Enter at the end |
+| How it's made | Add all bytes, then negate the result |
+| What it covers | Everything from device address to last data byte |
 
-## Calculation Algorithm
+## How to Calculate LRC
 
-The LRC is calculated by adding together successive 8-bit bytes in the message, discarding any carries, and then two's complementing the result (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+LRC is calculated by adding all the bytes together and then negating the result (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
-### LRC Generation Steps
+### Steps to Make an LRC
 
-1. **Add all bytes**: Sum all message bytes (excluding colon and CR-LF) into an 8-bit field
-2. **Discard carries**: Any value over 255 automatically rolls over (no 9th bit)
-3. **One's complement**: Subtract final value from 0xFF
-4. **Two's complement**: Add 1 to produce final LRC value
+1. **Add everything**: Add all message bytes together (skip the starting ':' and ending Enter)
+2. **Keep only 8 bits**: If the sum goes over 255, it wraps around automatically
+3. **Flip the bits**: Subtract the sum from 0xFF (255)
+4. **Add 1**: Add 1 to get the final LRC value
 
-### Mathematical Formula
+### The Math
 
+In simple terms:
 ```
-LRC = (-(sum of all bytes)) & 0xFF
+LRC = (negative of sum) with only bottom 8 bits
 ```
 
-Or equivalently:
+More precisely:
 ```
-LRC = ((0xFF - (sum of all bytes)) + 1) & 0xFF
+LRC = ((255 - sum) + 1) keeping only bottom 8 bits
 ```
 
 ## Implementation

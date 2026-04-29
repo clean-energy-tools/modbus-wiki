@@ -13,60 +13,60 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS RTU (Remote Terminal Unit) is a binary transmission mode for MODBUS over serial lines, providing efficient communication with CRC-16 error checking (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+MODBUS RTU (Remote Terminal Unit) is the version of MODBUS that works on serial cables using binary data (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). It's the most popular way to use MODBUS on serial connections because it's compact and has good error checking.
 
-## Protocol Overview
+## What MODBUS RTU Does
 
-RTU mode is the most commonly used MODBUS serial mode, transmitting data in binary format with efficient error checking through CRC-16 (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+RTU mode sends MODBUS messages as raw binary numbers over serial cables (like RS-485 or RS-232) (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). It uses a special error-checking method called CRC-16 to make sure messages arrive correctly.
 
-### Key Characteristics
+### What Makes RTU Different
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| Mode | Binary transmission |
-| Error checking | CRC-16 |
-| Frame delimiter | Silent intervals (t1.5, t3.5) |
-| Character time | 11 bits (with parity), 10 bits (no parity) |
-| Maximum frame size | 256 bytes |
-| Character format | 8 data bits, LSB first |
+| Data format | Binary (raw numbers, not text) |
+| Error checking | CRC-16 (very reliable) |
+| Message boundaries | Silent pauses between messages |
+| Bits per character | 11 bits (with error check), 10 bits (without) |
+| Maximum message size | 256 bytes |
+| Data format | 8 bits per byte, smallest bit first |
 
-## Character Format
+## How RTU Sends Each Byte
 
-RTU mode uses a specific character format for serial transmission (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
+When sending data over serial cables, RTU wraps each byte with extra bits for timing and error detection (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 
-| Field | Bits | Description |
+| Part | Bits | What It Does |
 |-------|------|-------------|
-| Start bit | 1 | Always 0 |
-| Data bits | 8 | LSB first |
-| Parity bit | 1 | Even parity (default), odd, or none |
-| Stop bit(s) | 1-2 | 1 with parity, 2 without |
-| **Total** | **11** (with parity) or **10** (without parity) | Bits per character |
+| Start bit | 1 | Always 0, marks the beginning |
+| Data bits | 8 | The actual data, smallest bit first |
+| Parity bit | 1 | Extra error check (usually "even"), optional |
+| Stop bit(s) | 1-2 | Marks the end (1 bit with parity, 2 without) |
+| **Total** | **11** (with parity) or **10** (without parity) | Bits per byte sent |
 
-**Default configuration:** 8 data bits, even parity, 1 stop bit (8E1)
-**Alternative (no parity):** 8 data bits, no parity, 2 stop bits (8N2)
+**Most common setup:** 8 data bits, even parity, 1 stop bit (called "8E1")
+**Alternative setup:** 8 data bits, no parity, 2 stop bits (called "8N2")
 
-## Frame Structure
+## RTU Message Structure
 
-### RTU ADU Structure
+### How an RTU Message is Organized
 
 ```
-[Address: 1][Function Code: 1][Data: 0-252][CRC-16: 2]
-|<- Slave ->|<-------- PDU ---------->|<- CRC ->|
+[Device Address: 1 byte][What to do: 1 byte][Details: 0-252 bytes][Error Check: 2 bytes]
+|<-- Which Device -->|<-------- MODBUS Message -------->|<--- CRC-16 --->|
 ```
 
-**Maximum RTU ADU: 256 bytes** (1 address + 253 PDU + 2 CRC)
+**Biggest possible message: 256 bytes** (1 + 253 + 2)
 
-### Frame Components
+### Parts of an RTU Message
 
-**Address Field (1 byte):**
-- Slave device address (1-247)
-- Address 0 reserved for broadcast (no response)
-- All slaves check if address matches
+**Device Address (1 byte):**
+- Which device should listen (1-247)
+- Address 0 means "everyone listen" (broadcast - no one answers)
+- All devices check if the address is for them
 
-**Function Code (1 byte):**
-- Specifies operation to perform
+**Operation Code (1 byte):**
+- What to do (like "read register" or "write coil")
 - 0x01-0x7F for normal operations
-- 0x80-0xFF for exception responses
+- 0x80-0xFF for error messages
 
 **Data Field (0-252 bytes):**
 - Request parameters or response data

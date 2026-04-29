@@ -13,59 +13,59 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS ASCII is a transmission mode for MODBUS over serial lines that transmits each byte as two ASCII hexadecimal characters, providing human-readable communication at the cost of efficiency (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+MODBUS ASCII is the version of MODBUS that works on serial cables using readable text (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). Each number is sent as two text characters (like "A5" for the number 165), which makes it easy to read with debugging tools but slower than binary mode.
 
-## Protocol Overview
+## What MODBUS ASCII Does
 
-ASCII mode transmits MODBUS frames in human-readable ASCII format, making debugging easier but requiring twice the transmission time compared to RTU mode (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+ASCII mode sends MODBUS messages as readable text over serial cables (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). This makes it twice as slow as RTU mode, but you can read the messages directly if you're watching the serial connection, which helps with troubleshooting.
 
-### Key Characteristics
+### What Makes ASCII Different
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| Mode | ASCII hex transmission |
-| Error checking | LRC (Longitudinal Redundancy Check) |
-| Frame delimiter | Start ':', End CR-LF |
-| Character time | 10 bits (with parity), 9 bits (no parity) |
-| Maximum frame size | 513 characters |
-| Character format | 7 data bits (ASCII) |
+| Data format | Text (hexadecimal digits you can read) |
+| Error checking | LRC (simple addition check) |
+| Message boundaries | Starts with ':', ends with Enter (CR-LF) |
+| Bits per character | 10 bits (with error check), 9 bits (without) |
+| Maximum message size | 513 characters |
+| Character format | 7 bits per character (standard text) |
 
-## Character Format
+## How ASCII Sends Each Character
 
-ASCII mode uses a specific character format optimized for ASCII transmission (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
+When sending text over serial cables, ASCII wraps each character with extra bits (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 
-| Field | Bits | Description |
+| Part | Bits | What It Does |
 |-------|------|-------------|
-| Start bit | 1 | Always 0 |
-| Data bits | 7 | ASCII character, LSB first |
-| Parity bit | 1 | Even parity (default) |
-| Stop bit(s) | 1-2 | 1 with parity, 2 without |
-| **Total** | **10** (with parity) or **9** (without parity) | Bits per character |
+| Start bit | 1 | Always 0, marks the beginning |
+| Data bits | 7 | The actual character, smallest bit first |
+| Parity bit | 1 | Extra error check (usually "even") |
+| Stop bit(s) | 1-2 | Marks the end (1 bit with parity, 2 without) |
+| **Total** | **10** (with parity) or **9** (without parity) | Bits per character sent |
 
-**Default configuration:** 7 data bits, even parity, 1 stop bit (7E1)
+**Most common setup:** 7 data bits, even parity, 1 stop bit (called "7E1")
 
-## Frame Structure
+## ASCII Message Structure
 
-### ASCII ADU Structure
+### How an ASCII Message is Organized
 
 ```
-[':'][Address: 2 chars][Function Code: 2 chars][Data: 2N chars][LRC: 2 chars][CR][LF]
+[':'][Address: 2 chars][What to do: 2 chars][Details: 2N chars][Error check: 2 chars][Enter]
 ```
 
-| Field | Value | Description |
+| Part | Format | What It Is |
 |-------|-------|-------------|
-| Start delimiter | ':' (0x3A) | Marks start of ASCII frame |
-| Address | 2 ASCII hex chars | Slave address (00-FF) |
-| Function Code | 2 ASCII hex chars | Function code (01-7F) |
-| Data | 2N ASCII hex chars | Data bytes, each as 2 hex chars |
-| LRC | 2 ASCII hex chars | LRC checksum |
-| End delimiter | CR (0x0D), LF (0x0A) | Marks end of ASCII frame |
+| Start marker | ':' | Colon marks the start |
+| Device address | 2 hex digits | Which device (00-FF in text) |
+| Operation code | 2 hex digits | What to do (01-7F in text) |
+| Data | 2 digits per byte | Each number as two hex digits |
+| Error check | 2 hex digits | LRC checksum |
+| End marker | CR-LF | Carriage return + line feed (like Enter) |
 
-**Maximum ASCII ADU: 513 characters**
+**Biggest possible message: 513 characters**
 
-### Data Encoding
+### How Numbers Become Text
 
-Each binary byte is transmitted as two ASCII hexadecimal characters:
+Each number is converted to two readable hexadecimal characters:
 
 | Binary | ASCII | Chars |
 |--------|-------|-------|

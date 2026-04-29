@@ -13,40 +13,40 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-CRC-16 (Cyclic Redundancy Check) is a 16-bit error detection algorithm used in MODBUS RTU mode to ensure frame integrity over serial communication (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+CRC-16 (Cyclic Redundancy Check) is a mathematical formula that catches errors in MODBUS RTU messages (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). Think of it like a fingerprint for the message - if even one bit gets corrupted, the fingerprint won't match.
 
-## Overview
+## What CRC-16 Does
 
-CRC-16 provides robust error detection for MODBUS RTU frames by calculating a checksum based on the entire frame contents (excluding the CRC bytes themselves) (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+CRC-16 creates a 2-byte "signature" based on all the data in the message (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)). The receiving device calculates the same signature and compares them - if they don't match, the message was corrupted during transmission.
 
-### Key Characteristics
+### How CRC-16 Works
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| CRC size | 16 bits (2 bytes) |
-| Polynomial | 0x8005 (bit-reversed: 0xA001) |
-| Initial value | 0xFFFF |
-| Input reflection | Yes (LSB first) |
-| Output reflection | Yes |
-| Final XOR | 0x0000 |
-| Byte order | LSB first (little-endian) |
+| Size | 2 bytes (16 bits) |
+| Math formula | Special polynomial (0xA001) |
+| Starting value | 0xFFFF (all bits set to 1) |
+| Bit order | Processes smallest bit first |
+| Byte order in message | Sends low byte first, then high byte |
 
-**Critical:** CRC bytes are transmitted LSB first, unlike all other MODBUS fields which are big-endian (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
+**Important quirk:** CRC bytes are sent low-byte-first, which is backwards from all other MODBUS numbers (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
-## CRC-16 Parameters
+## CRC-16 Settings
 
-| Parameter | Value | Description |
+These are the specific settings MODBUS uses for its CRC calculation:
+
+| Setting | Value | What It Means |
 |-----------|-------|-------------|
-| Polynomial | 0x8005 | Generator polynomial |
-| Reversed polynomial | 0xA001 | Bit-reversed for LSB-first implementation |
-| Initial value | 0xFFFF | Starting CRC value |
-| Input reflection | Yes | Process bits LSB first |
-| Output reflection | Yes | Output bits LSB first |
-| Final XOR | 0x0000 | XOR result with 0x0000 |
+| Math formula | 0x8005 | The polynomial used in the calculation |
+| Bit-reversed formula | 0xA001 | Same formula, but for processing smallest bit first |
+| Starting value | 0xFFFF | Where the calculation begins |
+| Process order | Smallest bit first | Handles bits from right to left |
+| Output order | Smallest bit first | Sends result from right to left |
+| Final step | XOR with 0x0000 | Final adjustment (actually does nothing) |
 
-## CRC-16 Calculation Algorithm
+## How to Calculate CRC-16
 
-### Bit-by-Bit Algorithm
+### Simple Step-by-Step Method
 
 The fundamental CRC-16 algorithm processes each bit sequentially (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)):
 

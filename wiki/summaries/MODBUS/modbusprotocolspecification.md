@@ -12,41 +12,41 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document is the official MODBUS Application Protocol specification that describes the general communication model, data model, function codes, and exception handling mechanisms used in MODBUS protocol implementations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+This page summarizes the official MODBUS Application Protocol specification. It explains how MODBUS communication works, what data types exist, available operations, and how errors are handled (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
-## Protocol Overview
+## What This Specification Covers
 
-MODBUS is an application layer messaging protocol that provides client/server communication between devices connected on different types of buses or networks. The protocol defines a simple Protocol Data Unit (PDU) that is independent of the underlying communication layers (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+MODBUS is a messaging system that lets devices talk to each other over different connection types. The core messages (PDU) work the same way whether you're using Ethernet, serial cables, or other connections (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
-### Communication Architecture
+### How Communication Works
 
-MODBUS operates in a client/server model where:
-- The client initiates MODBUS transactions
-- The server processes requests and sends responses
-- Communication is unicast (directed to specific device) or broadcast (all devices on network)
+MODBUS uses a question-and-answer pattern:
+- The client asks questions and sends commands
+- The server processes requests and sends back answers
+- Messages go to one specific device (unicast) or all devices (broadcast)
 
-The protocol maps to different underlying layers by adding additional fields to the Application Data Unit (ADU):
-- TCP/IP: MBAP header added
-- Serial line: Address and error checking added
+Messages are wrapped differently depending on the connection:
+- Ethernet (TCP/IP): Adds an MBAP header with routing info
+- Serial cables: Adds device address and error checking
 
-## Data Model
+## MODBUS Data Types
 
-MODBUS defines a standardized data model with four primary tables:
+MODBUS organizes data into four standard types:
 
-| Table | Object Type | Type of Access | Typical Use |
+| Data Type | Size | Can You Change It? | What It's For |
 |-------|-------------|---------------|-------------|
-| [Coils](/wiki/concepts/coils.md) | Single bit | Read-Write | Digital outputs, control relays |
-| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | Single bit | Read-Only | Digital inputs, limit switches |
-| [Input Registers](/wiki/concepts/input-registers.md) | 16-bit word | Read-Only | Analog inputs, sensor readings |
-| [Holding Registers](/wiki/concepts/holding-registers.md) | 16-bit word | Read-Write | Setpoints, configuration values |
+| [Coils](/wiki/concepts/coils.md) | 1 bit (ON/OFF) | Yes (Read-Write) | Controlling outputs and relays |
+| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | 1 bit (ON/OFF) | No (Read-Only) | Reading switches and sensors |
+| [Input Registers](/wiki/concepts/input-registers.md) | 16 bits (number) | No (Read-Only) | Reading measurements |
+| [Holding Registers](/wiki/concepts/holding-registers.md) | 16 bits (number) | Yes (Read-Write) | Storing settings and setpoints |
 
-### Memory Organization
+### How Devices Store This Data
 
-The specification allows two implementation approaches:
-1. **Separate blocks** - Four distinct memory areas
-2. **Single block** - All data in one memory area with different addressing
+Devices can organize this data in two ways:
+1. **Separate areas** - Four different memory sections
+2. **Single area** - All data in one place, accessed differently
 
-Devices may implement either approach, but the protocol interface remains consistent.
+Either way works - the messages sent and received look the same.
 
 ## Function Codes
 

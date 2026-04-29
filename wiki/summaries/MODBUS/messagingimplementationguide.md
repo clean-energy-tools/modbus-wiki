@@ -12,37 +12,37 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document provides detailed implementation guidance for MODBUS messaging over TCP/IP networks, covering TCP connection management, BSD socket interface usage, client/server architecture, and component design patterns (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
+This page summarizes the MODBUS TCP/IP implementation guide. It provides practical advice for building MODBUS software that works on Ethernet networks, including how to manage connections, use network sockets, and structure your code (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-## Protocol Overview
+## What This Guide Covers
 
-MODBUS over TCP/IP encapsulates the MODBUS Application Protocol within TCP/IP using a 7-byte MBAP (MODBUS Application Protocol) header. The protocol maintains the client/server model from the original MODBUS specification (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
+MODBUS on Ethernet wraps MODBUS messages in TCP/IP using a 7-byte header (MBAP). It still uses the client/server pattern from the original MODBUS design (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-### Communication Architecture
+### Network Setups
 
-MODBUS TCP/IP supports several device configurations:
-- MODBUS TCP/IP Client and Server devices on TCP/IP network
-- Interconnection devices (bridges, routers, gateways) for TCP/IP to serial line conversion
-- MODBUS Serial Line Client and Server end devices via gateways
+MODBUS TCP/IP works in several configurations:
+- MODBUS devices talking directly to each other on Ethernet
+- Gateways that convert between Ethernet and serial cables
+- Serial MODBUS devices accessed through gateways
 
-## MBAP Header
+## The MBAP Header
 
-The MBAP header identifies and manages MODBUS messages on TCP/IP networks (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):
+The MBAP header tracks and routes MODBUS messages on Ethernet (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):
 
-| Field | Size | Description | Direction |
+| Field | Size | What It Does | Who Sets It |
 |-------|------|-------------|-----------|
-| Transaction Identifier | 2 bytes | Request/response pairing | Client → Server (echoed) |
-| Protocol Identifier | 2 bytes | 0 = MODBUS protocol | Client → Server (echoed) |
-| Length | 2 bytes | Number of following bytes (Unit ID + PDU) | Client (request) / Server (response) |
-| Unit Identifier | 1 byte | Remote slave address for gateways | Client → Server (echoed) |
+| Message ID | 2 bytes | Matches questions to answers | Client sets, server copies back |
+| Protocol marker | 2 bytes | 0 = this is MODBUS | Client sets, server copies back |
+| Length | 2 bytes | How many bytes follow this field | Both set (request/response) |
+| Device ID | 1 byte | Which device (for gateways) | Client sets, server copies back |
 
-**Key Differences from Serial:**
-- Slave address field replaced by Unit Identifier in MBAP header
-- Unit Identifier used for routing through gateways (single IP address supporting multiple MODBUS units)
-- Length field allows message boundary detection across TCP packet boundaries
-- All fields encoded in big-endian
+**Changes from Serial MODBUS:**
+- Device address moved into MBAP header as "Unit Identifier"
+- Unit ID lets one IP address reach multiple serial devices through a gateway
+- Length field shows where messages start and end
+- All numbers sent high byte first (big-endian)
 
-**Port:** All MODBUS/TCP ADUs sent via TCP to registered port 502
+**Port number:** MODBUS TCP uses port 502
 
 ## TCP Connection Management
 

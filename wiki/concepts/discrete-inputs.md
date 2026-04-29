@@ -13,25 +13,25 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-Discrete Inputs are single-bit read-only data objects in the MODBUS data model, typically used for digital inputs, limit switches, and other binary status signals (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+Discrete Inputs are single-bit read-only data in the MODBUS data model, typically used for digital inputs, limit switches, and other on/off status signals (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 ## Overview
 
-Discrete Inputs represent binary input data that can only be read (not written) by MODBUS clients. They are one of four primary data tables defined by the MODBUS protocol (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+Discrete Inputs represent binary (on/off) input data that you can only read (not write). They are one of four main data types defined by the MODBUS protocol (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-| Table | Object Type | Size | Access | Typical Use |
+| Table | What It Is | Size | Can You Write? | What It's For |
 |-------|-------------|------|--------|-------------|
-| Discrete Inputs | Bit | 1 bit | Read-only | Digital inputs, switches |
+| Discrete Inputs | Single bit | 1 bit | No (Read-only) | Digital inputs, switches |
 
 ## Discrete Input Properties
 
 | Property | Value |
 |----------|-------|
-| Data size | 1 bit |
-| Access type | Read-only |
-| Typical usage | Digital inputs, limit switches, status indicators |
-| Address range | 0-65535 (PDU address) |
-| Legacy notation | 1xxxx (e.g., discrete input 1 = 10001) |
+| Size | 1 bit (on or off) |
+| Can you write to it? | No (Read-only) |
+| What it's used for | Digital inputs, limit switches, status indicators |
+| How many | 0 to 65,535 addresses |
+| Old-style notation | 1xxxx (like discrete input 1 = 10001) |
 
 ## Addressing
 

@@ -14,37 +14,37 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---
 
-Implementation guidelines cover the practical aspects of building MODBUS-enabled systems, including software architecture, communication patterns, error handling, and integration considerations (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
+This page covers practical tips for building MODBUS into your software, including how to structure your code, handle connections, deal with errors, and integrate with other systems (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-## Client Implementation
+## Building a MODBUS Client (Asking Questions)
 
-### Client Architecture
+### What Your Client Needs
 
-**Core Components:**
-- **Connection Management:** Establish and maintain communication channels
-- **Request Building:** Construct proper PDUs and ADUs
-- **Response Handling:** Parse responses and process data
-- **Error Handling:** Detect and recover from failures
-- **State Management:** Track device states and configurations
+**Main Parts:**
+- **Connection Manager:** Opens and keeps communication channels working
+- **Message Builder:** Creates proper MODBUS messages
+- **Answer Handler:** Reads and processes responses
+- **Error Handler:** Catches and recovers from problems
+- **State Tracker:** Remembers what each device is doing
 
-### Connection Management
+### Managing Connections
 
-**TCP Connection Best Practices (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):**
+**Good Habits for Ethernet (TCP) (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):**
 
-| Practice | Description | Implementation |
+| Practice | What It Means | How to Do It |
 |----------|-------------|------------------|
-| Connection Pooling | Reuse connections | Maintain pool for repeated communication |
-| Single Connection | One connection per server | Avoid connection overhead |
-| Keep-Alive | Enable TCP keep-alive | Detect broken connections |
-| TCP_NODELAY | Disable Nagle algorithm | Low-latency communication |
-| Timeout Management | Appropriate timeouts | Prevent hanging, handle delays |
-| Graceful Shutdown | Proper connection closure | Clean resource cleanup |
+| Reuse connections | Don't open/close for every message | Keep a pool of open connections |
+| One per device | Use one connection to talk to each server | Don't waste resources with extras |
+| Keep-alive | Notice if connection dies | Turn on TCP keep-alive option |
+| No delays | Send messages immediately | Turn on TCP_NODELAY option |
+| Set timeouts | Don't wait forever for answers | Use reasonable timeout values |
+| Close nicely | Clean up when done | Close connections properly |
 
-**Serial Connection Best Practices:**
-- **Port Configuration:** Correct baud rate, parity, stop bits
-- **Timeout Handling:** Frame timeout and response timeout
-- **Retry Logic:** Exponential backoff for retries
-- **Connection Validation:** Verify device presence before operation
+**Good Habits for Serial Cables:**
+- **Settings:** Use correct speed, parity, and stop bits
+- **Timeouts:** Set timeouts for messages and responses
+- **Retry Logic:** Wait longer between each retry (1s, 2s, 4s...)
+- **Check First:** Verify device is there before sending
 
 ### Request Building
 

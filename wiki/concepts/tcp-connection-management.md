@@ -12,42 +12,42 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-TCP connection management for MODBUS/TCP handles the establishment, maintenance, and cleanup of TCP connections used for MODBUS communication (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
+TCP connection management for MODBUS/TCP covers how to open, keep alive, and close Ethernet connections for MODBUS communication (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-## Overview
+## What Connection Management Does
 
-MODBUS/TCP requires careful TCP connection management to support reliable, efficient communication between clients and servers over Ethernet networks (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
+MODBUS/TCP needs proper connection handling to work reliably and efficiently over Ethernet networks (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)).
 
-### Key Characteristics
+### Connection Features
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| Default port | 502 (standard), 802 (secure) |
-| Connection model | Client/Server |
-| Connection lifetime | Keep open (don't close per transaction) |
-| Concurrent connections | Supported |
-| Transaction concurrency | Multiple transactions per connection |
+| Port number | 502 (normal), 802 (encrypted) |
+| Pattern | Client asks, server answers |
+| How long to keep open | Keep connections open (don't close after each message) |
+| Multiple clients | Yes, servers can handle many clients at once |
+| Multiple messages | Yes, send many messages on same connection |
 
-## Connection Models
+## Ways to Manage Connections
 
-### Explicit Connection Management
+### Manual Connection Management
 
-**Description:** User application manages all TCP connections directly.
+**What it means:** Your program handles all the connection details yourself.
 
-**Advantages:**
-- Maximum flexibility
-- Full control over connection lifecycle
-- Can optimize for specific use cases
+**Good things:**
+- Complete control over how connections work
+- Can customize for your specific needs
+- Most flexible
 
-**Disadvantages:**
-- Requires TCP/IP expertise
-- More complex application code
-- Higher development effort
+**Challenges:**
+- You need to understand TCP/IP networking
+- More code to write and maintain
+- Takes more development time
 
-**Requirements:**
-- Application must implement BSD socket interface
-- Manual connection establishment, maintenance, and cleanup
-- Manual connection pool management
+**What you need to do:**
+- Use socket programming (BSD sockets)
+- Open, maintain, and close connections yourself
+- Keep track of all your connections
 
 ### Automatic Connection Management
 

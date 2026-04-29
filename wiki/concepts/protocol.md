@@ -13,106 +13,106 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---
 
-Protocol concepts describe the fundamental communication principles, architecture patterns, and design principles that govern how MODBUS devices interact (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). Understanding these concepts is essential for implementing and debugging MODBUS systems.
+This page explains the core ideas behind how MODBUS communication works (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). Understanding these concepts helps you build and troubleshoot MODBUS systems.
 
-## OSI Layer 7 Application Protocol
+## MODBUS Works on Top of Other Communication Systems
 
-MODBUS operates at OSI Layer 7 (Application Layer), making it independent of the underlying transport layers (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). This design principle allows MODBUS to work over different physical media while maintaining the same application-level protocol.
+MODBUS sits on top of whatever communication system you're using - whether that's Ethernet, serial cables, or something else (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). This is like how email works the same way whether you're on Wi-Fi, cellular, or a wired connection.
 
-### Layer Independence Benefits
+### Why This Separation Helps
 
-- **Transport Flexibility:** Works over TCP/IP, RS-485, RS-232, and other media
-- **Protocol Reusability:** Same application protocol across different networks
-- **Simplified Implementation:** Transport-specific details separated from application logic
-- **Future Compatibility:** Can adapt to new transport technologies without changing application code
+- **Connection Flexibility:** Use MODBUS on Ethernet, RS-485 serial, RS-232 serial, and more
+- **Reusable Messages:** The same MODBUS messages work on any connection type
+- **Simpler Code:** You can handle connection details separately from MODBUS logic
+- **Future-Proof:** New connection types can be added without changing MODBUS messages
 
-### Transport Layer Responsibilities
+### What Each Layer Does
 
-The transport layer (TCP/IP or serial line) handles:
-- **Connection Management:** Establishing and maintaining communication channels
-- **Data Integrity:** Error detection (CRC-16 for RTU, LRC for ASCII, TCP checksum)
-- **Message Framing:** Defining message boundaries and timing
-- **Flow Control:** Managing data flow and preventing overflow
+The connection layer (Ethernet or serial) handles:
+- **Making Connections:** Setting up and keeping communication channels open
+- **Checking for Errors:** Making sure messages arrive correctly (CRC for serial, checksums for Ethernet)
+- **Marking Message Boundaries:** Showing where one message ends and another begins
+- **Controlling Flow:** Making sure messages don't arrive too fast
 
-The application layer (MODBUS) handles:
-- **Function Codes:** Defining operations and requests
-- **Data Model:** Organizing and accessing data objects
-- **Exception Handling:** Reporting and processing errors
+The MODBUS layer handles:
+- **Operations:** What to do (read a value, write a value, etc.)
+- **Data Organization:** How data is stored (coils, registers, etc.)
+- **Error Messages:** Reporting when something goes wrong
 
-## Communication Models
+## How MODBUS Devices Talk to Each Other
 
-### Client/Server Architecture
+### The Question-and-Answer Pattern
 
-MODBUS uses a client/server (master/slave) communication model (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS uses a question-and-answer pattern (called "client/server" or "master/slave") (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
 | Aspect | Client (Master) | Server (Slave) |
 |--------|------------------|------------------|
-| Role | Initiates requests | Responds to requests |
-| Control | Controls timing | Passive responder |
-| State | Can communicate with multiple servers | Waits for client requests |
-| Addresses | One primary address | Unique address (1-247) |
+| What it does | Asks questions | Answers questions |
+| Who's in charge | Controls when to ask | Waits to be asked |
+| Connections | Can talk to many servers | Waits for clients to talk to it |
+| Addresses | One address | Unique address (1-247) |
 
-This model ensures:
-- **Deterministic Communication:** Client controls request timing
-- **Conflict Prevention:** Only one client accesses a server at a time
-- **Error Isolation:** Server errors don't affect client state
+This pattern provides:
+- **Predictable Timing:** The client decides when things happen
+- **No Conflicts:** Only one device asks at a time
+- **Isolated Errors:** If one server has a problem, it doesn't break the client
 
-### Request/Response Pattern
+### How a Conversation Works
 
-MODBUS communication follows a strict request-response pattern (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+Every MODBUS conversation follows these steps (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-1. **Request:** Client sends PDU (Protocol Data Unit) with function code and parameters
-2. **Processing:** Server processes request and prepares response
-3. **Response:** Server sends response PDU with data or exception code
-4. **Cycle Completion:** Client processes response and can initiate next request
+1. **Ask:** Client sends a message saying what it wants
+2. **Process:** Server does the requested work
+3. **Answer:** Server sends back the result or an error message
+4. **Next:** Client can ask another question
 
-**Key Principles:**
-- **Synchronous:** Request must complete before next request (single outstanding at a time for serial)
-- **Stateless:** Each request is independent (except for TCP which supports concurrent requests)
-- **Reliable:** Response provides success/failure feedback
-- **Exception Reporting:** Errors returned via exception codes rather than silent failures
+**Important Rules:**
+- **One at a Time:** On serial connections, wait for an answer before asking the next question
+- **Independent Questions:** Each question stands alone (though Ethernet can handle multiple at once)
+- **Always Answer:** The server always sends something back - data or an error
+- **Clear Errors:** Problems are reported with specific error codes, not silence
 
-## Message Structure
+## MODBUS Message Parts
 
-### Protocol Data Unit (PDU)
+### The Core Message (PDU)
 
-The PDU is the core MODBUS message unit, transport-independent (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+The PDU is the actual message content that works on any connection type (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-**PDU Components:**
+**What's in a PDU:**
 ```
-[Function Code: 1 byte][Data: 0-252 bytes]
+[What to do: 1 byte][Additional details: 0-252 bytes]
 ```
 
-**Function Code Classification:**
-- **Bit Access (0x01-0x06):** Read/write coils and discrete inputs
-- **Word Access (0x03-0x06):** Read/write input and holding registers
-- **Diagnostics (0x07-0x11):** Read device identification
-- **Other (0x2B):** Vendor-specific and extended functions
+**Types of Operations:**
+- **ON/OFF Operations (0x01-0x06):** Read/write individual switches and relays
+- **Number Operations (0x03-0x06):** Read/write measurements and settings
+- **Device Info (0x07-0x11):** Get information about the device
+- **Special (0x2B):** Custom operations specific to certain devices
 
-See [Function Codes](/wiki/concepts/function-codes.md) for complete function code specifications.
+See [Function Codes](/wiki/concepts/function-codes.md) for all available operations.
 
-### Application Data Unit (ADU)
+### The Complete Message (ADU)
 
-The ADU wraps the PDU with transport-specific framing:
+The ADU adds extra information around the core message for the specific connection type:
 
-**MODBUS TCP ADU:**
+**For Ethernet (MODBUS TCP):**
 ```
-[MBAP Header: 7 bytes][PDU: 1-253 bytes]
+[Header info: 7 bytes][Core message: 1-253 bytes]
 Total: 8-260 bytes
 ```
 
-**MODBUS Serial ADU (RTU):**
+**For Serial Cables (RTU - binary):**
 ```
-[Address: 1 byte][PDU: 1-253 bytes][CRC-16: 2 bytes]
-Silent interval: 3.5 character times
-```
-
-**MODBUS Serial ADU (ASCII):**
-```
-[Start: 1 byte][Address: 1 byte][PDU: 1-253 bytes][LRC: 1 byte][End: CR+LF]
+[Device address: 1 byte][Core message: 1-253 bytes][Error check: 2 bytes]
+Plus: pause between messages (3.5 character times)
 ```
 
-See [MBAP Header](/wiki/concepts/mbap-header.md) for MBAP header details and [CRC-16](/wiki/concepts/crc-16.md) for error detection.
+**For Serial Cables (ASCII - text):**
+```
+[Start ':'][Device address: 1 byte][Core message: 1-253 bytes][Error check: 1 byte][End: CR+LF]
+```
+
+See [MBAP Header](/wiki/concepts/mbap-header.md) for Ethernet header details and [CRC-16](/wiki/concepts/crc-16.md) for error checking.
 
 ## Communication Principles
 
@@ -157,35 +157,35 @@ MODBUS supports broadcast addressing (address 0) on serial networks (source: [mo
 - **Use Cases:** Synchronization, configuration updates, status queries
 - **Limitations:** No confirmation of receipt, potential for collisions
 
-## Error Handling
+## Handling Problems
 
-### Exception Mechanism
+### Error Messages
 
-MODBUS uses exception responses to report errors instead of silent failures (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS always sends an error message when something goes wrong - it never stays silent (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-**Exception Response Format:**
+**What an error message looks like:**
 ```
-[Function Code + 0x80: 1 byte][Exception Code: 1 byte]
+[Operation code + error flag: 1 byte][What went wrong: 1 byte]
 ```
 
-**Exception Code Classes:**
-- **Protocol Errors (0x01):** Unsupported function code
-- **Address Errors (0x02):** Invalid or inaccessible address
-- **Data Errors (0x03):** Invalid data value or quantity
-- **Device Errors (0x04):** Internal device failure
-- **Server Errors (0x06):** Device busy, retry required
+**Types of Errors:**
+- **Don't Understand (0x01):** "I don't know how to do that operation"
+- **Wrong Address (0x02):** "That address doesn't exist"
+- **Bad Value (0x03):** "That value doesn't make sense"
+- **Device Problem (0x04):** "Something's broken inside me"
+- **Busy (0x06):** "I'm busy, try again later"
 
-### Error Detection
+### Catching Corrupted Messages
 
-Different MODBUS variants use different error detection mechanisms (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+Different MODBUS types check for corrupted messages in different ways (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-| Variant | Error Detection | Effectiveness | Implementation |
+| Connection Type | How It Checks | How Good | How It Works |
 |---------|-----------------|--------------|----------------|
-| MODBUS TCP | TCP checksum | High | Built into TCP stack |
-| MODBUS RTU | CRC-16 | High | Polynomial: x^16 + x^15 + x^2 + 1 |
-| MODBUS ASCII | LRC | Medium | Sum of bytes, two's complement |
+| MODBUS TCP | TCP checksum | Very good | Built into Ethernet |
+| MODBUS RTU | CRC-16 | Very good | Complex math formula |
+| MODBUS ASCII | LRC | Good enough | Simple addition check |
 
-See [CRC-16](/wiki/concepts/crc-16.md) for detailed CRC-16 implementation.
+See [CRC-16](/wiki/concepts/crc-16.md) for how the CRC-16 calculation works.
 
 ## Performance Considerations
 

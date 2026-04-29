@@ -12,52 +12,52 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS is the de facto standard for industrial device communication (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)). Originally developed for programmable logic controllers (PLCs) in 1979, it has become ubiquitous across many industries due to its simplicity, openness, and widespread support.
+MODBUS is the most common way industrial devices talk to each other (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)). Created for factory controllers in 1979, it's now used in countless industries because it's simple, free to use, and supported by almost everyone.
 
-## Key Characteristics Driving Adoption
+## Why MODBUS is So Popular
 
-| Feature | Benefit |
+| Feature | Why It Matters |
 |---------|---------|
-| Simple protocol | Easy to implement, minimal overhead |
-| Public specification | No licensing fees, open standard |
-| Wide device support | Thousands of compatible devices |
-| Multiple transport options | TCP/IP, RS-485, RS-232 |
-| Small footprint | Runs on embedded systems |
+| Simple | Easy to learn and build, doesn't slow things down |
+| Free | No license fees, anyone can use it |
+| Universal support | Works with thousands of different devices |
+| Flexible connections | Works on Ethernet, old serial cables, and more |
+| Small size | Runs even on tiny embedded computers |
 
-## Primary Industries
+## Where You'll Find MODBUS
 
-### Manufacturing and Factory Automation
+### Factories and Manufacturing
 
-**Applications:**
-- Programmable Logic Controller (PLC) communication
-- Production line control and monitoring
-- Robotics and motion control
-- Assembly line coordination
-- Machine-to-machine (M2M) communication
-- Quality control systems
-- Conveyor belt systems
+**What MODBUS does there:**
+- Lets controllers (PLCs) talk to each other
+- Controls and watches production lines
+- Coordinates robots and moving parts
+- Manages assembly lines
+- Connects machines together
+- Runs quality control checks
+- Controls conveyor belts
 
-**Typical Devices:**
-- PLCs and PACs
-- Motor drives and VFDs
-- Servo controllers
-- Sensors and actuators
-- HMI panels
-- Industrial PCs
+**Equipment that uses MODBUS:**
+- Programmable Logic Controllers (PLCs)
+- Motor speed controllers (VFDs)
+- Robot controllers
+- Sensors and switches
+- Control panels and displays
+- Industrial computers
 
-**Why MODBUS:**
-- Real-time control requirements
-- Existing serial infrastructure
-- Large installed base of MODBUS-compatible equipment
-- Integration with legacy systems
+**Why factories use MODBUS:**
+- Needs fast, reliable control
+- Many factories already have serial wiring installed
+- Huge amount of existing MODBUS equipment
+- Works with old and new systems
 
-### Building Automation
+### Buildings and Climate Control
 
-**Applications:**
-- HVAC (Heating, Ventilation, and Air Conditioning) control
-- Lighting management systems
-- Energy monitoring and management
-- Access control and security
+**What MODBUS does there:**
+- Controls heating, cooling, and air flow (HVAC)
+- Manages lighting systems
+- Monitors and controls energy use
+- Handles access control and security systems
 - Elevator and escalator systems
 - Fire safety systems
 - Indoor environmental monitoring

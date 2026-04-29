@@ -13,171 +13,171 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---
 
-MODBUS is an application-layer messaging protocol (OSI Layer 7) providing client/server communication between devices connected on different types of buses or networks (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). Originally developed by Modicon in 1979 for programmable logic controllers (PLCs), it remains the de facto standard for industrial device communication (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
+MODBUS is a messaging system that lets industrial devices talk to each other (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). Think of it like a common language that factory equipment, building controllers, and power systems use to share information. Modicon created it in 1979 for programmable logic controllers (PLCs), and it's still the most common way industrial devices communicate today (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
-## Protocol Overview
+## What MODBUS Does
 
-MODBUS is a simple, robust, and openly published protocol that has become ubiquitous in industrial automation due to its simplicity, openness, and widespread vendor support (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). The protocol defines a client/server (also known as master/slave) communication model where clients initiate requests and servers respond with data or exception codes.
+MODBUS works the same way whether you're using network cables, serial cables, or wireless connections (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). It uses a simple request-and-response pattern: one device (the client or "master") asks questions, and other devices (the servers or "slaves") answer with data or error messages.
 
-## Key Characteristics
+## What Makes MODBUS Special
 
-| Property | Description |
+| Feature | What It Means |
 |-----------|-------------|
-| Architecture | Client/Server (Master/Slave) |
-| Protocol Layer | OSI Layer 7 (Application) |
-| Simplicity | Simple request/response model |
-| Openness | Public specification, no licensing fees |
-| Portability | Multiple transport layers (TCP/IP, RS-485, RS-232) |
-| Scalability | Supports up to 247 devices on same network (1-247) |
-| Maturity | Over 45 years in production use (since 1979) |
+| How it works | One device asks, others answer (Client/Server) |
+| Where it fits | Top layer - the actual messages devices send |
+| Easy to use | Simple question-and-answer pattern |
+| Free to use | Public documentation, no license fees |
+| Works anywhere | TCP/IP networks, RS-485 serial, RS-232 serial |
+| Scalability | Up to 247 devices on one network |
+| Battle-tested | Over 45 years in factories worldwide (since 1979) |
 
-## Historical Background
+## Where MODBUS Came From
 
-MODBUS was developed in 1979 by Modicon (now Schneider Electric) for use with their Modicon programmable logic controllers (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)). The protocol was designed to enable communication between Modicon PLCs and other devices such as sensors, actuators, and monitoring systems.
+In 1979, a company called Modicon (now part of Schneider Electric) created MODBUS to let their programmable logic controllers talk to sensors, switches, and other equipment (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
 
-The protocol's openness and simplicity led to widespread adoption across manufacturers, making it one of the most common industrial protocols in use today.
+Because Modicon published the specifications publicly and kept the design simple, other manufacturers started using MODBUS too. Today it's one of the most widely used industrial communication systems in the world.
 
-## Protocol Architecture
+## How MODBUS Communication Works
 
-### Client/Server Model
+### The Client/Server Pattern
 
-MODBUS uses a client/server communication model (also referred to as master/slave in the original specification):
+MODBUS uses a question-and-answer pattern (the original specifications call this "master/slave"):
 
-- **Client (Master):** Initiates all requests to one or more server devices
-- **Server (Slave):** Responds to requests from clients, processes commands, and provides data
-- **Point-to-Point:** Single client communicates with single server
-- **Broadcasting:** Client can send to all servers (address 0), but servers don't respond
+- **Client (Master):** The device that asks questions and sends commands
+- **Server (Slave):** Devices that answer questions and provide data
+- **One-to-One:** A client talks to one server at a time
+- **Broadcast:** A client can send the same message to all servers, but they won't answer back
 
-This model ensures deterministic communication where the client controls the timing and sequence of operations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+The client is always in control - it decides when to ask questions and which server to talk to (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
-### Transport Independence
+### Works on Different Connection Types
 
-MODBUS is transport-independent at the application layer, meaning it can operate over various physical and data link layers (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS messages work the same way whether you're using Ethernet cables, old-style serial cables, or other connection methods (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-**Common Transport Variants:**
-- [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - MODBUS over TCP/IP networks
-- [MODBUS RTU](/wiki/concepts/modbus-rtu.md) - MODBUS Remote Terminal Unit (binary serial)
-- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) - MODBUS ASCII (text serial)
-- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) - MODBUS/TCP with TLS security
+**Common Ways to Send MODBUS:**
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - Over modern Ethernet/IP networks
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md) - Over serial cables (binary format)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) - Over serial cables (text format)
+- [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) - Encrypted version for security
 
-This transport independence allows MODBUS to be deployed across diverse network topologies and physical media while maintaining the same application protocol.
+This flexibility means you can use MODBUS in old factories with serial wiring and modern facilities with Ethernet networks using the same basic message format.
 
-## Protocol Data Model
+## Types of Data MODBUS Can Handle
 
-MODBUS defines four primary data tables representing different types of data objects (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS organizes data into four types, like four different filing cabinets (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-| Table | Object Type | Access | Description |
+| Data Type | Size | Can You Change It? | What It's For |
 |-------|-------------|--------|-------------|
-| [Coils](/wiki/concepts/coils.md) | Bit | Read/Write | Single-bit outputs for digital control |
-| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | Bit | Read-only | Single-bit inputs for digital sensing |
-| [Input Registers](/wiki/concepts/input-registers.md) | Word | Read-only | 16-bit sensor measurements and status |
-| [Holding Registers](/wiki/concepts/holding-registers.md) | Word | Read/Write | 16-bit configuration and setpoints |
+| [Coils](/wiki/concepts/coils.md) | 1 bit (ON/OFF) | Yes (Read/Write) | Controlling things like relays and outputs |
+| [Discrete Inputs](/wiki/concepts/discrete-inputs.md) | 1 bit (ON/OFF) | No (Read-only) | Reading switches and digital sensors |
+| [Input Registers](/wiki/concepts/input-registers.md) | 16 bits (number) | No (Read-only) | Reading measurements like temperature |
+| [Holding Registers](/wiki/concepts/holding-registers.md) | 16 bits (number) | Yes (Read/Write) | Storing settings and setpoints |
 
-This simple data model provides flexibility while maintaining protocol simplicity.
+This simple organization keeps things straightforward while still being flexible enough for most industrial uses.
 
-## Protocol Data Units
+## MODBUS Message Structure
 
-MODBUS exchanges data using two types of protocol data units (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+MODBUS messages have two main parts (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-### Protocol Data Unit (PDU)
+### The Core Message (PDU)
 
-The PDU is the application layer message that is independent of the underlying transport layer. It contains:
-- **Function Code:** 1 byte - specifies the operation to perform
-- **Request Data:** 0-252 bytes - parameters for the requested operation
-- **Response Data:** 0-252 bytes - result of the requested operation
+The PDU is the actual message content that works the same way on any connection type:
+- **Function Code:** 1 byte - tells what operation to do (like "read temperature")
+- **Request Data:** 0-252 bytes - additional details for the request
+- **Response Data:** 0-252 bytes - the answer to the request
 - **Maximum Size:** 253 bytes total (1 + 252)
 
-### Application Data Unit (ADU)
+### The Complete Message (ADU)
 
-The ADU adds transport-specific framing to the PDU:
+The ADU wraps the core message with extra information needed for the specific connection type:
 
-**MODBUS TCP ADU Structure:**
-- MBAP Header: 7 bytes (Transaction ID, Protocol ID, Length, Unit ID)
-- PDU: Variable length (up to 253 bytes)
+**For Ethernet (MODBUS TCP):**
+- Header: 7 bytes (message ID, which device, message length)
+- Core message: up to 253 bytes
 - Total maximum: 260 bytes
 
-**MODBUS Serial ADU Structure:**
-- Address: 1 byte (slave address)
-- CRC-16/LRC: 2 bytes (error detection)
-- PDU: Variable length
-- Silent intervals: Frame timing (3.5 character times)
+**For Serial Cables (RTU/ASCII):**
+- Device address: 1 byte (which device to talk to)
+- Error check: 2 bytes (makes sure message isn't corrupted)
+- Core message: variable length
+- Timing gaps: pauses between messages to mark boundaries
 
-See [MBAP Header](/wiki/concepts/mbap-header.md) for MBAP header details.
+See [MBAP Header](/wiki/concepts/mbap-header.md) for details about the Ethernet header.
 
-## Operation Model
+## How a MODBUS Conversation Works
 
-### Request/Response Cycle
+### The Request/Response Pattern
 
-1. **Client Request:** Client sends request with function code and parameters
-2. **Server Processing:** Server executes requested operation
-3. **Server Response:** Server sends response with data or exception code
-4. **Client Processing:** Client processes response or handles exception
+1. **Client Asks:** The client sends a request saying what it wants (like "read register 100")
+2. **Server Works:** The server does the requested operation
+3. **Server Answers:** The server sends back the data or an error message
+4. **Client Uses Answer:** The client processes the answer or handles any error
 
-This simple request/response model provides reliability and allows for error handling through exception codes.
+This simple back-and-forth pattern makes MODBUS reliable and easy to troubleshoot.
 
-### Exception Handling
+### When Things Go Wrong
 
-When a server cannot process a request, it returns an exception response with the function code's most significant bit set (function code + 0x80) and an exception code (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+If a server can't do what the client asks, it sends back an error message (exception) instead of data (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
-Common exception codes include:
-- 0x01: ILLEGAL FUNCTION - Function code not supported
-- 0x02: ILLEGAL DATA ADDRESS - Address out of range
-- 0x03: ILLEGAL DATA VALUE - Invalid parameter value
-- 0x04: SERVER DEVICE FAILURE - Internal error
+Common error messages:
+- 0x01: ILLEGAL FUNCTION - "I don't know how to do that"
+- 0x02: ILLEGAL DATA ADDRESS - "That address doesn't exist here"
+- 0x03: ILLEGAL DATA VALUE - "That value doesn't make sense"
+- 0x04: SERVER DEVICE FAILURE - "Something broke inside me"
 
-## Addressing
+## How MODBUS Finds the Right Device
 
-MODBUS uses different addressing models depending on the transport variant:
+MODBUS uses different ways to identify devices depending on how they're connected:
 
-**TCP/IP Addressing:**
-- Unit ID field in MBAP header
-- 0xFF for direct connection
-- 1-247 for gateway routing to serial devices
+**On Ethernet Networks:**
+- Uses a Unit ID number in the message header
+- 0xFF (255) means "device directly connected"
+- 1-247 for reaching devices through a gateway
 
-**Serial Addressing:**
-- 1-byte slave address in frame
-- 0 for broadcast (no response)
-- 1-247 for individual devices
-- 248-255 reserved
+**On Serial Networks:**
+- Uses a 1-byte address at the start of each message
+- 0 means "everyone listen" (broadcast - no one answers back)
+- 1-247 for talking to specific devices
+- 248-255 are reserved and shouldn't be used
 
-## Advantages and Limitations
+## What MODBUS Does Well and What It Doesn't
 
-### Advantages
+### Strengths
 
-- **Simplicity:** Easy to implement and debug
-- **Openness:** Public specification, no licensing fees
-- **Widespread Support:** Available from many vendors
-- **Transport Flexibility:** Works over TCP/IP and multiple serial media
-- **Scalability:** Supports large networks with many devices
-- **Maturity:** Proven reliability over decades of use
+- **Simple:** Easy to learn, implement, and troubleshoot
+- **Free:** Public documentation, no license costs
+- **Widely Supported:** Thousands of devices from hundreds of manufacturers
+- **Flexible Connections:** Works on Ethernet, serial cables, and more
+- **Scalable:** Can handle networks with many devices
+- **Proven:** Used successfully in factories for over 45 years
 
 ### Limitations
 
-- **Performance:** Not suitable for high-speed, real-time control loops
-- **Security:** Basic implementations lack encryption and authentication (use [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md))
-- **Data Size:** Limited to 253-byte PDU size
-- **Determinism:** TCP is not deterministic (serial variants are)
-- **Broadcasting:** Limited broadcast support, no responses
+- **Speed:** Not fast enough for high-speed control (like catching a falling object)
+- **Security:** Standard MODBUS has no encryption or passwords (see [MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) for secure version)
+- **Message Size:** Messages can't be bigger than 253 bytes
+- **Timing:** Ethernet version doesn't guarantee exact timing (serial versions do)
+- **Broadcasting:** Limited ability to send to multiple devices at once
 
-## Applications
+## Where You'll Find MODBUS
 
-MODBUS is used across many industries including:
-- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md) - Manufacturing and factory automation
-- Building automation and HVAC control
-- Energy management and power generation
-- Water treatment and environmental monitoring
-- Transportation and infrastructure systems
-- Oil and gas pipeline monitoring
+MODBUS is used in many industries:
+- [MODBUS Usage and Applications](/wiki/concepts/modbus-usage-and-applications.md) - Factories and manufacturing
+- Building controls (heating, cooling, lighting)
+- Solar panels, wind turbines, and power systems
+- Water treatment plants and environmental monitoring
+- Traffic signals and infrastructure
+- Oil and gas pipelines
 
-## Related Information
+## Learn More
 
-- [Function Codes](/wiki/concepts/function-codes.md) - Detailed function code specifications
-- [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - MODBUS/TCP implementation details
-- [MODBUS RTU](/wiki/concepts/modbus-rtu.md) - Serial RTU mode specifications
-- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) - Serial ASCII mode specifications
-- [Summary of MODBUS Protocol Specification for AI Implementation](/wiki/summaries/MODBUS/MODBUS.md) - AI implementation reference
+- [Function Codes](/wiki/concepts/function-codes.md) - All the operations MODBUS can do
+- [MODBUS TCP](/wiki/concepts/modbus-tcp.md) - How MODBUS works on Ethernet
+- [MODBUS RTU](/wiki/concepts/modbus-rtu.md) - How MODBUS works on serial cables (binary)
+- [MODBUS ASCII](/wiki/concepts/modbus-ascii.md) - How MODBUS works on serial cables (text)
+- [Summary of MODBUS Protocol Specification for AI Implementation](/wiki/summaries/MODBUS/MODBUS.md) - Complete technical reference
 
-See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for detailed protocol design concepts.
+See also: [protocol-architecture](/wiki/concepts/protocol-architecture.md) for technical protocol concepts.
 
 ## Related pages
 

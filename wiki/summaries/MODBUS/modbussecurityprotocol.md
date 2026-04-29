@@ -12,42 +12,42 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document defines the MODBUS/TCP Security protocol specification that adds TLS encryption and authentication to MODBUS/TCP communications (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
+This page summarizes the MODBUS/TCP Security specification, which adds encryption and authentication to MODBUS/TCP (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
-## Protocol Overview
+## What MODBUS TCP Security Does
 
-[MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) (MBAPS) encapsulates standard MODBUS/TCP within TLS, providing secure, authenticated communication for MODBUS devices over TCP/IP networks (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
+[MODBUS TCP Security](/wiki/concepts/modbus-tcp-security.md) (MBAPS) wraps regular MODBUS/TCP in TLS encryption, making messages private and verifying who's communicating (source: [modbussecurityprotocol.md](/raw/MODBUS/modbussecurityprotocol.md)).
 
-### Key Characteristics
+### Security Features
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| Port | 802 (secure MODBUS) |
-| TLS Version | 1.2 minimum, 1.3 recommended |
-| Authentication | Mutual TLS (client and server certificates) |
-| Certificate Format | x.509v3 |
-| Role Encoding | Certificate extension (OID 1.3.6.1.4.1.50316.802.1) |
+| Port number | 802 (different from regular MODBUS on 502) |
+| Encryption version | TLS 1.2 minimum, TLS 1.3 better |
+| Who can connect | Both sides prove identity with certificates |
+| Certificate type | x.509v3 (standard digital certificates) |
+| User permissions | Encoded in certificate (special field) |
 
-## Security Architecture
+## How Security Works
 
-### Mutual Authentication
+### Both Sides Prove Who They Are
 
-Both client and server must authenticate using X.509v3 certificates:
+Both client and server must show certificates to prove their identity:
 
-**Client Authentication:**
-- Client presents certificate to server during TLS handshake
-- Server validates client certificate
-- Server extracts role from certificate extension
-- Server applies authorization rules based on role
+**Client proves itself:**
+- Client shows its certificate when connecting
+- Server checks if the certificate is valid
+- Server reads the client's role from the certificate
+- Server decides what the client can do based on role
 
-**Server Authentication:**
-- Server presents certificate to client during TLS handshake
-- Client validates server certificate
-- Client verifies server identity
+**Server proves itself:**
+- Server shows its certificate when client connects
+- Client checks if the certificate is valid
+- Client verifies it's talking to the right server
 
-### Role-Based Authorization
+### Permission System
 
-Roles are encoded in x.509v3 certificate extensions to implement access control:
+Roles are stored in the certificate to control what each user can do:
 
 | Property | Value |
 |-----------|-------|

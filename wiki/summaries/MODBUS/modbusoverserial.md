@@ -12,42 +12,42 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:52+03:00
 ---
 
-This document describes the MODBUS application protocol for serial line transmission, covering both RTU and ASCII transmission modes, the master-slave protocol model, and the RS-485 physical layer requirements (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
+This page summarizes the MODBUS serial line specification. It explains how MODBUS works on serial cables (like RS-485), including RTU and ASCII modes, the master-slave communication pattern, and cable requirements (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md)).
 
-## Protocol Overview
+## How Serial MODBUS Works
 
-MODBUS Serial Line is a master-slave protocol where:
-- One master device initiates all transactions
-- Up to 247 slave devices can be addressed (addresses 1-247)
-- Address 0 is reserved for broadcast (no response expected)
-- Slaves only respond when addressed by the master (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md))
+MODBUS on serial cables uses a master-slave pattern:
+- One master device starts all conversations
+- Up to 247 slave devices can be connected (numbered 1-247)
+- Address 0 means "everyone listen" (broadcast - no one answers back)
+- Slaves only talk when the master asks them (source: [modbusoverserial.md](/raw/MODBUS/modbusoverserial.md))
 
-### Communication Models
+### Two Ways to Send Messages
 
-**Unicast Mode:**
-- Master → specific slave → slave responds
+**Talking to one device:**
+- Master → specific slave → slave answers
 
-**Broadcast Mode:**
-- Master → all slaves (address 0) → no response
-- All slaves execute the command but do not reply
+**Talking to everyone:**
+- Master → all slaves (address 0) → no one answers
+- All slaves do what they're told but stay quiet
 
-## Transmission Modes
+## Two Formats for Serial Messages
 
-MODBUS supports two transmission modes over serial lines:
+MODBUS can send messages over serial cables in two different formats:
 
-### RTU Mode (Remote Terminal Unit)
+### RTU Mode (Binary Format)
 
-[MODBUS RTU](/wiki/concepts/modbus-rtu.md) transmits data in binary format with CRC-16 error checking.
+[MODBUS RTU](/wiki/concepts/modbus-rtu.md) sends data as raw binary numbers with strong error checking (CRC-16).
 
-**Character Format:**
-| Field | Bits | Description |
+**How each byte is sent:**
+| Part | Bits | What It Does |
 |-------|------|-------------|
-| Start bit | 1 | Always 0 |
-| Data bits | 8 | LSB first |
-| Parity bit | 1 | Even parity (default), odd, or none |
-| Stop bit(s) | 1-2 | 1 with parity, 2 without parity |
+| Start bit | 1 | Always 0, marks the beginning |
+| Data bits | 8 | The actual data, smallest bit first |
+| Parity bit | 1 | Error check (usually "even"), optional |
+| Stop bit(s) | 1-2 | Marks the end (1 bit with parity, 2 without) |
 
-**Default configuration:** 8 data bits, even parity, 1 stop bit (8E1)
+**Most common setup:** 8 data bits, even parity, 1 stop bit (called "8E1")
 **Alternative (no parity):** 8 data bits, no parity, 2 stop bits (8N2)
 
 #### RTU Frame Structure

@@ -14,98 +14,98 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS TCP is MODBUS protocol implementation over TCP/IP networks, using a 7-byte MBAP (MODBUS Application Protocol) header to encapsulate MODBUS requests and responses (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
+MODBUS TCP is the version of MODBUS that works on modern Ethernet networks (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)). It adds a 7-byte header (called an MBAP header) to wrap MODBUS messages for sending over TCP/IP.
 
-## Protocol Overview
+## What MODBUS TCP Does
 
-MODBUS TCP provides a client/server communication model over Ethernet TCP/IP networks, removing the physical constraints of serial communication while maintaining the same MODBUS application protocol (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)).
+MODBUS TCP lets devices talk to each other over Ethernet networks, just like they browse the internet (source: [MODBUS.md](/raw/MODBUS/MODBUS.md)). The MODBUS messages stay the same, but they travel over network cables instead of old-style serial cables.
 
-### Key Characteristics
+### What Makes MODBUS TCP Different
 
-| Property | Value |
+| Feature | Details |
 |----------|-------|
-| Transport | TCP/IP |
-| Port | 502 (standard), 802 (secure) |
-| Maximum ADU size | 260 bytes (7 header + 253 PDU) |
-| Byte order | Big-endian (network byte order) |
-| Error checking | TCP/IP checksum (inherent) |
-| Framing | MBAP header provides message boundaries |
+| Connection type | Ethernet (TCP/IP) |
+| Port number | 502 (normal), 802 (encrypted) |
+| Maximum message size | 260 bytes (7 for header + 253 for data) |
+| Number format | Big-endian (most significant byte first) |
+| Error checking | Built into TCP/IP automatically |
+| Message boundaries | MBAP header shows where messages start and end |
 
-## MBAP Header
+## The MBAP Header
 
-The MBAP header identifies and manages MODBUS messages on TCP/IP networks (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):
+The MBAP header is extra information added to identify and track MODBUS messages on Ethernet (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):
 
-| Offset | Field | Size | Description |
+| Position | What It Contains | Size | Purpose |
 |--------|-------|------|-------------|
-| 0 | Transaction ID | 2 bytes | Request/response matching (client-assigned) |
-| 2 | Protocol ID | 2 bytes | 0x0000 for MODBUS |
-| 4 | Length | 2 bytes | Bytes following (Unit ID + PDU length) |
-| 6 | Unit ID | 1 byte | Slave address (0xFF for direct, 1-247 for gateway) |
+| 0 | Message ID | 2 bytes | Matches requests with responses |
+| 2 | Protocol marker | 2 bytes | 0x0000 means "this is MODBUS" |
+| 4 | Message length | 2 bytes | How many bytes follow this field |
+| 6 | Device ID | 1 byte | Which device (0xFF = directly connected, 1-247 = through gateway) |
 
-**Complete TCP ADU:**
+**A complete MODBUS TCP message:**
 ```
-[Transaction ID: 2][Protocol ID: 2][Length: 2][Unit ID: 1][Function: 1][Data: N]
-|<---------------- MBAP Header (7 bytes) --------------->|<----- PDU ------->|
+[Message ID: 2][Protocol: 2][Length: 2][Device: 1][Operation: 1][Data: varies]
+|<---------------- MBAP Header (7 bytes) ------------->|<-- MODBUS Message -->|
 ```
 
-### MBAP Header Fields
+### What Each Header Field Does
 
-**Transaction Identifier:**
-- Used for request/response pairing
-- Client assigns unique value
-- Server echoes back in response
-- Allows multiple concurrent transactions on same connection
-- Must be unique at any time on each TCP connection
+**Message ID (Transaction Identifier):**
+- Helps match answers to questions
+- The client picks a unique number for each question
+- The server copies this number into its answer
+- Lets you ask multiple questions at once without mixing up the answers
+- Must be different for each active conversation
 
-**Protocol Identifier:**
-- Value of 0x0000 indicates MODBUS protocol
-- Allows multiplexing with other protocols on same port
-- Client sets it, server echoes back
+**Protocol Marker:**
+- The value 0x0000 means "this is a MODBUS message"
+- Lets different types of messages share the same network port
+- Client sets it, server copies it back
 
-**Length:**
-- Byte count of following bytes (Unit ID + PDU)
-- Client sets in request
-- Server sets in response
-- Allows recipient to detect message boundaries across TCP packets
+**Message Length:**
+- Tells how many bytes come after this field
+- Client sets it when asking
+- Server sets it when answering
+- Helps figure out where one message ends and the next begins
 
-**Unit Identifier:**
-- Used for routing through gateways and bridges
-- 0xFF for direct connection (most common)
-- 1-247 for addressing MODBUS serial slaves through gateway
-- Set by client, echoed by server
+**Device ID (Unit Identifier):**
+- Used to route messages through gateways
+- 0xFF (255) means "device directly connected" (most common case)
+- 1-247 for reaching serial devices through a gateway
+- Client sets it, server copies it back
 
-## Connection Management
+## Managing Connections
 
-### Connection Establishment
+### Setting Up a Connection
 
-**Client:**
-1. Create TCP socket
-2. Connect to server IP:502
-3. Set socket options (TCP_NODELAY, SO_KEEPALIVE)
-4. Use connection for multiple MODBUS transactions
+**Client (the one asking questions):**
+1. Open a network connection
+2. Connect to server's IP address on port 502
+3. Configure connection options for best performance
+4. Keep using this same connection for many messages
 
-**Server:**
-1. Create TCP socket
-2. Bind to port 502
-3. Listen for connections
-4. Accept multiple clients (connection pool)
-5. Track connections for cleanup
+**Server (the one answering):**
+1. Open a network connection
+2. Listen on port 502
+3. Wait for connections
+4. Accept connections from multiple clients at once
+5. Keep track of all connections
 
-### Connection Lifecycle
+### How to Use Connections Well
 
-**Best Practices (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):**
-- Keep connections open - do not open/close per transaction
-- Use one connection per application to same server
-- Multiple transactions can be active on same connection
-- Use unique Transaction IDs for concurrent transactions
-- Send one ADU per TCP frame (don't batch requests)
-- Enable TCP_NODELAY for real-time performance
-- Enable SO_KEEPALIVE to detect dead connections
+**Good Practices (source: [messagingimplementationguide.md](/raw/MODBUS/messagingimplementationguide.md)):**
+- Keep connections open - don't open and close for each message
+- Use one connection per server you're talking to
+- You can send multiple messages on the same connection
+- Use different Message IDs if you send messages before getting answers
+- Send one message at a time (don't batch them together)
+- Turn on TCP_NODELAY for faster responses
+- Turn on SO_KEEPALIVE to notice if the connection dies
 
-**Connection Timeout:**
-- Response timeout: 1-5 seconds (application-specific)
-- Use application-level timers for MODBUS responses
-- TCP handles retransmission and reliability
+**Timeouts:**
+- Wait 1-5 seconds for an answer (depends on your application)
+- Use timers in your program to watch for MODBUS answers
+- TCP automatically resends lost messages
 
 ## Request/Response Example
 

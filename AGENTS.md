@@ -11,7 +11,7 @@ This directory is a knowledge-base for presenting the MODBUS protocol specificat
 raw/          -- source documents (immutable -- never modify these)
 wiki/         -- markdown pages maintained by Claude
 wiki/index.md -- table of contents for the entire wiki
-wiki/log.md   -- append-only record of all operations
+wiki/log/     -- append-only record of all operations
 wiki/summaries -- Contains files summarizing each source file
 wiki/concepts  -- Contains files with concepts, and a list of source files describing the contept
 wiki/answers   -- Contains files with answers developed while answering a user's question
@@ -32,9 +32,38 @@ When the user adds a new source to `raw/` and asks you to ingest it:
 4. Create or update concept pages in `wiki/concepts` for each major idea or entity.  There should be one concept page for each concept you identify.
 5. Add wiki-links (`[page-name](/wiki/path/to/file.md)`) to connect related pages
 6. Update `wiki/index.md` with new pages and one-line descriptions
-7. Append an entry to `wiki/log.md` with the date, source name, and what changed
+7. Add a file to `wiki/log/` with the date, source name, and what changed
 
 A single source may touch 10-15 wiki pages. That is normal.
+
+### The wiki/log/ directory
+
+Log files are to be added to `wiki/log/` for every change in the wiki, with the ingest workflow being one example.   The purpose is to have an audit trail when examining why something is said in a generated file.
+
+Each file in the `wiki/log/` directory must be named with a date timestamp -- `YYYY-MM-DDTHH:DD:SSZ.md` -- where the timestamp is an ISO8601 date string.  The Z in this example should be instead the code for the users local timezone.
+
+The file should be formatted as follows:
+
+```markdown
+---
+title: YYYY-MM-DD HH:MM - DESCRIPTION OF THE CHANGE
+type: log
+Sources:
+    # List of the files which were changed
+    - wiki/path/to/file1.md
+    - wiki/path/to/file2.md
+date-created: 2026-04-18T12:00:00+03:00
+---
+
+# YYYY-MM-DD HH:MM - DESCRIPTION OF THE CHANGE
+
+Describe the change(s) and rationale
+
+## Changed files
+
+Add a Markdown list of the files being changed
+```
+
 
 ## Writing style and approach
 
@@ -237,6 +266,7 @@ When the user asks a question:
 3. Cite specific wiki pages in your response
 4. If the answer is not in the wiki, say so clearly
 5. If the answer is valuable, offer to save it as a new wiki page, in the answers directory
+6. Add an entry in `wiki/log` describing the rationale for the answer
 
 Good answers should be filed back into the wiki so they compound over time.
 

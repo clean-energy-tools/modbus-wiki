@@ -13,48 +13,48 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T16:00:00+03:00
 ---
 
-The master-slave architecture defines the fundamental communication model used in MODBUS serial networks, where a single master device controls communication with one or more slave devices (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). This architecture ensures deterministic communication and prevents bus contention.
+The master-slave pattern describes how MODBUS devices communicate on serial networks (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). One device (the master) is in charge and asks questions, while the other devices (slaves) wait to be asked and then answer. This prevents devices from talking over each other.
 
-## Architecture Overview
+## How the Pattern Works
 
-### Master (Client) Role
+### The Master (Client) - The One in Charge
 
-The master device initiates all communication on the MODBUS network and controls the timing and sequence of operations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+The master starts all conversations on the MODBUS network and decides when things happen (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-**Master Responsibilities:**
-- **Initiate Requests:** Start all communication transactions
-- **Control Timing:** Determine when to send requests
-- **Polling:** Regularly query slave devices for data
-- **Broadcast Commands:** Send commands to multiple slaves simultaneously
-- **Process Responses:** Handle responses from multiple slaves
-- **Error Handling:** Detect and manage communication failures
-- **Coordinate Operations:** Ensure no conflicting operations
+**What the Master Does:**
+- **Starts Conversations:** Always asks first, never waits to be asked
+- **Controls Timing:** Decides when to send each message
+- **Regular Checkups:** Asks slaves for their data on a regular schedule
+- **Group Messages:** Can send the same message to all slaves at once
+- **Handles Answers:** Processes responses from different slaves
+- **Deals with Problems:** Notices when communication fails
+- **Keeps Order:** Makes sure only one conversation happens at a time
 
-**Master Characteristics:**
-- **Active Controller:** Always initiates communication
-- **Address Aware:** Knows addresses of all connected slaves
-- **Timing Control:** Controls request/response timing
-- **Priority Management:** Can prioritize certain devices or operations
-- **Network Supervisor:** Monitors network health and device status
+**How the Master Works:**
+- **Active:** Always doing something, never just waiting
+- **Knows Everyone:** Keeps track of all slave addresses
+- **Controls Pace:** Decides how fast to communicate
+- **Sets Priorities:** Can check important devices more often
+- **Supervises:** Watches network health and device status
 
-### Slave (Server) Role
+### The Slaves (Servers) - The Ones Who Answer
 
-Slave devices respond to requests from the master and perform the requested operations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+Slaves wait for the master to ask them questions, then do what's requested (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-**Slave Responsibilities:**
-- **Listen for Requests:** Wait for master's queries
-- **Process Commands:** Execute requested function codes
-- **Access Data:** Read/write internal data as requested
-- **Generate Responses:** Return data or exception codes
-- **Maintain State:** Keep device state consistent
-- **Report Status:** Provide operational status and diagnostics
+**What Slaves Do:**
+- **Listen:** Wait quietly for the master to ask them something
+- **Do the Work:** Perform the requested operation
+- **Access Their Data:** Read or write their own internal information
+- **Send Answers:** Return the requested data or an error message
+- **Stay Consistent:** Keep their information accurate
+- **Report Status:** Tell the master how they're doing
 
-**Slave Characteristics:**
-- **Passive Responder:** Never initiates communication
-- **Address Identification:** Has unique address (1-247)
-- **Request Processing:** Processes one request at a time
-- **Response Time:** Must respond within specified timeout
-- **Data Consistency:** Maintain valid device state
+**How Slaves Work:**
+- **Passive:** Never speak unless spoken to
+- **Have an ID:** Each has a unique address number (1-247)
+- **One Thing at a Time:** Handle one request before starting another
+- **Answer Quickly:** Must respond before the master times out
+- **Keep Data Valid:** Make sure their information stays correct
 
 ## Communication Flow
 

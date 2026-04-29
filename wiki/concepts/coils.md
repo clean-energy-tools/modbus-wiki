@@ -13,42 +13,42 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:37+03:00
 ---
 
-Coils are single-bit read-write data objects in the MODBUS data model, typically used for digital outputs, control relays, and other binary control signals (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+Coils are single-bit read-write data in the MODBUS data model, typically used for digital outputs, control relays, and other on/off signals (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 ## Overview
 
-Coils represent binary output data that can be both read and written by MODBUS clients. They are one of four primary data tables defined by the MODBUS protocol (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+Coils represent binary (on/off) output data that you can both read and write. They are one of four main data types defined by the MODBUS protocol (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-| Table | Object Type | Size  | Access     | Typical Use             |
+| Table | What It Is | Size  | Can You Write?     | What It's For             |
 | ----- | ----------- | ----- | ---------- | ----------------------- |
-| Coils | Bit         | 1 bit | Read/Write | Digital outputs, relays |
+| Coils | Single bit         | 1 bit | Yes (Read/Write) | Digital outputs, relays |
 
 ## Coil Properties
 
 | Property        | Value                                             |
 | --------------- | ------------------------------------------------- |
-| Data size       | 1 bit                                             |
-| Access type     | Read/Write                                        |
-| Typical usage   | Digital outputs, control relays, indicator lights |
-| Address range   | 0-65535 (PDU address)                             |
-| Legacy notation | 0xxxx (e.g., coil 1 = 00001)                      |
+| Size       | 1 bit (on or off)                                             |
+| Can you write to it?     | Yes (Read/Write)                                        |
+| What it's used for   | Digital outputs, control relays, indicator lights |
+| How many   | 0 to 65,535 addresses                            |
+| Old-style notation | 0xxxx (like coil 1 = 00001)                      |
 
 ## Addressing
 
-**PDU addresses are 0-based**, while documentation often uses 1-based numbering:
+**Addresses in MODBUS messages start at 0**, while documentation often counts starting from 1:
 
-| Documentation | PDU Address | Wire Value |
+| Documentation Says | Actual Address in Message | On the Wire |
 |---------------|---------------|------------|
 | Coil 1 | 0 | 0x0000 |
 | Coil 100 | 99 | 0x0063 |
 | Coil 1000 | 999 | 0x03E7 |
 
-**Legacy notation:** Coils are often referenced using the 0xxxx convention:
+**Old-style notation:** Coils are sometimes written using the 0xxxx convention:
 - 00001 = Coil 1
 - 01000 = Coil 1000
-- 00001 = PDU address 0
+- 00001 = Actual address 0
 
-For implementation, always use 0-based addresses in PDUs.
+In your code, always use addresses starting from 0.
 
 ## Function Codes for Coils
 
@@ -104,7 +104,7 @@ Write a single coil to ON or OFF.
 - 0xFF00 = ON
 - 0x0000 = OFF
 
-**Note:** Only 0xFF00 and 0x0000 are valid. Other values cause exception 0x03 (ILLEGAL DATA VALUE).
+**Note:** Only these two values are valid. Any other value will cause the device to send back error code 0x03 (ILLEGAL DATA VALUE).
 
 **Response:** Echo of request (confirms write).
 

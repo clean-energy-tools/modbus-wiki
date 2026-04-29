@@ -13,27 +13,27 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-Holding Registers are 16-bit read-write data objects in the MODBUS data model, typically used for configuration parameters, setpoints, and control values (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+Holding Registers are 16-bit read-write data in the MODBUS data model, typically used for settings, setpoints, and control values (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
 
 ## Overview
 
-Holding Registers represent 16-bit word data that can be both read and written by MODBUS clients. They are one of four primary data tables defined by the MODBUS protocol (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
+Holding Registers represent 16-bit word data that you can both read and write. They are one of four main data types defined by the MODBUS protocol (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)):
 
-| Table | Object Type | Size | Access | Typical Use |
+| Table | What It Is | Size | Can You Write? | What It's For |
 |-------|-------------|------|--------|-------------|
-| Holding Registers | Word | 16 bits | Read/Write | Configuration, setpoints |
+| Holding Registers | 16-bit number | 16 bits | Yes (Read/Write) | Settings, setpoints |
 
 ## Holding Register Properties
 
 | Property | Value |
 |----------|-------|
-| Data size | 16 bits (2 bytes) |
-| Access type | Read/Write |
-| Byte order | Big-endian (MSB first) |
-| Typical usage | Configuration, setpoints, control values |
-| Address range | 0-65535 (PDU address) |
-| Legacy notation | 4xxxx (e.g., holding register 1 = 40001) |
-| Value range | 0-65535 (unsigned) or -32768 to 32767 (signed) |
+| Size | 16 bits (2 bytes) |
+| Can you write to it? | Yes (Read/Write) |
+| Byte order | Big-endian (most significant byte first) |
+| What it's used for | Settings, setpoints, control values |
+| How many | 0 to 65,535 addresses |
+| Old-style notation | 4xxxx (like holding register 1 = 40001) |
+| Value range | 0 to 65,535 (positive only) or -32,768 to 32,767 (positive or negative) |
 
 ## Addressing
 

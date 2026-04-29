@@ -13,19 +13,19 @@ date-created: 2026-04-18T12:00:00+03:00
 last-updated: 2026-04-18T14:43:24+03:00
 ---
 
-MODBUS function codes specify the operations to be performed by the server. They are organized into bit access (coils/discrete inputs) and word access (registers) operations (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)).
+MODBUS function codes are like commands that tell a device what to do (source: [modbusprotocolspecification.md](/raw/MODBUS/modbusprotocolspecification.md)). They're organized into two main groups: operations for ON/OFF values (coils and inputs) and operations for number values (registers).
 
-## Function Code Overview
+## What Function Codes Do
 
-Function codes are 1-byte values in the MODBUS PDU that indicate the specific operation to perform:
-- Normal function codes: 0x01-0x7F
-- Exception responses: Function code + 0x80 (bit 7 set)
+Function codes are 1-byte numbers in every MODBUS message that say what operation to perform:
+- Normal operations: numbers 0x01-0x7F
+- Error messages: operation number + 0x80 (adds 128 to show it's an error)
 
-## Bit Access Function Codes
+## ON/OFF Operations (Bit Access)
 
 ### Function 0x01: Read Coils
 
-Read status of coils (read-write bits) from a remote device.
+Read the ON/OFF status of coils (switches you can control) from a device.
 
 **Request (5 bytes):**
 | Offset | Field | Size | Value Range |
@@ -108,11 +108,11 @@ Write multiple coils to ON or OFF.
 | 1-2 | Starting Address | 2 | Address of first coil |
 | 3-4 | Quantity of Coils | 2 | Number of coils written |
 
-## Word Access Function Codes
+## Number Operations (Word Access)
 
 ### Function 0x03: Read Holding Registers
 
-Read holding register values (read-write 16-bit words) from a remote device.
+Read number values from holding registers (settings and data you can change) in a device.
 
 **Request (5 bytes):**
 | Offset | Field | Size | Value Range |
