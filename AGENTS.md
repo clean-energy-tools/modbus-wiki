@@ -40,7 +40,7 @@ A single source may touch 10-15 wiki pages. That is normal.
 
 Log files are to be added to `wiki/log/` for every change in the wiki, with the ingest workflow being one example.   The purpose is to have an audit trail when examining why something is said in a generated file.
 
-Each file in the `wiki/log/` directory must be named with a date timestamp -- `YYYY-MM-DDTHH:DD:SSZ.md` -- where the timestamp is an ISO8601 date string.  The Z in this example should be instead the code for the users local timezone.
+Each file in the `wiki/log/` directory must be named with a date timestamp in ISO8601 basic format -- `YYYYMMDDTHHMMSSZhhmm.md` -- for cross-platform compatibility (Windows does not allow colons in filenames). For example: `20260425T170000+0300.md`. The timezone offset should match the user's local timezone.
 
 The file should be formatted as follows:
 
@@ -291,7 +291,7 @@ When the user asks you to lint or audit the wiki:
 ## Rules
 
 - Never modify anything in the `raw/` folder
-- Always update `wiki/index.md` and `wiki/log.md` after changes
+- Always update `wiki/index.md` and add an entry to `wiki/log/` after changes
 - Keep page names lowercase with hyphens (e.g. `machine-learning.md`)
 - Write in clear, plain language
 - When uncertain about how to categorize something, ask the user
