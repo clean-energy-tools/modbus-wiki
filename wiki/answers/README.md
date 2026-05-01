@@ -13,6 +13,7 @@ title: Answer documents
 * **[MODBUS Register Addressing and Address Space Organization](./modbus-register-addressing.md)**: Explanation of MODBUS register addressing schemes, including legacy and modern addressing conventions.
 * **[MODBUS Register Data Representation](./modbus-register-data-representation.md)**: How different data types are encoded and decoded in MODBUS registers.
 * **[MODBUS RTU Daisy-Chain Wiring Explained](./modbus-rtu-daisy-chain-wiring.md)**: Detailed guide to proper wiring techniques for MODBUS RTU daisy-chain networks.
+* **[MODBUS Security and Authentication Models](./modbus-security-and-authentication.md)**: Comprehensive explanation of security and authentication in MODBUS, comparing standard MODBUS (no security) with MODBUS/TCP Security (certificate-based authentication and role-based authorization), addressing whether username/password protection exists.
 * **[MODBUS RTU vs ASCII Comparison](./modbus-rtu-vs-ascii.md)**: Comparison of MODBUS RTU and ASCII transmission modes with usage recommendations.
 * **[MODBUS TCP Message Format](./modbus-tcp-message-format.md)**: Detailed breakdown of MODBUS/TCP message structure including MBAP header and PDU.
 * **[How MODBUS TCP-to-RTU Gateways Work](./modbus-tcp-to-rtu-gateway.md)**: Explanation of gateway operation and configuration for connecting MODBUS/TCP and MODBUS RTU networks.
