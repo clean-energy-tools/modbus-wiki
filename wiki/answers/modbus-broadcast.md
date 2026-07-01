@@ -815,6 +815,7 @@ fn broadcast_write_with_verify(
 
 ## Backlinks
 
+- [How is MODBUS Handled Over UDP](/wiki/answers/modbus-over-udp.md)
 - [How MODBUS TCP-to-RTU Gateways Work](/wiki/answers/modbus-tcp-to-rtu-gateway.md)
 - [Master-Slave Architecture](/wiki/concepts/master-slave.md)
 - [MODBUS RTU](/wiki/concepts/modbus-rtu.md)

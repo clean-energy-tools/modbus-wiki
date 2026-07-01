@@ -479,6 +479,7 @@ int check_connection_health(int sockfd) {
 ## Backlinks
 
 - [Connecting with MODBUS TCP Security](/wiki/answers/connecting-with-modbus-tcp-security.md)
+- [How is MODBUS Handled Over UDP](/wiki/answers/modbus-over-udp.md)
 - [MODBUS TCP Message Format](/wiki/answers/modbus-tcp-message-format.md)
 - [What is MBAP](/wiki/answers/what-is-mbap.md)
 - [Function Codes](/wiki/concepts/function-codes.md)

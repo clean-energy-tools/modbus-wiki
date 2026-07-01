@@ -8,7 +8,7 @@ Sources:
   - raw/MODBUS/messagingimplementationguide.md
   - raw/MODBUS/modbussecurityprotocol.md
 date-created: 2026-04-18T12:00:00+03:00
-last-updated: 2026-04-25T10:00:00+03:00
+last-updated: 2026-07-02T00:16:56+03:00
 ---
 
 Welcome to the MODBUS Protocol Wiki. This wiki contains organized information about the MODBUS protocol specifications, extracted from official MODBUS documentation.
@@ -96,6 +96,8 @@ Answers to specific questions about MODBUS implementation and usage:
 | [Converting MODBUS Registers to Program Variables](/wiki/answers/converting-modbus-registers-to-program-variables.md) | Comprehensive guide to converting between MODBUS register data and modern programming language variables, handling type system mismatches, endianness, and floating-point representation, with complete Rust implementation examples |
 | [MODBUS Broadcast](/wiki/answers/modbus-broadcast.md) | Comprehensive guide to MODBUS broadcast functionality including broadcast addresses, operation on serial vs TCP networks, effects and limitations, and troubleshooting broadcast issues |
 | [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md) | Comprehensive comparison of MODBUS RTU and ASCII transmission modes including protocol frames, encoding differences, error checking methods, CRC calculation, and when to use each mode |
+| [What is MODBUS RTU-over-TCP](/wiki/answers/modbus-rtu-over-tcp.md) | Explanation of the non-standard "RTU-over-TCP" variant that wraps a complete MODBUS RTU serial frame (including its CRC-16) inside a TCP connection without the standard MBAP header, how it differs from official MODBUS TCP and MODBUS RTU, its interoperability consequences, and how to recognize it |
+| [How is MODBUS Handled Over UDP](/wiki/answers/modbus-over-udp.md) | Explanation that UDP is not part of any official MODBUS specification, how vendor implementations carry the MBAP header and PDU inside UDP datagrams, why UDP's lack of reliability, ordering, and error checking matters for a protocol that assumes TCP guarantees, and interoperability considerations |
 | [RS-485 Wiring for MODBUS RTU](/wiki/answers/rs485-wiring-for-modbus-rtu.md) | Comprehensive guide to RS-485 physical wiring for MODBUS RTU including topology, voltage levels, 2-wire vs 4-wire configurations, shielding, termination resistors, polarization, device limits, and practical installation guidelines |
 | [MODBUS over RS-232](/wiki/answers/modbus-over-rs232.md) | Comprehensive guide to running MODBUS over RS-232 including setup, limitations, comparison with RS-485, point-to-point operation, wiring, and when to use RS-232 vs RS-485 for MODBUS RTU |
 | [TLS and MODBUS Security](/wiki/answers/tls-and-modbus-security.md) | Comprehensive explanation of TLS, its role in MODBUS Security, cyber-attacks prevented by TLS, and how TLS prevents unauthorized access to MODBUS devices through mutual authentication and role-based authorization |

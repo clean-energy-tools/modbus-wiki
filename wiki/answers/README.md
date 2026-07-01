@@ -10,11 +10,13 @@ title: Answer documents
 * **[MODBUS Errors and Exception Responses](./modbus-errors-and-exceptions.md)**: Complete guide to MODBUS exception codes, error handling, and troubleshooting communication failures.
 * **[MODBUS Function Codes Complete Guide](./modbus-function-codes-guide.md)**: Comprehensive reference for all standard MODBUS function codes with examples and usage guidelines.
 * **[MODBUS over RS-232](./modbus-over-rs232.md)**: Guide to implementing MODBUS protocol over RS-232 serial connections.
+* **[How is MODBUS Handled Over UDP](./modbus-over-udp.md)**: Explains that UDP is not part of any official MODBUS specification, how vendor implementations carry the MBAP header and PDU inside UDP datagrams, and why UDP's lack of reliability, ordering, and error checking matters for a protocol that assumes TCP guarantees.
 * **[MODBUS Register Addressing and Address Space Organization](./modbus-register-addressing.md)**: Explanation of MODBUS register addressing schemes, including legacy and modern addressing conventions.
 * **[MODBUS Register Data Representation](./modbus-register-data-representation.md)**: How different data types are encoded and decoded in MODBUS registers.
 * **[MODBUS RTU Daisy-Chain Wiring Explained](./modbus-rtu-daisy-chain-wiring.md)**: Detailed guide to proper wiring techniques for MODBUS RTU daisy-chain networks.
 * **[MODBUS Security and Authentication Models](./modbus-security-and-authentication.md)**: Comprehensive explanation of security and authentication in MODBUS, comparing standard MODBUS (no security) with MODBUS/TCP Security (certificate-based authentication and role-based authorization), addressing whether username/password protection exists.
 * **[MODBUS RTU vs ASCII Comparison](./modbus-rtu-vs-ascii.md)**: Comparison of MODBUS RTU and ASCII transmission modes with usage recommendations.
+* **[What is MODBUS RTU-over-TCP](./modbus-rtu-over-tcp.md)**: Explanation of the non-standard "RTU-over-TCP" variant that wraps a complete MODBUS RTU serial frame (including its CRC-16) inside a TCP connection without the standard MBAP header, and how it differs from official MODBUS TCP and MODBUS RTU.
 * **[MODBUS TCP Message Format](./modbus-tcp-message-format.md)**: Detailed breakdown of MODBUS/TCP message structure including MBAP header and PDU.
 * **[How MODBUS TCP-to-RTU Gateways Work](./modbus-tcp-to-rtu-gateway.md)**: Explanation of gateway operation and configuration for connecting MODBUS/TCP and MODBUS RTU networks.
 * **[Reading MODBUS Register Maps](./reading-modbus-register-maps.md)**: Guide to understanding and using device register maps and documentation.

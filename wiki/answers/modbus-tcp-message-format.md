@@ -824,9 +824,11 @@ Source: [tcp-connection-management.md](/wiki/concepts/tcp-connection-management.
 
 ## Backlinks
 
+- [How is MODBUS Handled Over UDP](/wiki/answers/modbus-over-udp.md)
 - [How MODBUS TCP-to-RTU Gateways Work](/wiki/answers/modbus-tcp-to-rtu-gateway.md)
 - [MODBUS Broadcast](/wiki/answers/modbus-broadcast.md)
 - [MODBUS Errors and Exception Responses](/wiki/answers/modbus-errors-and-exceptions.md)
+- [What is MODBUS RTU-over-TCP](/wiki/answers/modbus-rtu-over-tcp.md)
 - [Using Wireshark for MODBUS TCP Analysis](/wiki/answers/wireshark-modbus-analysis.md)
 - [CRC-16](/wiki/concepts/crc-16.md)
 - [MBAP Header](/wiki/concepts/mbap-header.md)

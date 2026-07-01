@@ -343,6 +343,7 @@ if (!validate_crc(frame, len)) {
 ## Backlinks
 
 - [MODBUS RTU vs ASCII Comparison](/wiki/answers/modbus-rtu-vs-ascii.md)
+- [What is MODBUS RTU-over-TCP](/wiki/answers/modbus-rtu-over-tcp.md)
 - [MODBUS TCP Message Format](/wiki/answers/modbus-tcp-message-format.md)
 - [LRC](/wiki/concepts/lrc.md)
 - [MODBUS ASCII](/wiki/concepts/modbus-ascii.md)
